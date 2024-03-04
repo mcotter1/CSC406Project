@@ -12,5 +12,13 @@ public class Savings extends Account{
         this.dateopened = dateopened;
         this.CDdue = CDdue;
     }
+    @Override
+    public double getBalance(){
+        return this.balance;
+    }
+    @Override
+    public void setBalance(double newbalance){
+        this.balance = newbalance;
+    }
 
 }

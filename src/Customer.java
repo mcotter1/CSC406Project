@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Customer {
+public class Customer extends User{
     private String lastname;
     private String firstname;
     private String state;
@@ -81,4 +81,11 @@ public class Customer {
     public void setIdnumber(int idnumber) {
         this.idnumber = idnumber;
     }
+    @Override
+    public void DebitAccount(double amount,Account account){
+        double newbalance = account.getBalance()-amount;
+        account.setBalance(newbalance);
+    }
+
+
 }
