@@ -22,6 +22,11 @@ public class Customer extends User{
         accounts.add(x);
     }
 
+    @Override
+    public void DebitAccount(double amount,Account account){
+        double newbalance = account.getBalance()-amount;
+        account.setBalance(newbalance);
+    }
     public String getLastname() {
         return lastname;
     }
@@ -81,11 +86,7 @@ public class Customer extends User{
     public void setIdnumber(int idnumber) {
         this.idnumber = idnumber;
     }
-    @Override
-    public void DebitAccount(double amount,Account account){
-        double newbalance = account.getBalance()-amount;
-        account.setBalance(newbalance);
-    }
+
 
 
 }
