@@ -1,18 +1,18 @@
 
 public class Savings extends Account{
-    protected int ID;
+    protected int accountnumber;
     private boolean cdcheck;
     private double balance;
     protected double interestrate;
     private String dateopened;
     private String CDdue;
-    public Savings(boolean cdcheck, double balance,double interestrate,String dateopened,String CDdue,int ID){
+    public Savings(boolean cdcheck, double balance,double interestrate,String dateopened,String CDdue,int accountnumber){
         this.cdcheck = cdcheck;
         this.balance = balance;
         this.interestrate = interestrate;
         this.dateopened = dateopened;
         this.CDdue = CDdue;
-        this.ID = ID;
+        this.accountnumber = accountnumber;
 
     }
     @Override
@@ -24,7 +24,7 @@ public class Savings extends Account{
         this.balance = newbalance;
     }
     @Override
-    public void getID(){
+    public void getAccountNumber(){
 
     }
     public double getInterestrate(){
