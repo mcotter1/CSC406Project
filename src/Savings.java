@@ -1,36 +1,91 @@
+import java.util.Date;
 
+/**
+ * Savings account class creates simple savings and CD account types
+ */
 public class Savings extends Account{
     protected int accountnumber;
-    private boolean cdcheck;
-    private double balance;
+    protected boolean cdcheck;
+    protected double balance;
     protected double interestrate;
-    private String dateopened;
-    private String CDdue;
-    public Savings(boolean cdcheck, double balance,double interestrate,String dateopened,String CDdue,int accountnumber){
+    protected Date dateopened;
+    protected String accounttype;
+    protected Date CDdue;
+    //constructor, CDdue is null for simple savings
+    public Savings(boolean cdcheck, double balance,double interestrate,Date dateopened,Date CDdue,int accountnumber){
         this.cdcheck = cdcheck;
         this.balance = balance;
         this.interestrate = interestrate;
         this.dateopened = dateopened;
         this.CDdue = CDdue;
         this.accountnumber = accountnumber;
-
+        if(cdcheck){
+            this.accounttype = "CD";
+        }
+        else this.accounttype = "Simple Savings";
     }
+    //returns the current balance
     @Override
     public double getBalance(){
         return this.balance;
     }
+    //sets the current balance
     @Override
-    public void setBalance(double newbalance){
+    public double setBalance(double newbalance){
         this.balance = newbalance;
+        return balance;
     }
     @Override
-    public void getAccountNumber(){
-
+    //returns the account number
+    public int getAccountNumber(){
+        return this.accountnumber;
     }
+    //returns the interest rate
     public double getInterestrate(){
         return this.interestrate;
     }
+    //sets the current interest rate
+    public void setInterestrate(double interestrate){
+        this.interestrate = interestrate;
+    }
 
+    public int getAccountnumber() {
+        return accountnumber;
+    }
 
+    public void setAccountnumber(int accountnumber) {
+        this.accountnumber = accountnumber;
+    }
 
+    public boolean isCdcheck() {
+        return cdcheck;
+    }
+
+    public void setCdcheck(boolean cdcheck) {
+        this.cdcheck = cdcheck;
+    }
+
+    public Date getDateopened() {
+        return dateopened;
+    }
+
+    public void setDateopened(Date dateopened) {
+        this.dateopened = dateopened;
+    }
+
+    public String getAccounttype() {
+        return accounttype;
+    }
+
+    public void setAccounttype(String accounttype) {
+        this.accounttype = accounttype;
+    }
+
+    public Date getCDdue() {
+        return CDdue;
+    }
+
+    public void setCDdue(Date CDdue) {
+        this.CDdue = CDdue;
+    }
 }

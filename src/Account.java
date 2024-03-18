@@ -1,6 +1,6 @@
 
 public abstract class Account{
     public abstract double getBalance();
-    public abstract void setBalance(double newbalance);
-    public abstract void getAccountNumber();
+    public abstract double setBalance(double newbalance);
+    public abstract int getAccountNumber();
 }
