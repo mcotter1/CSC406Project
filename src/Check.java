@@ -1,4 +1,6 @@
-public class Check {
+import java.io.Serializable;
+
+public class Check implements Serializable {
     protected int checknumber;
     protected double paymentamount;
     //boolean for checking if payment went through or was overdrafted
