@@ -27,4 +27,91 @@ public class Loan {
         this.accounttype = accounttype;
     }
 
+    public int getSsn() {
+        return ssn;
+    }
+
+    public void setSsn(int ssn) {
+        this.ssn = ssn;
+    }
+
+    public int getAccountnumber() {
+        return accountnumber;
+    }
+
+    public void setAccountnumber(int accountnumber) {
+        this.accountnumber = accountnumber;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public double getInterestrate() {
+        return interestrate;
+    }
+
+    public void setInterestrate(double interestrate) {
+        this.interestrate = interestrate;
+    }
+
+    public Date getDatepaymentdue() {
+        return datepaymentdue;
+    }
+
+    public void setDatepaymentdue(Date datepaymentdue) {
+        this.datepaymentdue = datepaymentdue;
+    }
+
+    public Date getNotifiedofpayment() {
+        return notifiedofpayment;
+    }
+
+    public void setNotifiedofpayment(Date notifiedofpayment) {
+        this.notifiedofpayment = notifiedofpayment;
+    }
+
+    public double getPaymentamountdue() {
+        return paymentamountdue;
+    }
+
+    public void setPaymentamountdue(double paymentamountdue) {
+        this.paymentamountdue = paymentamountdue;
+    }
+
+    public Date getLastpaymentdate() {
+        return lastpaymentdate;
+    }
+
+    public void setLastpaymentdate(Date lastpaymentdate) {
+        this.lastpaymentdate = lastpaymentdate;
+    }
+
+    public boolean isMissedpayment() {
+        return missedpayment;
+    }
+
+    public void setMissedpayment(boolean missedpayment) {
+        this.missedpayment = missedpayment;
+    }
+
+    public String getCollateral() {
+        return collateral;
+    }
+
+    public void setCollateral(String collateral) {
+        this.collateral = collateral;
+    }
+
+    public String getAccounttype() {
+        return accounttype;
+    }
+
+    public void setAccounttype(String accounttype) {
+        this.accounttype = accounttype;
+    }
 }

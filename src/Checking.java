@@ -13,6 +13,9 @@ public class Checking extends Account {
     protected boolean backupsavingscheck;
     protected Savings backupsavingsaccount;
     protected Date dateopened;
+    protected String accounttype;
+    protected int ATMwithdrawalfrequency;
+    protected boolean ATMcard;
     ArrayList<Check> newchecks = new ArrayList<Check>();
     ArrayList<Check> usedchecks = new ArrayList<Check>();
     public Checking(int ssn, int accountnumber,boolean golddiamondcheck,double balance, Date dateopeend){
@@ -21,13 +24,29 @@ public class Checking extends Account {
         this.golddiamondcheck = golddiamondcheck;
         this.balance = balance;
         this.dateopened = dateopeend;
+        if(golddiamondcheck) accounttype = "Gold/Diamond";
+        else accounttype = "That's My Bank";
         //for loop within constructor populates newchecks with blank checks
         for(int i = 1;i<=100;i++){
             newchecks.add(new Check(i));
         }
     }
+    //this is the checking account ATM withdrawal function
+    public void WithdrawFromATM(double amount){
+        if(ATMwithdrawalfrequency>2){
+            System.out.println("Cannot withdraw more than twice per day");
+        }
+        else{
+            if(amount>balance){
+                System.out.println("Insufficent balance to withdraw "+amount);
+            }
+            else{
+                balance = balance-amount;
+            }
+        }
+    }
     //Withdraws money from account with a check, savings account must be added to checking account, updated, then pushed
-    //back to the user account
+    //back to the user account. Could also change to have savings account be input for this function
     public Check WriteCheck(double paymentamount) {
         Check check;
         check = newchecks.getFirst();
