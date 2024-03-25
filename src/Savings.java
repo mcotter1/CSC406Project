@@ -92,7 +92,7 @@ public class Savings extends Account{
     public void setDateopened(Date dateopened) {
         this.dateopened = dateopened;
     }
-
+    @Override
     public String getAccounttype() {
         return accounttype;
     }

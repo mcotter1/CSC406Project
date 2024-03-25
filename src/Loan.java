@@ -1,6 +1,6 @@
 import java.util.Date;
 
-public class Loan {
+public class Loan extends Account{
     protected int ssn;
     protected int accountnumber;
     protected double balance;
@@ -47,8 +47,14 @@ public class Loan {
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public double setBalance(double balance) {
         this.balance = balance;
+        return balance;
+    }
+
+    @Override
+    public int getAccountNumber() {
+        return accountnumber;
     }
 
     public double getInterestrate() {

@@ -132,6 +132,11 @@ public class Checking extends Account {
         return this.accountnumber;
     }
 
+    @Override
+    public String getAccounttype() {
+        return this.accounttype;
+    }
+
     public int getAccountnumber() {
         return accountnumber;
     }

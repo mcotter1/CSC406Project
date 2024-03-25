@@ -5,4 +5,5 @@ public abstract class Account implements Serializable {
     public abstract double getBalance();
     public abstract double setBalance(double newbalance);
     public abstract int getAccountNumber();
+    public abstract String getAccounttype();
 }
