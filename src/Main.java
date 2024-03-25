@@ -3,7 +3,7 @@ import java.util.Date;
 
 public class Main {
     public static void main(String[] args){
-        Savings simplesavings = new Savings(true,50000,0.02,new Date(2020,Calendar.NOVEMBER,12), new Date(2024, Calendar.AUGUST,1),01);
+        Savings simplesavings = new Savings(140910110,true,50000,0.02,new Date(2020,Calendar.NOVEMBER,12), new Date(2024, Calendar.AUGUST,1),01);
         Customer user1 = new Customer(140910110,"Thomas","Hutton","MO","St. Joseph",64506,"2626 Lovers Lane");
         user1.AddAccount(simplesavings);
         System.out.println(user1.getAccounts().get(0).getBalance());

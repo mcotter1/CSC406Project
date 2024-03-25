@@ -4,6 +4,7 @@ import java.util.Date;
  * Savings account class creates simple savings and CD account types
  */
 public class Savings extends Account{
+    protected int ssn;
     protected int accountnumber;
     protected boolean cdcheck;
     protected double balance;
@@ -12,7 +13,8 @@ public class Savings extends Account{
     protected String accounttype;
     protected Date CDdue;
     //constructor, CDdue is null for simple savings
-    public Savings(boolean cdcheck, double balance,double interestrate,Date dateopened,Date CDdue,int accountnumber){
+    public Savings(int ssn,boolean cdcheck, double balance,double interestrate,Date dateopened,Date CDdue,int accountnumber){
+        this.ssn = ssn;
         this.cdcheck = cdcheck;
         this.balance = balance;
         this.interestrate = interestrate;

@@ -5,6 +5,7 @@ import java.util.Date;
  * Checking account class creates regular checking and gold/diamond checking accounts
  */
 public class Checking extends Account {
+    protected int ssn;
     protected int accountnumber;
     protected double balance;
     protected double golddiamondrate;
@@ -14,7 +15,8 @@ public class Checking extends Account {
     protected Date dateopened;
     ArrayList<Check> newchecks = new ArrayList<Check>();
     ArrayList<Check> usedchecks = new ArrayList<Check>();
-    public Checking(int accountnumber,boolean golddiamondcheck,double balance, Date dateopeend){
+    public Checking(int ssn, int accountnumber,boolean golddiamondcheck,double balance, Date dateopeend){
+        this.ssn = ssn;
         this.accountnumber = accountnumber;
         this.golddiamondcheck = golddiamondcheck;
         this.balance = balance;
@@ -24,7 +26,8 @@ public class Checking extends Account {
             newchecks.add(new Check(i));
         }
     }
-    //Withdraws money from account with a check
+    //Withdraws money from account with a check, savings account must be added to checking account, updated, then pushed
+    //back to the user account
     public Check WriteCheck(double paymentamount) {
         Check check;
         check = newchecks.getFirst();
@@ -83,11 +86,11 @@ public class Checking extends Account {
         }
         return check;
     }
-    public void StopPayment(Check check){
+    public void StopPayment(int checknumber){
         int i = 0;
         double paybackamount;
         for(i=0;i<=usedchecks.size()-1;i++){
-            if(usedchecks.get(i).getChecknumber()==check.getChecknumber()){
+            if(usedchecks.get(i).getChecknumber()==checknumber){
                 usedchecks.get(i).setPaid(false);
                 break;
             }
