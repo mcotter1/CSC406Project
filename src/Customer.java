@@ -1,16 +1,17 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Customer extends User{
+public class Customer extends User {
     private String lastname;
     private String firstname;
     private String state;
     private String city;
     private int zipcode;
     private String address;
-    private int idnumber;
+    private int ssn;
     ArrayList<Account> accounts = new ArrayList<>();
-    public Customer(int idnumber, String firstname, String lastname, String state, String city, int zipcode, String address){
-        this.idnumber = idnumber;
+    public Customer(int ssn, String firstname, String lastname, String state, String city, int zipcode, String address){
+        this.ssn = ssn;
         this.firstname = firstname;
         this.lastname = lastname;
         this.state = state;
@@ -50,11 +51,11 @@ public class Customer extends User{
     public String getAddress() {
         return address;
     }
-
-    public int getIdnumber() {
-        return idnumber;
+    @Override
+    public int getSSN() {
+        return ssn;
     }
-
+    @Override
     public ArrayList<Account> getAccounts() {
         return accounts;
     }
@@ -83,8 +84,8 @@ public class Customer extends User{
         this.address = address;
     }
 
-    public void setIdnumber(int idnumber) {
-        this.idnumber = idnumber;
+    public void setSSN(int ssn) {
+        this.ssn = ssn;
     }
 
 
