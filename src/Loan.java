@@ -46,7 +46,7 @@ public class Loan extends Account{
     public double getBalance() {
         return balance;
     }
-
+    @Override
     public double setBalance(double balance) {
         this.balance = balance;
         return balance;
