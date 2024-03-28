@@ -114,9 +114,10 @@ public class Checking extends Account {
                 break;
             }
             else System.out.println("Could not find check");
-            paybackamount = usedchecks.get(i).getPaymentamount();
-            balance = balance+paybackamount;
         }
+        paybackamount = usedchecks.get(i).getPaymentamount();
+        balance = balance+paybackamount;
+        balance = balance - 35;
     }
     @Override
     public double getBalance() {
