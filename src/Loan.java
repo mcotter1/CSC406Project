@@ -2,7 +2,6 @@ import java.util.Date;
 
 public class Loan extends Account{
     protected int ssn;
-    protected int accountnumber;
     protected double balance;
     protected double interestrate;
     protected Date datepaymentdue;
@@ -12,10 +11,13 @@ public class Loan extends Account{
     protected boolean missedpayment;
     protected String collateral;
     protected String accounttype;
+    protected double termlength;
+    protected String repaymentplantype;
+    protected String loantype;
+    protected double creditcardlimit;
 
-    public Loan(int ssn,int accountnumber, double balance, double interestrate, Date datepaymentdue, Date notifiedofpayment, double paymentamountdue, Date lastpaymentdate, boolean missedpayment, String collateral, String accounttype) {
+    public Loan(int ssn, double balance, double interestrate, Date datepaymentdue, Date notifiedofpayment, double paymentamountdue, Date lastpaymentdate, boolean missedpayment,double termlength, String collateral, String repaymentplantype,String loantype,double creditcardlimit) {
         this.ssn = ssn;
-        this.accountnumber = accountnumber;
         this.balance = balance;
         this.interestrate = interestrate;
         this.datepaymentdue = datepaymentdue;
@@ -23,8 +25,20 @@ public class Loan extends Account{
         this.paymentamountdue = paymentamountdue;
         this.lastpaymentdate = lastpaymentdate;
         this.missedpayment = missedpayment;
+        this.termlength = termlength;
         this.collateral = collateral;
-        this.accounttype = accounttype;
+        this.repaymentplantype = repaymentplantype;
+        this.loantype = loantype;
+        this.creditcardlimit = creditcardlimit;
+        if(this.loantype.equalsIgnoreCase("long term")){
+            this.accounttype = "Long Term Loan";
+        }
+        if(this.loantype.equalsIgnoreCase("Short Term")){
+            this.accounttype = "Short Term Loan";
+        }
+        if(this.creditcardlimit!=0){
+            this.accounttype = "Credit Card";
+        }
     }
 
     public int getSsn() {
@@ -35,14 +49,6 @@ public class Loan extends Account{
         this.ssn = ssn;
     }
 
-    public int getAccountnumber() {
-        return accountnumber;
-    }
-
-    public void setAccountnumber(int accountnumber) {
-        this.accountnumber = accountnumber;
-    }
-
     public double getBalance() {
         return balance;
     }
@@ -51,12 +57,6 @@ public class Loan extends Account{
         this.balance = balance;
         return balance;
     }
-
-    @Override
-    public int getAccountNumber() {
-        return accountnumber;
-    }
-
     public double getInterestrate() {
         return interestrate;
     }

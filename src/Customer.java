@@ -10,7 +10,7 @@ public class Customer extends User {
     private String address;
     private int ssn;
     ArrayList<Account> accounts = new ArrayList<>();
-    public Customer(int ssn, String firstname, String lastname, String state, String city, int zipcode, String address){
+    public Customer(int ssn, String address, String city, String state, int zipcode, String firstname, String lastname){
         this.ssn = ssn;
         this.firstname = firstname;
         this.lastname = lastname;

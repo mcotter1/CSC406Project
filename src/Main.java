@@ -5,10 +5,10 @@ import java.util.Date;
 
 public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        Customer customer1 = new Customer(1010101,"Tommy","Hutton","MO","St. Joseph",64506,"Whatever");
-        Customer customer2 = new Customer(101010,"Dakotah","Profitt","MO","St. Joseph",64506,"Whatever");
-        Savings simplesavings = new Savings(1010101,false,10101.0,0.1,new Date(2023,Calendar.AUGUST,12),new Date(2023,Calendar.NOVEMBER,14),56706);
-        Checking golddiamond = new Checking(10101010,2358394,true,5601.1,new Date(2022,Calendar.DECEMBER,12));
+        Customer customer1 = new Customer(423453245,"114 North 4th","Clarkesdale","MO",64493,"Ronald","Jones");
+        Customer customer2 = new Customer(345653425,"1805 Jules","St. Joseph","MO",64503,"Mark","Ingrem");
+        Savings simplesavings = new Savings("SA21",423148894,250.23,0.46,new Date(2017,Calendar.JUNE,26),null,null);
+        Checking golddiamond = new Checking(423453245,"Gold",5502.06,"SA21",0,new Date(2024,Calendar.JANUARY,3));
         customer1.AddAccount(simplesavings);
         customer1.AddAccount(golddiamond);
         customer2.AddAccount(simplesavings);
@@ -25,6 +25,9 @@ public class Main {
         users2 = (ArrayList<User>) ois.readObject();
         ois.close();
         System.out.println(users2);
+        Savings tempsavings;
+        int accountindex;
+        tempsavings = (Savings) users2.get(0).getAccounts().get(0);
         ArrayList<Account> accounts = new ArrayList<>();
         Account account1 = users2.get(0).getAccounts().get(0);
         Account account2 = users2.get(0).getAccounts().get(1);
