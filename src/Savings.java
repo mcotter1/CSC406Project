@@ -5,7 +5,8 @@ import java.util.Date;
  */
 public class Savings extends Account{
     protected int ssn;
-    protected int accountnumber;
+    protected String savingsaccountid;
+    protected String passbook;
     protected boolean cdcheck;
     protected double balance;
     protected double interestrate;
@@ -14,14 +15,16 @@ public class Savings extends Account{
     protected Date CDdue;
     protected int ATMwithdrawalfrequency;
     //constructor, CDdue is null for simple savings
-    public Savings(int ssn,boolean cdcheck, double balance,double interestrate,Date dateopened,Date CDdue,int accountnumber){
+    public Savings(String savingsaccountid,int ssn,double balance, double interestrate,Date dateopened,String passbook,Date CDdue){
         this.ssn = ssn;
         this.cdcheck = cdcheck;
         this.balance = balance;
         this.interestrate = interestrate;
         this.dateopened = dateopened;
-        this.CDdue = CDdue;
-        this.accountnumber = accountnumber;
+        if(passbook == null){
+            this.cdcheck = false;
+        }
+        else cdcheck = true;
         if(cdcheck){
             this.accounttype = "CD";
         }
@@ -55,11 +58,6 @@ public class Savings extends Account{
         this.balance = newbalance;
         return balance;
     }
-    @Override
-    //returns the account number
-    public int getAccountNumber(){
-        return this.accountnumber;
-    }
     //returns the interest rate
     public double getInterestrate(){
         return this.interestrate;
@@ -67,14 +65,6 @@ public class Savings extends Account{
     //sets the current interest rate
     public void setInterestrate(double interestrate){
         this.interestrate = interestrate;
-    }
-
-    public int getAccountnumber() {
-        return accountnumber;
-    }
-
-    public void setAccountnumber(int accountnumber) {
-        this.accountnumber = accountnumber;
     }
 
     public boolean isCdcheck() {

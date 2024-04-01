@@ -12,20 +12,29 @@ public class Checking extends Account {
     protected boolean golddiamondcheck;
     protected boolean backupsavingscheck;
     protected Savings backupsavingsaccount;
+    protected String savingsaccountid;
     protected Date dateopened;
     protected String accounttype;
     protected int ATMwithdrawalfrequency;
     protected boolean ATMcard;
+    protected int overdraftsthismonth;
     ArrayList<Check> newchecks = new ArrayList<Check>();
     ArrayList<Check> usedchecks = new ArrayList<Check>();
-    public Checking(int ssn, int accountnumber,boolean golddiamondcheck,double balance, Date dateopeend){
+    public Checking(int ssn, String accounttype,double balance,String savingsaccountid,int overdraftsthismonth, Date dateopeend){
         this.ssn = ssn;
-        this.accountnumber = accountnumber;
-        this.golddiamondcheck = golddiamondcheck;
+        this.savingsaccountid = savingsaccountid;
+        this.overdraftsthismonth = overdraftsthismonth;
+        this.accounttype = accounttype;
         this.balance = balance;
         this.dateopened = dateopeend;
-        if(golddiamondcheck) accounttype = "Gold/Diamond";
-        else accounttype = "That's My Bank";
+        if(accounttype.equalsIgnoreCase("tmb")){
+            golddiamondcheck = false;
+        }
+        else golddiamondcheck = true;
+        if(savingsaccountid==null){
+            backupsavingscheck = false;
+        }
+        else backupsavingscheck = true;
         //for loop within constructor populates newchecks with blank checks
         for(int i = 1;i<=100;i++){
             newchecks.add(new Check(i));
@@ -128,10 +137,6 @@ public class Checking extends Account {
         this.balance = newbalance;
         return balance;
     }
-    @Override
-    public int getAccountNumber() {
-        return this.accountnumber;
-    }
 
     @Override
     public String getAccounttype() {
@@ -200,5 +205,41 @@ public class Checking extends Account {
 
     public void setUsedchecks(ArrayList<Check> usedchecks) {
         this.usedchecks = usedchecks;
+    }
+
+    public int getSsn() {
+        return ssn;
+    }
+
+    public void setSsn(int ssn) {
+        this.ssn = ssn;
+    }
+
+    public String getSavingsaccountid() {
+        return savingsaccountid;
+    }
+
+    public void setOverdraftbackupnumber(String savingsaccountid) {
+        this.savingsaccountid = savingsaccountid;
+    }
+
+    public void setAccounttype(String accounttype) {
+        this.accounttype = accounttype;
+    }
+
+    public int getATMwithdrawalfrequency() {
+        return ATMwithdrawalfrequency;
+    }
+
+    public void setATMwithdrawalfrequency(int ATMwithdrawalfrequency) {
+        this.ATMwithdrawalfrequency = ATMwithdrawalfrequency;
+    }
+
+    public boolean isATMcard() {
+        return ATMcard;
+    }
+
+    public void setATMcard(boolean ATMcard) {
+        this.ATMcard = ATMcard;
     }
 }
