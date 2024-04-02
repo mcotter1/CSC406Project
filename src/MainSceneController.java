@@ -97,6 +97,16 @@ public class MainSceneController {
         System.out.println("Debit Card Button Clicked");
     }
 
+    @FXML
+    void viewCustomerData(ActionEvent event) throws Exception {
+        root = FXMLLoader.load(getClass().getResource("ManagerDataView.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("View Customer Data Button Clicked");
+    }
+
     // This method is used to switch back to the main scene
     // used for the back button in Teller, Manager, and Customer scenes
     public void switchToMainScene(ActionEvent event) throws IOException {
