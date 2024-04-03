@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="308.0" prefWidth="445.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainSceneController">
+   <children>
+      <Button fx:id="ExitButtonTeller" layoutX="188.0" layoutY="256.0" mnemonicParsing="false" onAction="#switchToMainScene" prefHeight="25.0" prefWidth="70.0" text="Exit" />
+      <Button fx:id="AccountStatus" layoutX="260.0" layoutY="78.0" mnemonicParsing="false" onAction="#AccountStatusDisplayed" prefHeight="31.0" prefWidth="152.0" text="Account Status" />
+      <Button fx:id="DebitAccount" layoutX="260.0" layoutY="124.0" mnemonicParsing="false" onAction="#DebitAccount" prefHeight="31.0" prefWidth="152.0" text="Debit Account" />
+      <Button fx:id="TransferMoney" layoutX="39.0" layoutY="78.0" mnemonicParsing="false" onAction="#Transfer" prefHeight="31.0" prefWidth="152.0" text="Transfer Money" />
+      <Button fx:id="DisplayAccoutBalance" layoutX="39.0" layoutY="167.0" mnemonicParsing="false" onAction="#AccountBalance" prefHeight="31.0" prefWidth="152.0" text="Display Account Balance" />
+      <Button fx:id="DisplayRecentDebits" layoutX="39.0" layoutY="124.0" mnemonicParsing="false" onAction="#DisplayRecentDebits" prefHeight="31.0" prefWidth="152.0" text="Display Recent Debits" />
+      <Button fx:id="TellerCreditAccount" layoutX="260.0" layoutY="167.0" mnemonicParsing="false" onAction="#CreditAccount" prefHeight="31.0" prefWidth="152.0" text="Credit Account" />
+   </children>
+</AnchorPane>
