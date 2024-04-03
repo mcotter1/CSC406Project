@@ -6,7 +6,6 @@ import java.util.Date;
  */
 public class Checking extends Account {
     protected int ssn;
-    protected int accountnumber;
     protected double balance;
     protected double golddiamondrate;
     protected boolean golddiamondcheck;
@@ -142,15 +141,6 @@ public class Checking extends Account {
     public String getAccounttype() {
         return this.accounttype;
     }
-
-    public int getAccountnumber() {
-        return accountnumber;
-    }
-
-    public void setAccountnumber(int accountnumber) {
-        this.accountnumber = accountnumber;
-    }
-
     public double getGolddiamondrate() {
         return golddiamondrate;
     }

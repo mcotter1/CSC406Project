@@ -17,7 +17,8 @@ public class Savings extends Account{
     //constructor, CDdue is null for simple savings
     public Savings(String savingsaccountid,int ssn,double balance, double interestrate,Date dateopened,String passbook,Date CDdue){
         this.ssn = ssn;
-        this.cdcheck = cdcheck;
+        this.savingsaccountid = savingsaccountid;
+        this.passbook = passbook;
         this.balance = balance;
         this.interestrate = interestrate;
         this.dateopened = dateopened;
