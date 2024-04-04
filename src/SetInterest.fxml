@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainSceneController">
+   <children>
+      <Button layoutX="373.0" layoutY="175.0" mnemonicParsing="false" onAction="#setInterestRate" text="Set" />
+      <TextField layoutX="216.0" layoutY="175.0" />
+      <Label layoutX="144.0" layoutY="179.0" text="Set Interest" />
+      <Button layoutX="280.0" layoutY="307.0" mnemonicParsing="false" onAction="#ManagerSearchCustomerID" text="Back" />
+      <ChoiceBox layoutX="216.0" layoutY="206.0" prefWidth="150.0" />
+      <Label layoutX="90.0" layoutY="210.0" text="Select an Interst Type" />
+   </children>
+</AnchorPane>

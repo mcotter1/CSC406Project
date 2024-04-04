@@ -58,8 +58,31 @@ public class TableViewController implements Initializable {
         System.out.println("Back Button Clicked");
     }
 
+    public void switchToTellerScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("Teller.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("Teller Button Clicked");
+    }
+
+    public void switchToManagerScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("Manager.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("Manager Button Clicked");
+    }
+
     final ObservableList<Customer> data = FXCollections.observableArrayList(
-        new Customer(23, "4505 NE 105th St", "Kansas City", "Missouri", 64156, "Gage", "Ross")
+        new Customer(23, "4508 NE 105th St", "Kansas City", "Missouri", 64156, "Gage", "Ross"),
+        new Customer(24, "7884 Wild Rose Street", "St Joseph", "Missouri", 69256, "Dakotah", "Profit"),
+        new Customer(25, "47 Myers Street", "St Joseph", "Missouri", 66756, "Matthew", "Cotter"),
+        new Customer(26, "3 Randall Mill Street", "St Joseph", "Missouri", 64156, "Lukas", "Siemers"),
+        new Customer(27, "842 Amerige Drive", "St Joseph", "Missouri", 66156, "Tommy", "Hutton"),
+        new Customer(28, "Pembroke Pines", "St Joseph", "Missouri", 64236, "Wyatt", "Wuerfele")
     );
 
 

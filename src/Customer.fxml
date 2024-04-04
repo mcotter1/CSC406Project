@@ -16,6 +16,6 @@
             <Font size="27.0" />
          </font>
       </Label>
-      <Button layoutX="382.0" layoutY="188.0" mnemonicParsing="false" text="Verify" />
+      <Button layoutX="382.0" layoutY="188.0" mnemonicParsing="false" onAction="#SSNverifyBtnClicked" text="Verify" />
    </children>
 </AnchorPane>

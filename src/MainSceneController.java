@@ -88,6 +88,16 @@ public class MainSceneController {
     }
 
     @FXML
+    void SSNverifyBtnClicked(ActionEvent event) throws Exception {
+        root = FXMLLoader.load(getClass().getResource("CustomerSelectPayment.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("SSN Verify Button Clicked");
+    }
+
+    @FXML
     void ATMCardBtnClicked(ActionEvent event) throws Exception {
         root = FXMLLoader.load(getClass().getResource("VerifyPin.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -98,8 +108,18 @@ public class MainSceneController {
     }
 
     @FXML
-    void viewCustomerData(ActionEvent event) throws Exception {
+    void ManagerviewCustomerData(ActionEvent event) throws Exception {
         root = FXMLLoader.load(getClass().getResource("ManagerDataView.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("View Customer Data Button Clicked");
+    }
+
+    @FXML
+    void TellerviewCustomerData(ActionEvent event) throws Exception {
+        root = FXMLLoader.load(getClass().getResource("TellerDataView.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -132,6 +152,16 @@ public class MainSceneController {
     // Search Customer field, not working yet, if customer is not found then the
     // ErrorCustomerID will be displayed
     @FXML
+    void TellerSearchCustomerID(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("TellerOptions.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("ID was successful and Options are displayed");
+    }
+
+    @FXML
     void SearchCustomerID(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("TellerOptions.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -142,7 +172,7 @@ public class MainSceneController {
     }
 
     @FXML
-    void DisplayRecentDebits(ActionEvent event) throws IOException {
+    void DisplayRecentDebitsTeller(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("RecentDebitsTeller.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -152,7 +182,27 @@ public class MainSceneController {
     }
 
     @FXML
-    void CreditAccount(ActionEvent event) throws IOException {
+    void DisplayRecentDebitsManager(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("RecentDebitsManager.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("Display Recent Debits Button Clicked");
+    }
+
+    @FXML
+    void CreditAccountManager(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("CreditAccountManager.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("Credit Account Button Clicked");
+    }
+
+    @FXML
+    void CreditAccountTeller(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("CreditAccountTeller.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -162,7 +212,7 @@ public class MainSceneController {
     }
 
     @FXML
-    void DebitAccount(ActionEvent event) throws IOException {
+    void DebitAccountTeller(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("DebitAccountTeller.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -172,8 +222,18 @@ public class MainSceneController {
     }
 
     @FXML
-    void Transfer(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("WithdrawFromTo.fxml"));
+    void DebitAccountManager(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("DebitAccountManager.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("Debit Account Button Clicked");
+    }
+
+    @FXML
+    void TransferTeller(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("WithdrawFromToTeller.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -182,7 +242,17 @@ public class MainSceneController {
     }
 
     @FXML
-    void AccountBalance(ActionEvent event) throws IOException {
+    void TransferManager(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("WithdrawFromToManager.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("Transfer Money Button Clicked");
+    }
+
+    @FXML
+    void AccountBalanceTeller(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("AccountBalanceTeller.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -192,13 +262,127 @@ public class MainSceneController {
     }
 
     @FXML
-    void AccountStatusDisplayed(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("AccountStatusDisplayed.fxml"));
+    void AccountBalanceManager(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("AccountBalanceManager.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("Account balance Button Clicked");
+    }
+
+    @FXML
+    void AccountStatusDisplayedTeller(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("AccountStatusDisplayedTeller.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         System.out.println("Account Status Button Clicked");
     }
+
+    @FXML
+    void AccountStatusDisplayedManager(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("AccountStatusDisplayedManager.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("Account Status Button Clicked");
+    }
+
+    @FXML
+    void ManagerSearchCustomerID(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("ManagerOptions.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("Manager Teller Options Button Clicked");
+    }
+
+    @FXML
+    void ManagerCreateNewCustomer(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("ManagerCreateNewCustomer.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("Manager Create New Customer Button Clicked");
+    }
+
+    @FXML
+    void setInterestRate(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("SetInterest.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void linkAccount(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("LinkingAccounts.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void processCheckManager(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("processCheckManager.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void processCheckCustomer(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("processCheckCust.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void showAccountInfoManager(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("ManagerViewAccountInfo.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void showAccountInfoTeller(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("TellerAccountInfo.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void newCD(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("NewCD.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void showCustAccountInfo(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("CustomerReviewAccountStatus.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
 
 }

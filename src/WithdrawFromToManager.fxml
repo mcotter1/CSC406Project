@@ -17,7 +17,7 @@
       <TextField layoutX="131.0" layoutY="95.0" prefHeight="25.0" prefWidth="89.0" promptText="\$" />
       <Label layoutX="75.0" layoutY="99.0" text="Amount:" />
       <Button layoutX="212.0" layoutY="217.0" mnemonicParsing="false" text="Process" />
-      <Button layoutX="219.0" layoutY="252.0" mnemonicParsing="false" onAction="#SearchCustomerID" text="Back" />
+      <Button layoutX="219.0" layoutY="252.0" mnemonicParsing="false" onAction="#ManagerSearchCustomerID" text="Back" />
       <Label layoutX="285.0" layoutY="153.0" text="To:" />
       <Label layoutX="274.0" layoutY="78.0" text="From:" />
       <CheckBox layoutX="311.0" layoutY="78.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="125.0" text="Checking Account" />

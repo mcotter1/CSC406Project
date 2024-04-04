@@ -19,6 +19,6 @@
       <TextField layoutX="140.0" layoutY="81.0" promptText="\$0.00" />
       <TextArea layoutX="137.0" layoutY="134.0" prefHeight="98.0" prefWidth="202.0" promptText="Imput the Reason for the Debit of the Account" />
       <Button layoutX="168.0" layoutY="254.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="54.0" text="Debit" />
-      <Button layoutX="175.0" layoutY="292.0" mnemonicParsing="false" onAction="#TellerSearchCustomerID" text="Back" />
+      <Button layoutX="175.0" layoutY="292.0" mnemonicParsing="false" onAction="#ManagerSearchCustomerID" text="Back" />
    </children>
 </AnchorPane>

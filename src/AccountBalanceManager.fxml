@@ -14,6 +14,6 @@
          </font>
       </Label>
       <TextArea layoutX="22.0" layoutY="67.0" prefHeight="236.0" prefWidth="336.0" promptText="This will display  all the Accounts and their balance" />
-      <Button layoutX="164.0" layoutY="313.0" mnemonicParsing="false" onAction="#TellerSearchCustomerID" text="Back" />
+      <Button layoutX="164.0" layoutY="313.0" mnemonicParsing="false" onAction="#ManagerSearchCustomerID" text="Back" />
    </children>
 </AnchorPane>
