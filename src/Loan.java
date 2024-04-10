@@ -1,13 +1,13 @@
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Loan extends Account{
     protected int ssn;
     protected double balance;
     protected double interestrate;
-    protected Date datepaymentdue;
-    protected Date notifiedofpayment;
+    protected LocalDate datepaymentdue;
+    protected LocalDate notifiedofpayment;
     protected double paymentamountdue;
-    protected Date lastpaymentdate;
+    protected LocalDate lastpaymentdate;
     protected boolean missedpayment;
     protected String collateral;
     protected String accounttype;
@@ -16,7 +16,7 @@ public class Loan extends Account{
     protected String loantype;
     protected double creditcardlimit;
 
-    public Loan(int ssn, double balance, double interestrate, Date datepaymentdue, Date notifiedofpayment, double paymentamountdue, Date lastpaymentdate, boolean missedpayment,double termlength, String collateral, String repaymentplantype,String loantype,double creditcardlimit) {
+    public Loan(int ssn, double balance, double interestrate, LocalDate datepaymentdue, LocalDate notifiedofpayment, double paymentamountdue, LocalDate lastpaymentdate, boolean missedpayment,double termlength, String collateral, String repaymentplantype,String loantype,double creditcardlimit) {
         this.ssn = ssn;
         this.balance = balance;
         this.interestrate = interestrate;
@@ -40,7 +40,7 @@ public class Loan extends Account{
             this.accounttype = "Credit Card";
         }
     }
-
+    @Override
     public int getSsn() {
         return ssn;
     }
@@ -65,19 +65,19 @@ public class Loan extends Account{
         this.interestrate = interestrate;
     }
 
-    public Date getDatepaymentdue() {
+    public LocalDate getDatepaymentdue() {
         return datepaymentdue;
     }
 
-    public void setDatepaymentdue(Date datepaymentdue) {
+    public void setDatepaymentdue(LocalDate datepaymentdue) {
         this.datepaymentdue = datepaymentdue;
     }
 
-    public Date getNotifiedofpayment() {
+    public LocalDate getNotifiedofpayment() {
         return notifiedofpayment;
     }
 
-    public void setNotifiedofpayment(Date notifiedofpayment) {
+    public void setNotifiedofpayment(LocalDate notifiedofpayment) {
         this.notifiedofpayment = notifiedofpayment;
     }
 
@@ -89,11 +89,11 @@ public class Loan extends Account{
         this.paymentamountdue = paymentamountdue;
     }
 
-    public Date getLastpaymentdate() {
+    public LocalDate getLastpaymentdate() {
         return lastpaymentdate;
     }
 
-    public void setLastpaymentdate(Date lastpaymentdate) {
+    public void setLastpaymentdate(LocalDate lastpaymentdate) {
         this.lastpaymentdate = lastpaymentdate;
     }
 

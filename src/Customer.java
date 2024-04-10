@@ -1,15 +1,15 @@
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Customer extends User {
-    private String lastname;
-    private String firstname;
-    private String state;
-    private String city;
-    private int zipcode;
-    private String address;
-    private int ssn;
+    protected String lastname;
+    protected String firstname;
+    protected String state;
+    protected String city;
+    protected int zipcode;
+    protected String address;
+    protected int ssn;
     ArrayList<Account> accounts = new ArrayList<>();
+    ArrayList<Transaction> transactions = new ArrayList<>();
     public Customer(int ssn, String address, String city, String state, int zipcode, String firstname, String lastname){
         this.ssn = ssn;
         this.firstname = firstname;
@@ -21,6 +21,9 @@ public class Customer extends User {
     }
     public void AddAccount(Account x){
         accounts.add(x);
+    }
+    public void AddTransaction(Transaction x){
+        transactions.add(x);
     }
 
     @Override
