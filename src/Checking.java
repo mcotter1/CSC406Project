@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -12,20 +13,21 @@ public class Checking extends Account {
     protected boolean backupsavingscheck;
     protected Savings backupsavingsaccount;
     protected String savingsaccountid;
-    protected Date dateopened;
+    protected LocalDate dateopened;
     protected String accounttype;
     protected int ATMwithdrawalfrequency;
     protected boolean ATMcard;
     protected int overdraftsthismonth;
     ArrayList<Check> newchecks = new ArrayList<Check>();
     ArrayList<Check> usedchecks = new ArrayList<Check>();
-    public Checking(int ssn, String accounttype,double balance,String savingsaccountid,int overdraftsthismonth, Date dateopeend){
+    public Checking(int ssn, String accounttype,double balance,String savingsaccountid,int overdraftsthismonth, LocalDate dateopeend,boolean ATMcard){
         this.ssn = ssn;
         this.savingsaccountid = savingsaccountid;
         this.overdraftsthismonth = overdraftsthismonth;
         this.accounttype = accounttype;
         this.balance = balance;
         this.dateopened = dateopeend;
+        this.ATMcard = ATMcard;
         if(accounttype.equalsIgnoreCase("tmb")){
             golddiamondcheck = false;
         }
@@ -173,11 +175,11 @@ public class Checking extends Account {
         this.backupsavingsaccount = backupsavingsaccount;
     }
 
-    public Date getDateopened() {
+    public LocalDate getDateopened() {
         return dateopened;
     }
 
-    public void setDateopened(Date dateopened) {
+    public void setDateopened(LocalDate dateopened) {
         this.dateopened = dateopened;
     }
 
@@ -196,7 +198,7 @@ public class Checking extends Account {
     public void setUsedchecks(ArrayList<Check> usedchecks) {
         this.usedchecks = usedchecks;
     }
-
+    @Override
     public int getSsn() {
         return ssn;
     }
