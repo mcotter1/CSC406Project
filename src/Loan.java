@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Loan extends Account{
     protected int ssn;
@@ -15,7 +16,7 @@ public class Loan extends Account{
     protected String repaymentplantype;
     protected String loantype;
     protected double creditcardlimit;
-
+    ArrayList<Transaction> transactions = new ArrayList<>();
     public Loan(int ssn, double balance, double interestrate, LocalDate datepaymentdue, LocalDate notifiedofpayment, double paymentamountdue, LocalDate lastpaymentdate, boolean missedpayment,double termlength, String collateral, String repaymentplantype,String loantype,double creditcardlimit) {
         this.ssn = ssn;
         this.balance = balance;
@@ -38,6 +39,32 @@ public class Loan extends Account{
         }
         if(this.creditcardlimit!=0){
             this.accounttype = "Credit Card";
+        }
+    }
+    //this function checks all the credit card transactions for the current month and returns the total amount owed
+    public double IssueBillCreditCard(){
+        LocalDate currentdate = LocalDate.now();
+        double amountowed = 0;
+        for(int i=0;i<transactions.size();i++){
+            if(transactions.get(i).getDateoccurred().getMonth().equals(currentdate.getMonth())){
+                amountowed+=transactions.get(i).getAmount();
+            }
+        }
+        return amountowed;
+    }
+    //this function allows a user to make a credit card payment
+    public void PayWithCreditCard(double amount){
+        LocalDate today = LocalDate.now();
+        if(accounttype.equalsIgnoreCase("credit card")){
+            if(amount+getBalance()>creditcardlimit){
+                System.out.println("Exceeds credit limit");
+            }
+            else{
+                Transaction currenttransaction = new Transaction("Purchase","Credit Card",amount,today);
+                balance = balance+amount;
+            }
+        } else {
+            System.out.println("This is not an open line of credit");
         }
     }
     @Override

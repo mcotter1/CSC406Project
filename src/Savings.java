@@ -49,6 +49,16 @@ public class Savings extends Account{
             }
         }
     }
+    //this function issues a rollover notice for an account
+    public String IssueRolloverNotice(){
+        String rollovernotice;
+        if(accounttype.equalsIgnoreCase("cd")){
+            rollovernotice = String.format("This CD is due: "+CDdue);
+        } else {
+            rollovernotice = "This is not a CD";
+        }
+        return rollovernotice;
+    }
     //returns the current balance
     @Override
     public double getBalance(){
