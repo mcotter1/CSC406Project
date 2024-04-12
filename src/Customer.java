@@ -2,6 +2,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Customer extends User {
+    //testing
     protected String lastname;
     protected String firstname;
     protected String state;
