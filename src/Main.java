@@ -124,8 +124,5 @@ public class Main {
         ObjectInputStream ois = new ObjectInputStream(fis);
         ArrayList<Customer> customers2 = (ArrayList<Customer>) ois.readObject();
         ois.close();
-
-
-
     }
 }
