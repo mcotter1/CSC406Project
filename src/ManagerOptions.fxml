@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainSceneController">
+   <children>
+      <Button layoutX="263.0" layoutY="333.0" mnemonicParsing="false" onAction="#ManagerBtnClicked" prefHeight="25.0" prefWidth="70.0" text="Exit" />
+      <Button fx:id="AccountStatus" layoutX="335.0" layoutY="55.0" mnemonicParsing="false" onAction="#AccountStatusDisplayedManager" prefHeight="31.0" prefWidth="152.0" text="Account Status" />
+      <Button fx:id="DebitAccount" layoutX="335.0" layoutY="101.0" mnemonicParsing="false" onAction="#DebitAccountManager" prefHeight="31.0" prefWidth="152.0" text="Debit Account" />
+      <Button layoutX="114.0" layoutY="55.0" mnemonicParsing="false" onAction="#TransferManager" prefHeight="31.0" prefWidth="152.0" text="Transfer Money" />
+      <Button fx:id="DisplayAccoutBalance" layoutX="114.0" layoutY="144.0" mnemonicParsing="false" onAction="#AccountBalanceManager" prefHeight="31.0" prefWidth="152.0" text="Display Account Balance" />
+      <Button fx:id="DisplayRecentDebits" layoutX="114.0" layoutY="101.0" mnemonicParsing="false" onAction="#DisplayRecentDebitsManager" prefHeight="31.0" prefWidth="152.0" text="Display Recent Debits" />
+      <Button fx:id="TellerCreditAccount" layoutX="335.0" layoutY="144.0" mnemonicParsing="false" onAction="#CreditAccountManager" prefHeight="31.0" prefWidth="152.0" text="Credit Account" />
+      <Button layoutX="114.0" layoutY="188.0" mnemonicParsing="false" onAction="#setInterestRate" prefHeight="31.0" prefWidth="152.0" text="Set Interest Rate" />
+      <Button layoutX="335.0" layoutY="188.0" mnemonicParsing="false" onAction="#newCD" prefHeight="31.0" prefWidth="152.0" text="Establish CD" />
+      <Button layoutX="222.0" layoutY="282.0" mnemonicParsing="false" onAction="#showAccountInfoManager" prefHeight="31.0" prefWidth="152.0" text="View Account Info" />
+      <Button layoutX="114.0" layoutY="227.0" mnemonicParsing="false" onAction="#linkAccount" prefHeight="31.0" prefWidth="152.0" text="Link" />
+      <Button layoutX="335.0" layoutY="227.0" mnemonicParsing="false" onAction="#processCheckManager" prefHeight="31.0" prefWidth="152.0" text="Process Check" />
+   </children>
+</AnchorPane>

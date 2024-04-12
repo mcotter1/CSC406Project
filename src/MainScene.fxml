@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainSceneController">
+   <children>
+      <Button fx:id="TellerBtn" layoutX="230.0" layoutY="138.0" mnemonicParsing="false" onAction="#TellerBtnClicked" prefHeight="31.0" prefWidth="141.0" text="Teller">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="CustomerBtn" layoutX="230.0" layoutY="180.0" mnemonicParsing="false" onAction="#CustomerBtnClicked" prefHeight="31.0" prefWidth="141.0" text="Customer">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="ManagerBtn" layoutX="230.0" layoutY="223.0" mnemonicParsing="false" onAction="#ManagerBtnClicked" prefHeight="31.0" prefWidth="141.0" text="Manager">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Label layoutX="174.0" layoutY="84.0" text="Please Select User Type">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
