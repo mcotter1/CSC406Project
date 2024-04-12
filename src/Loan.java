@@ -1,13 +1,14 @@
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Loan extends Account{
     protected int ssn;
     protected double balance;
     protected double interestrate;
-    protected Date datepaymentdue;
-    protected Date notifiedofpayment;
+    protected LocalDate datepaymentdue;
+    protected LocalDate notifiedofpayment;
     protected double paymentamountdue;
-    protected Date lastpaymentdate;
+    protected LocalDate lastpaymentdate;
     protected boolean missedpayment;
     protected String collateral;
     protected String accounttype;
@@ -15,8 +16,8 @@ public class Loan extends Account{
     protected String repaymentplantype;
     protected String loantype;
     protected double creditcardlimit;
-
-    public Loan(int ssn, double balance, double interestrate, Date datepaymentdue, Date notifiedofpayment, double paymentamountdue, Date lastpaymentdate, boolean missedpayment,double termlength, String collateral, String repaymentplantype,String loantype,double creditcardlimit) {
+    ArrayList<Transaction> transactions = new ArrayList<>();
+    public Loan(int ssn, double balance, double interestrate, LocalDate datepaymentdue, LocalDate notifiedofpayment, double paymentamountdue, LocalDate lastpaymentdate, boolean missedpayment,double termlength, String collateral, String repaymentplantype,String loantype,double creditcardlimit) {
         this.ssn = ssn;
         this.balance = balance;
         this.interestrate = interestrate;
@@ -40,7 +41,33 @@ public class Loan extends Account{
             this.accounttype = "Credit Card";
         }
     }
-
+    //this function checks all the credit card transactions for the current month and returns the total amount owed
+    public double IssueBillCreditCard(){
+        LocalDate currentdate = LocalDate.now();
+        double amountowed = 0;
+        for(int i=0;i<transactions.size();i++){
+            if(transactions.get(i).getDateoccurred().getMonth().equals(currentdate.getMonth())){
+                amountowed+=transactions.get(i).getAmount();
+            }
+        }
+        return amountowed;
+    }
+    //this function allows a user to make a credit card payment
+    public void PayWithCreditCard(double amount){
+        LocalDate today = LocalDate.now();
+        if(accounttype.equalsIgnoreCase("credit card")){
+            if(amount+getBalance()>creditcardlimit){
+                System.out.println("Exceeds credit limit");
+            }
+            else{
+                Transaction currenttransaction = new Transaction("Purchase","Credit Card",amount,today);
+                balance = balance+amount;
+            }
+        } else {
+            System.out.println("This is not an open line of credit");
+        }
+    }
+    @Override
     public int getSsn() {
         return ssn;
     }
@@ -65,19 +92,19 @@ public class Loan extends Account{
         this.interestrate = interestrate;
     }
 
-    public Date getDatepaymentdue() {
+    public LocalDate getDatepaymentdue() {
         return datepaymentdue;
     }
 
-    public void setDatepaymentdue(Date datepaymentdue) {
+    public void setDatepaymentdue(LocalDate datepaymentdue) {
         this.datepaymentdue = datepaymentdue;
     }
 
-    public Date getNotifiedofpayment() {
+    public LocalDate getNotifiedofpayment() {
         return notifiedofpayment;
     }
 
-    public void setNotifiedofpayment(Date notifiedofpayment) {
+    public void setNotifiedofpayment(LocalDate notifiedofpayment) {
         this.notifiedofpayment = notifiedofpayment;
     }
 
@@ -89,11 +116,11 @@ public class Loan extends Account{
         this.paymentamountdue = paymentamountdue;
     }
 
-    public Date getLastpaymentdate() {
+    public LocalDate getLastpaymentdate() {
         return lastpaymentdate;
     }
 
-    public void setLastpaymentdate(Date lastpaymentdate) {
+    public void setLastpaymentdate(LocalDate lastpaymentdate) {
         this.lastpaymentdate = lastpaymentdate;
     }
 

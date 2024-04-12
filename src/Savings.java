@@ -1,4 +1,4 @@
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * Savings account class creates simple savings and CD account types
@@ -10,18 +10,20 @@ public class Savings extends Account{
     protected boolean cdcheck;
     protected double balance;
     protected double interestrate;
-    protected Date dateopened;
+    protected LocalDate dateopened;
     protected String accounttype;
-    protected Date CDdue;
+    protected LocalDate CDdue;
     protected int ATMwithdrawalfrequency;
+    protected boolean ATMcard;
     //constructor, CDdue is null for simple savings
-    public Savings(String savingsaccountid,int ssn,double balance, double interestrate,Date dateopened,String passbook,Date CDdue){
+    public Savings(String savingsaccountid,int ssn,double balance, double interestrate,LocalDate dateopened,String passbook,LocalDate CDdue,boolean ATMcard){
         this.ssn = ssn;
-        this.cdcheck = cdcheck;
+        this.savingsaccountid = savingsaccountid;
+        this.passbook = passbook;
         this.balance = balance;
         this.interestrate = interestrate;
         this.dateopened = dateopened;
-        if(passbook == null){
+        if(passbook.equalsIgnoreCase("NA")){
             this.cdcheck = false;
         }
         else cdcheck = true;
@@ -46,6 +48,16 @@ public class Savings extends Account{
                 balance = balance-amount;
             }
         }
+    }
+    //this function issues a rollover notice for an account
+    public String IssueRolloverNotice(){
+        String rollovernotice;
+        if(accounttype.equalsIgnoreCase("cd")){
+            rollovernotice = String.format("This CD is due: "+CDdue);
+        } else {
+            rollovernotice = "This is not a CD";
+        }
+        return rollovernotice;
     }
     //returns the current balance
     @Override
@@ -75,11 +87,11 @@ public class Savings extends Account{
         this.cdcheck = cdcheck;
     }
 
-    public Date getDateopened() {
+    public LocalDate getDateopened() {
         return dateopened;
     }
 
-    public void setDateopened(Date dateopened) {
+    public void setDateopened(LocalDate dateopened) {
         this.dateopened = dateopened;
     }
     @Override
@@ -91,11 +103,13 @@ public class Savings extends Account{
         this.accounttype = accounttype;
     }
 
-    public Date getCDdue() {
+    public LocalDate getCDdue() {
         return CDdue;
     }
 
-    public void setCDdue(Date CDdue) {
+    public void setCDdue(LocalDate CDdue) {
         this.CDdue = CDdue;
     }
+    @Override
+    public int getSsn(){return ssn;}
 }
