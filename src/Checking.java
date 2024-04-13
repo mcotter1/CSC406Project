@@ -234,4 +234,9 @@ public class Checking extends Account {
     public void setATMcard(boolean ATMcard) {
         this.ATMcard = ATMcard;
     }
+    @Override
+    public String toString(){
+        String s = String.format("Account type: %s Balance: %f",accounttype,balance);
+        return s;
+    }
 }

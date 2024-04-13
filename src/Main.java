@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
+        ArrayList<Customer> customers = new ArrayList<>();
         File databasefile = new File("t.tmp");
         if(!databasefile.exists()) {
             File customerfile = new File("Customer_Data_Final.csv");
@@ -15,7 +16,6 @@ public class Main {
             String string;
             String[] entries;
             Customer newcustomer;
-            ArrayList<Customer> customers = new ArrayList<>();
             ArrayList<Account> allaccounts = new ArrayList<>();
             while (customerscanner.hasNext()) {
                 string = customerscanner.nextLine();
@@ -122,7 +122,7 @@ public class Main {
         }
         FileInputStream fis = new FileInputStream("t.tmp");
         ObjectInputStream ois = new ObjectInputStream(fis);
-        ArrayList<Customer> customers2 = (ArrayList<Customer>) ois.readObject();
+        customers = (ArrayList<Customer>) ois.readObject();
         ois.close();
     }
 }

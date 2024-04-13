@@ -147,4 +147,9 @@ public class Loan extends Account{
     public void setAccounttype(String accounttype) {
         this.accounttype = accounttype;
     }
+    @Override
+    public String toString(){
+        String s = String.format("Account type: %s Balance: %f",accounttype,balance);
+        return s;
+    }
 }

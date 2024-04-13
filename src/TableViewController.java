@@ -25,6 +25,8 @@ public class TableViewController implements Initializable {
 
     @FXML
     private TableView<Customer> tableView;
+    @FXML
+    private TableView<Account> accountTableView;
 
     @FXML
     private TableColumn<Customer, Integer> idColumn;
