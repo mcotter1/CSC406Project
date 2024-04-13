@@ -13,13 +13,12 @@
       <TextField fx:id="ssn" layoutX="103.0" layoutY="64.0" />
       <Text layoutX="27.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer ID:" />
       <Button layoutX="269.0" layoutY="64.0" mnemonicParsing="false" onAction="#CheckID" prefHeight="25.0" prefWidth="128.0" text="Search Customer ID" />
-      <Button layoutX="159.0" layoutY="126.0" mnemonicParsing="false" onAction="#CreateNewCustomer" prefHeight="25.0" prefWidth="128.0" text="Create New Account" />
-      <Button layoutX="154.0" layoutY="160.0" mnemonicParsing="false" onAction="#CreateNewCustomer" prefHeight="25.0" prefWidth="139.0" text="Create New Customer" />
+      <Button layoutX="155.0" layoutY="130.0" mnemonicParsing="false" onAction="#CreateNewCustomer" prefHeight="25.0" prefWidth="139.0" text="Create New Customer" />
       <Label layoutX="160.0" layoutY="21.0" prefHeight="26.0" prefWidth="128.0" text="Teller Interface">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Button layoutX="155.0" layoutY="191.0" mnemonicParsing="false" onAction="#TellerviewCustomerData" prefHeight="26.0" prefWidth="139.0" text="View Customer Data" />
+      <Button layoutX="155.0" layoutY="173.0" mnemonicParsing="false" onAction="#TellerviewCustomerData" prefHeight="26.0" prefWidth="139.0" text="View Customer Data" />
    </children>
 </AnchorPane>

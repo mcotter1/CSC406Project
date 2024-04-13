@@ -383,7 +383,9 @@ public class MainSceneController extends App{
         stage.show();
     }
 
-
+//-----------------------------------------------------------------------------------------------
+//Below is the Create Account fxml Files and function, need their Own controller Eventually
+//------------------------------------------------------------------------------------------------
 
     @FXML
     void CreateAccountTeller(ActionEvent event) throws IOException {
@@ -394,8 +396,23 @@ public class MainSceneController extends App{
         stage.show();
         System.out.println("Create Account Teller Button Clicked");
     }
-
-
-
+    @FXML
+    void CreateCheckingAccountTeller(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("CreateCheckingAccountTeller.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("Create Checking Account Teller Button Clicked");
+    }
+    @FXML
+    void CreateSavingsAccountTeller(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("CreateSavingsAccountTeller.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("Create Savings Account Teller Button Clicked");
+    }
 
 }
