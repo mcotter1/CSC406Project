@@ -112,4 +112,9 @@ public class Savings extends Account{
     }
     @Override
     public int getSsn(){return ssn;}
+    @Override
+    public String toString(){
+        String s = String.format("Account type: %s Balance: %f",accounttype,balance);
+        return s;
+    }
 }

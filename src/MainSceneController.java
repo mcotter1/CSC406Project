@@ -1,14 +1,17 @@
 import java.io.IOException;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.Node;
 
-public class MainSceneController {
+public class MainSceneController extends App{
     // This class is the controller for the MainScene.fxml file
     @FXML
     private Button CustomerBtn;
@@ -19,10 +22,15 @@ public class MainSceneController {
     @FXML
     private Button TellerBtn;
     // This is the button for the Teller scene
-
     private Stage stage; // This is the stage for the scene
     private Scene scene; // This is the scene for the stage
     private static Parent root; // This is the root for the scene
+    private int currentcustomerindex;
+    private int currentaccountindex;
+    @FXML
+    private ComboBox<Account> tellercombobox;
+    @FXML
+    private ListView<Account> tellerlistview;
 
     // This method is used to switch to the Customer scene
     @FXML
@@ -151,15 +159,7 @@ public class MainSceneController {
 
     // Search Customer field, not working yet, if customer is not found then the
     // ErrorCustomerID will be displayed
-    @FXML
-    void TellerSearchCustomerID(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("TellerOptions.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        System.out.println("ID was successful and Options are displayed");
-    }
+
 
     @FXML
     void SearchCustomerID(ActionEvent event) throws IOException {
@@ -382,7 +382,4 @@ public class MainSceneController {
         stage.setScene(scene);
         stage.show();
     }
-
-
-
 }
