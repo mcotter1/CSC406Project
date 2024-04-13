@@ -1,14 +1,22 @@
 import java.io.IOException;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.Node;
 
-public class MainSceneController {
+import javax.swing.*;
+
+public class MainSceneController extends App{
     // This class is the controller for the MainScene.fxml file
     @FXML
     private Button CustomerBtn;
@@ -19,10 +27,15 @@ public class MainSceneController {
     @FXML
     private Button TellerBtn;
     // This is the button for the Teller scene
-
     private Stage stage; // This is the stage for the scene
     private Scene scene; // This is the scene for the stage
     private static Parent root; // This is the root for the scene
+    @FXML
+    private TextField ssn;
+    private int currentcustomerindex;
+    private int currentaccountindex;
+    @FXML
+    private ChoiceBox<Account> tellerchoicebox;
 
     // This method is used to switch to the Customer scene
     @FXML
@@ -153,12 +166,30 @@ public class MainSceneController {
     // ErrorCustomerID will be displayed
     @FXML
     void TellerSearchCustomerID(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("TellerOptions.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        System.out.println("ID was successful and Options are displayed");
+        if(ssn != null) {
+            for (int i = 0; i < Customers.size(); i++) {
+                if (Customers.get(i).getSSN() == Integer.parseInt(ssn.getText())) {
+                    currentcustomerindex = i;
+                    ObservableList<Account> accounts = FXCollections.observableList(Customers.get(i).getAccounts());
+                    tellerchoicebox = new ChoiceBox<>(accounts);
+                    break;
+                }
+            }
+        }
+        if(ssn == null){
+            root = FXMLLoader.load(getClass().getResource("Teller.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        if(ssn != null){
+            root = FXMLLoader.load(getClass().getResource("TellerSelectAccount.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     @FXML
@@ -382,7 +413,4 @@ public class MainSceneController {
         stage.setScene(scene);
         stage.show();
     }
-
-
-
 }
