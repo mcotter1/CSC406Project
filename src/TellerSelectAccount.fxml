@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="662.0" prefWidth="868.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainSceneController">
+<AnchorPane prefHeight="662.0" prefWidth="868.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TellerSelectAccountController">
    <children>
-      <ComboBox fx:id="tellercombobox" layoutX="14.0" layoutY="89.0" prefHeight="39.0" prefWidth="849.0" />
+      <ComboBox fx:id="tellercombobox" layoutX="188.0" layoutY="222.0" prefHeight="34.0" prefWidth="455.0" />
+      <Label contentDisplay="CENTER" layoutX="363.0" layoutY="176.0" prefHeight="34.0" prefWidth="163.0" text="Select Account Below" />
    </children>
 </AnchorPane>
