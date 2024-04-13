@@ -25,8 +25,6 @@ public class MainSceneController extends App{
     private Stage stage; // This is the stage for the scene
     private Scene scene; // This is the scene for the stage
     private static Parent root; // This is the root for the scene
-    @FXML
-    private TextField ssn;
     private int currentcustomerindex;
     private int currentaccountindex;
     @FXML
@@ -161,36 +159,7 @@ public class MainSceneController extends App{
 
     // Search Customer field, not working yet, if customer is not found then the
     // ErrorCustomerID will be displayed
-    void TellerSearchHelper(){
-        for (int i = 0; i < Customers.size(); i++) {
-            if (Customers.get(i).getSSN() == Integer.parseInt(ssn.getText())) {
-                currentcustomerindex = i;
-                ObservableList<Account> accounts = FXCollections.observableArrayList(Customers.get(i).getAccounts());
-                tellercombobox = new ComboBox<>();
-                tellercombobox.setItems(accounts);
-                System.out.println(tellercombobox.getItems());
-                break;
-            }
-        }
-    }
-    @FXML
-    void TellerSearchCustomerID(ActionEvent event) throws IOException {
-        if(ssn != null) {
-            TellerSearchHelper();
-            root = FXMLLoader.load(getClass().getResource("TellerSelectAccount.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
-        if(ssn == null){
-            root = FXMLLoader.load(getClass().getResource("Teller.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
-    }
+
 
     @FXML
     void SearchCustomerID(ActionEvent event) throws IOException {
