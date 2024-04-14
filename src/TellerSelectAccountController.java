@@ -19,11 +19,9 @@ public class TellerSelectAccountController implements Initializable {
     private static Parent root; // This is the root for the scene
     @FXML
     private ComboBox<Account> tellercombobox;
-    @FXML
-    private static int currentaccountindex;
     @Override
     public void initialize(URL location, ResourceBundle resources){
-        ObservableList<Account> accounts = FXCollections.observableArrayList(App.Customers.get(TellerController.currentcustomerindex).getAccounts());
+        ObservableList<Account> accounts = FXCollections.observableArrayList(App.Customers.get(App.currentcustomerindex).getAccounts());
         tellercombobox.setItems(accounts);
     }
     @FXML
@@ -41,7 +39,7 @@ public class TellerSelectAccountController implements Initializable {
     }
     @FXML
     void GetSelection(ActionEvent event){
-        currentaccountindex = tellercombobox.getSelectionModel().getSelectedIndex();
+        App.currentaccountindex = tellercombobox.getSelectionModel().getSelectedIndex();
     }
     @FXML
     void TellerBtnClicked(ActionEvent event) throws Exception {

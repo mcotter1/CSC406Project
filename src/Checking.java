@@ -20,6 +20,7 @@ public class Checking extends Account {
     protected int overdraftsthismonth;
     ArrayList<Check> newchecks = new ArrayList<Check>();
     ArrayList<Check> usedchecks = new ArrayList<Check>();
+    ArrayList<Transaction> transactions = new ArrayList<>();
     public Checking(int ssn, String accounttype,double balance,String savingsaccountid,int overdraftsthismonth, LocalDate dateopeend,boolean ATMcard){
         this.ssn = ssn;
         this.savingsaccountid = savingsaccountid;
@@ -129,9 +130,15 @@ public class Checking extends Account {
         balance = balance+paybackamount;
         balance = balance - 35;
     }
+    public void AddTransaction(Transaction transaction){
+        transactions.add(transaction);
+    }
+    public ArrayList<Transaction> getTransactions(){
+        return transactions;
+    }
     @Override
     public double getBalance() {
-        return 0;
+        return balance;
     }
     @Override
     public double setBalance(double newbalance) {
