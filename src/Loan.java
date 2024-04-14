@@ -82,6 +82,42 @@ public class Loan extends Account{
         this.ssn = ssn;
     }
 
+    public double getTermlength() {
+        return termlength;
+    }
+
+    public void setTermlength(double termlength) {
+        this.termlength = termlength;
+    }
+
+    public String getRepaymentplantype() {
+        return repaymentplantype;
+    }
+
+    public void setRepaymentplantype(String repaymentplantype) {
+        this.repaymentplantype = repaymentplantype;
+    }
+
+    public String getLoantype() {
+        return loantype;
+    }
+
+    public void setLoantype(String loantype) {
+        this.loantype = loantype;
+    }
+
+    public double getCreditcardlimit() {
+        return creditcardlimit;
+    }
+
+    public void setCreditcardlimit(double creditcardlimit) {
+        this.creditcardlimit = creditcardlimit;
+    }
+
+    public void setTransactions(ArrayList<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
     public double getBalance() {
         return balance;
     }

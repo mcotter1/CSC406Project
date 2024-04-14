@@ -25,6 +25,7 @@ public class Savings extends Account{
         this.balance = balance;
         this.interestrate = interestrate;
         this.dateopened = dateopened;
+        this.CDdue = CDdue;
         if(passbook.equalsIgnoreCase("NA")){
             this.cdcheck = false;
         }
@@ -112,11 +113,14 @@ public class Savings extends Account{
     }
 
     public LocalDate getCDdue() {
-        return CDdue;
+        return this.CDdue;
     }
 
     public void setCDdue(LocalDate CDdue) {
         this.CDdue = CDdue;
+    }
+    public String getSavingsaccountid(){
+        return savingsaccountid;
     }
     @Override
     public int getSsn(){return ssn;}
