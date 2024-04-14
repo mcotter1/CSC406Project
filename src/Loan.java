@@ -67,6 +67,12 @@ public class Loan extends Account{
             System.out.println("This is not an open line of credit");
         }
     }
+    public void AddTransaction(Transaction transaction){
+        transactions.add(transaction);
+    }
+    public ArrayList<Transaction> getTransactions(){
+        return transactions;
+    }
     @Override
     public int getSsn() {
         return ssn;

@@ -14,7 +14,7 @@ public class TellerOptionsController {
     private static Parent root; // This is the root for the scene
     @FXML
     void TellerBtnClicked(ActionEvent event) throws Exception {
-        root = FXMLLoader.load(getClass().getResource("Teller.fxml"));
+        root = FXMLLoader.load(getClass().getResource("TellerSelectAccount.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

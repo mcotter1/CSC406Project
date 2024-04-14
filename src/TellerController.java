@@ -1,17 +1,13 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+
 
 public class TellerController {
     @FXML
@@ -28,8 +24,6 @@ public class TellerController {
     private static Parent root; // This is the root for the scene
     public static int currentcustomerindex;
     @FXML
-    private ListView<Account> tellerlistview;
-    @FXML
     private TextField ssn;
     @FXML
     private Label error;
@@ -39,7 +33,7 @@ public class TellerController {
         if (ssn != null && !ssn.getText().matches(".*[a-zA-Z]+.*")&&!ssn.getText().isBlank()&&ssn.getText().length()==9) {
             for (int i = 0; i < App.Customers.size(); i++)
                 if (App.Customers.get(i).getSSN() == Integer.parseInt(ssn.getText())) {
-                    currentcustomerindex = i;
+                    App.currentcustomerindex = i;
                     root = FXMLLoader.load(getClass().getResource("TellerSelectAccount.fxml"));
                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     scene = new Scene(root);
@@ -76,14 +70,5 @@ public class TellerController {
         stage.setScene(scene);
         stage.show();
         System.out.println("Create New Customer Button Clicked");
-    }
-    @FXML
-    void TellerviewCustomerData(ActionEvent event) throws Exception {
-        root = FXMLLoader.load(getClass().getResource("TellerDataView.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        System.out.println("View Customer Data Button Clicked");
     }
 }

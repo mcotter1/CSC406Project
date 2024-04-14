@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  * Savings account class creates simple savings and CD account types
@@ -15,6 +16,7 @@ public class Savings extends Account{
     protected LocalDate CDdue;
     protected int ATMwithdrawalfrequency;
     protected boolean ATMcard;
+    ArrayList<Transaction> transactions = new ArrayList<>();
     //constructor, CDdue is null for simple savings
     public Savings(String savingsaccountid,int ssn,double balance, double interestrate,LocalDate dateopened,String passbook,LocalDate CDdue,boolean ATMcard){
         this.ssn = ssn;
@@ -58,6 +60,12 @@ public class Savings extends Account{
             rollovernotice = "This is not a CD";
         }
         return rollovernotice;
+    }
+    public void AddTransaction(Transaction transaction){
+        transactions.add(transaction);
+    }
+    public ArrayList<Transaction> getTransactions(){
+        return transactions;
     }
     //returns the current balance
     @Override
