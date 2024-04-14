@@ -1,20 +1,19 @@
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class TellerSearchController  {
+public class TellerController {
     @FXML
     private Button CustomerBtn;
     // This is the button for the Customer scene
@@ -28,14 +27,16 @@ public class TellerSearchController  {
     private Scene scene; // This is the scene for the stage
     private static Parent root; // This is the root for the scene
     public static int currentcustomerindex;
-    private int currentaccountindex;
     @FXML
     private ListView<Account> tellerlistview;
     @FXML
     private TextField ssn;
     @FXML
+    private Label error;
+    private boolean found;
+    @FXML
     void CheckID(ActionEvent event) throws IOException {
-        if (ssn != null) {
+        if (ssn != null && !ssn.getText().matches(".*[a-zA-Z]+.*")&&!ssn.getText().isBlank()&&ssn.getText().length()==9) {
             for (int i = 0; i < App.Customers.size(); i++)
                 if (App.Customers.get(i).getSSN() == Integer.parseInt(ssn.getText())) {
                     currentcustomerindex = i;
@@ -45,11 +46,17 @@ public class TellerSearchController  {
                     stage.setScene(scene);
                     stage.show();
                     System.out.println("switching scenes");
+                    found = true;
                     break;
-                } else {
-                    System.out.println("Invalid entry");
                 }
-            System.out.println("Could not find ID");
+            if(!found) {
+                error.setText("Could not find account");
+                System.out.println("Could not find account");
+            }
+        }
+        if (ssn.getText().matches(".*[a-zA-Z]+.*")||(ssn.getText().length()>9 || ssn.getText().length()<9)||ssn.getText().isBlank()){
+            error.setText("Please enter a valid SSN");
+            System.out.println("Please enter a valid SSN");
         }
     }
     @FXML
