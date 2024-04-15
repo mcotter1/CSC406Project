@@ -146,6 +146,9 @@ public class Checking extends Account {
         if(newbalance<5000&&accounttype.equalsIgnoreCase("gold")){
             this.accounttype = "TMB";
         }
+        if(newbalance>=5000){
+            this.accounttype = "Gold";
+        }
         this.balance = newbalance;
         return balance;
     }
