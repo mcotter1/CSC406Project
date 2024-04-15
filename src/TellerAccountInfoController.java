@@ -85,8 +85,51 @@ public class TellerAccountInfoController implements Initializable {
             TableColumn<Transaction,LocalDate> tcolumn4 = new TableColumn<>("Date");
             tcolumn4.setCellValueFactory(new PropertyValueFactory<>("dateoccurred"));
             transactionbox.getColumns().setAll(tcolumn1,tcolumn2,tcolumn3,tcolumn4);
-        } else if (App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("long term loan")||App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("cd")||App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("cd")){
-
+        } else if (App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("long term loan")||App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("short term loan")||App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("credit card")){
+            Loan workloan = (Loan) App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex);
+            ObservableList<Account> loanlist = FXCollections.observableArrayList();
+            loanlist.addAll(workloan);
+            tablebox.setItems(loanlist);
+            TableColumn<Account,String> column1 = new TableColumn<>("Acc Type");
+            column1.setCellValueFactory(new PropertyValueFactory<>("accounttype"));
+            TableColumn<Account,Double> column2 = new TableColumn<>("Balance");
+            column2.setCellValueFactory(new PropertyValueFactory<>("balance"));
+            TableColumn<Account,Double> column3= new TableColumn<>("Amount Due");
+            column3.setCellValueFactory(new PropertyValueFactory<>("paymentamountdue"));
+            TableColumn<Account,LocalDate> column4 = new TableColumn<>("Due Date");
+            column4.setCellValueFactory(new PropertyValueFactory<>("datepaymentdue"));
+            TableColumn<Account,Double> column5 = new TableColumn<>("Interest Rate");
+            column5.setCellValueFactory(new PropertyValueFactory<>("interestrate"));
+            TableColumn<Account,LocalDate> column6= new TableColumn<>("Last Payment");
+            column6.setCellValueFactory(new PropertyValueFactory<>("lastpaymentdate"));
+            TableColumn<Account,LocalDate> column7= new TableColumn<>("Notified");
+            column7.setCellValueFactory(new PropertyValueFactory<>("notifiedofpayment"));
+            TableColumn<Account,String> column8= new TableColumn<>("Loan Type");
+            column8.setCellValueFactory(new PropertyValueFactory<>("loantype"));
+            TableColumn<Account,Double> column9= new TableColumn<>("Term Length");
+            column9.setCellValueFactory(new PropertyValueFactory<>("termlength"));
+            TableColumn<Account,String> column10= new TableColumn<>("Collateral");
+            column10.setCellValueFactory(new PropertyValueFactory<>("collateral"));
+            TableColumn<Account,String> column11= new TableColumn<>("Repayment Plan");
+            column11.setCellValueFactory(new PropertyValueFactory<>("repaymentplantype"));
+            TableColumn<Account,Double> column12= new TableColumn<>("Credit Limit");
+            column12.setCellValueFactory(new PropertyValueFactory<>("creditcardlimit"));
+            tablebox.getColumns().setAll(column1,column2,column3,column4,column5,column6,column7,column8,column9,column10,column11,column12);
+            ArrayList<Transaction> transactions = workloan.getTransactions();
+            ObservableList<Transaction> transactionslist = FXCollections.observableArrayList(transactions);
+            transactionbox.setItems(transactionslist);
+            TableColumn<Transaction,String> tcolumn1 = new TableColumn<>("Type");
+            tcolumn1.setCellValueFactory(new PropertyValueFactory<>("transactiontype"));
+            TableColumn<Transaction,String> tcolumn2 = new TableColumn<>("Account Type");
+            tcolumn2.setCellValueFactory(new PropertyValueFactory<>("accounttype"));
+            TableColumn<Transaction,Double> tcolumn3 = new TableColumn<>("Amount");
+            tcolumn3.setCellValueFactory(new PropertyValueFactory<>("amount"));
+            TableColumn<Transaction,LocalDate> tcolumn4 = new TableColumn<>("Date");
+            tcolumn4.setCellValueFactory(new PropertyValueFactory<>("dateoccurred"));
+            transactionbox.getColumns().setAll(tcolumn1,tcolumn2,tcolumn3,tcolumn4);
+            if(workloan.isMissedpayment()){
+                accountstatus.setText("Missed last payment");
+            }
         }
     }
     @FXML

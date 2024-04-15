@@ -126,7 +126,7 @@ public class Savings extends Account{
     public int getSsn(){return ssn;}
     @Override
     public String toString(){
-        String s = String.format("Account type: %s Balance: %f",accounttype,balance);
+        String s = String.format("Account type: %s    Balance: %.2f",accounttype,balance);
         return s;
     }
 }

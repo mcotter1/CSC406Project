@@ -1,5 +1,3 @@
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +18,8 @@ public class TellerOptionsController implements Initializable {
     private static Parent root; // This is the root for the scene
     @FXML
     private Label accountlabel;
+    @FXML
+    private Label error;
     @Override
     public void initialize(URL location, ResourceBundle resources){
         accountlabel.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());
@@ -34,15 +34,6 @@ public class TellerOptionsController implements Initializable {
         System.out.println("Teller Button Clicked");
     }
     @FXML
-    void AccountStatusDisplayedTeller(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("AccountStatusDisplayedTeller.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        System.out.println("Account Status Button Clicked");
-    }
-    @FXML
     void DebitAccountTeller(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("DebitAccountTeller.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -53,12 +44,16 @@ public class TellerOptionsController implements Initializable {
     }
     @FXML
     void TransferTeller(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("WithdrawFromToTeller.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        System.out.println("Transfer Money Button Clicked");
+        if(!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("gold")&&!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("tmb")&&!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("simple savings")&&!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("cd")){
+            error.setText("Account does not support transfer");
+        } else {
+            root = FXMLLoader.load(getClass().getResource("WithdrawFromToTeller.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            System.out.println("Transfer Money Button Clicked");
+        }
     }
     @FXML
     void CreditAccountTeller(ActionEvent event) throws IOException {
@@ -68,24 +63,6 @@ public class TellerOptionsController implements Initializable {
         stage.setScene(scene);
         stage.show();
         System.out.println("Credit Account Button Clicked");
-    }
-    @FXML
-    void DisplayRecentDebitsTeller(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("RecentDebitsTeller.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        System.out.println("Display Recent Debits Button Clicked");
-    }
-    @FXML
-    void AccountBalanceTeller(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("AccountBalanceTeller.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        System.out.println("Account balance Button Clicked");
     }
     @FXML
     void showAccountInfoTeller(ActionEvent event) throws IOException {

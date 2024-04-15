@@ -153,6 +153,14 @@ public class App extends Application {
 
             // Prints to console when the program is closed
             primaryStage.setOnCloseRequest(event -> {
+                try {
+                    FileOutputStream fos = new FileOutputStream("t.tmp");
+                    ObjectOutputStream oos = new ObjectOutputStream(fos);
+                    oos.writeObject(Customers);
+                    oos.close();
+                }catch(Exception e){
+                    System.out.println(e);
+                }
                 System.out.println("Exiting program...");
             });
 
