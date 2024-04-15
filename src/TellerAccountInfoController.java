@@ -54,7 +54,9 @@ public class TellerAccountInfoController implements Initializable {
             tcolumn3.setCellValueFactory(new PropertyValueFactory<>("amount"));
             TableColumn<Transaction,LocalDate> tcolumn4 = new TableColumn<>("Date");
             tcolumn4.setCellValueFactory(new PropertyValueFactory<>("dateoccurred"));
-            transactionbox.getColumns().setAll(tcolumn1,tcolumn2,tcolumn3,tcolumn4);
+            TableColumn<Transaction,Double> tcolumn5 = new TableColumn<>("New Balance");
+            tcolumn5.setCellValueFactory(new PropertyValueFactory<>("newbalance"));
+            transactionbox.getColumns().setAll(tcolumn1,tcolumn2,tcolumn3,tcolumn4,tcolumn5);
         } else if (App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("simple savings")||App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("cd")){
             Savings workingsavings = (Savings) App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex);
             ObservableList<Account> savingslist = FXCollections.observableArrayList();
@@ -84,7 +86,9 @@ public class TellerAccountInfoController implements Initializable {
             tcolumn3.setCellValueFactory(new PropertyValueFactory<>("amount"));
             TableColumn<Transaction,LocalDate> tcolumn4 = new TableColumn<>("Date");
             tcolumn4.setCellValueFactory(new PropertyValueFactory<>("dateoccurred"));
-            transactionbox.getColumns().setAll(tcolumn1,tcolumn2,tcolumn3,tcolumn4);
+            TableColumn<Transaction,Double> tcolumn5 = new TableColumn<>("New Balance");
+            tcolumn5.setCellValueFactory(new PropertyValueFactory<>("newbalance"));
+            transactionbox.getColumns().setAll(tcolumn1,tcolumn2,tcolumn3,tcolumn4,tcolumn5);
         } else if (App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("long term loan")||App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("short term loan")||App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("credit card")){
             Loan workloan = (Loan) App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex);
             ObservableList<Account> loanlist = FXCollections.observableArrayList();
@@ -126,7 +130,9 @@ public class TellerAccountInfoController implements Initializable {
             tcolumn3.setCellValueFactory(new PropertyValueFactory<>("amount"));
             TableColumn<Transaction,LocalDate> tcolumn4 = new TableColumn<>("Date");
             tcolumn4.setCellValueFactory(new PropertyValueFactory<>("dateoccurred"));
-            transactionbox.getColumns().setAll(tcolumn1,tcolumn2,tcolumn3,tcolumn4);
+            TableColumn<Transaction,Double> tcolumn5 = new TableColumn<>("New Balance");
+            tcolumn5.setCellValueFactory(new PropertyValueFactory<>("newbalance"));
+            transactionbox.getColumns().setAll(tcolumn1,tcolumn2,tcolumn3,tcolumn4,tcolumn5);
             if(workloan.isMissedpayment()){
                 accountstatus.setText("Missed last payment");
             }

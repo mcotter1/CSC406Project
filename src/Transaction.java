@@ -6,11 +6,13 @@ public class Transaction implements Serializable {
     protected String accounttype;
     protected double amount;
     protected LocalDate dateoccurred;
-    public Transaction(String transactiontype,String accounttype,double amount,LocalDate dateoccurred){
+    protected double newbalance;
+    public Transaction(String transactiontype,String accounttype,double amount,LocalDate dateoccurred,double newbalance){
         this.transactiontype = transactiontype;
         this.accounttype = accounttype;
         this.amount = amount;
         this.dateoccurred = dateoccurred;
+        this.newbalance = newbalance;
     }
 
     public String getTransactiontype() {
@@ -43,5 +45,13 @@ public class Transaction implements Serializable {
 
     public void setDateoccurred(LocalDate dateoccurred) {
         this.dateoccurred = dateoccurred;
+    }
+
+    public double getNewbalance() {
+        return newbalance;
+    }
+
+    public void setNewbalance(double newbalance) {
+        this.newbalance = newbalance;
     }
 }

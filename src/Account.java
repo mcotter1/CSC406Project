@@ -6,4 +6,5 @@ public abstract class Account implements Serializable {
     public abstract String getAccounttype();
     public abstract int getSsn();
     public abstract String toString();
+    public abstract void AddTransaction(Transaction transaction);
 }

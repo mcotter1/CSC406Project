@@ -60,13 +60,14 @@ public class Loan extends Account{
                 System.out.println("Exceeds credit limit");
             }
             else{
-                Transaction currenttransaction = new Transaction("Purchase","Credit Card",amount,today);
                 balance = balance+amount;
+                Transaction currenttransaction = new Transaction("Purchase","Credit Card",amount,today,balance);
             }
         } else {
             System.out.println("This is not an open line of credit");
         }
     }
+    @Override
     public void AddTransaction(Transaction transaction){
         transactions.add(transaction);
     }

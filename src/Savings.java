@@ -62,6 +62,7 @@ public class Savings extends Account{
         }
         return rollovernotice;
     }
+    @Override
     public void AddTransaction(Transaction transaction){
         transactions.add(transaction);
     }
