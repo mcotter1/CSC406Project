@@ -19,11 +19,23 @@ public class TellerSelectAccountController implements Initializable {
     private static Parent root; // This is the root for the scene
     @FXML
     private ComboBox<Account> tellercombobox;
+
+    /**
+     * Initializes the windows combobox to select accounts
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources){
         ObservableList<Account> accounts = FXCollections.observableArrayList(App.Customers.get(App.currentcustomerindex).getAccounts());
         tellercombobox.setItems(accounts);
     }
+
+    /**
+     * Moves to teller options if the account selection combobox is not null
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void TellerOptions(ActionEvent event) throws IOException {
         if(tellercombobox.getValue()==null){
@@ -37,10 +49,21 @@ public class TellerSelectAccountController implements Initializable {
             System.out.println("ID was successful and Options are displayed");
         }
     }
+
+    /**
+     * gets the current account index from combobox
+     * @param event
+     */
     @FXML
     void GetSelection(ActionEvent event){
         App.currentaccountindex = tellercombobox.getSelectionModel().getSelectedIndex();
     }
+
+    /**
+     * returns to the teller search ssn screen
+     * @param event
+     * @throws Exception
+     */
     @FXML
     void TellerBtnClicked(ActionEvent event) throws Exception {
         root = FXMLLoader.load(getClass().getResource("Teller.fxml"));

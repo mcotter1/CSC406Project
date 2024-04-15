@@ -33,12 +33,23 @@ public class WithdrawFromToTellerController implements Initializable {
     private int transferaccountindex;
     private ObservableList<Account> accounts;
 
+    /**
+     * This function initializes the combobox and account label
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         accountlabel.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());
         accounts = FXCollections.observableArrayList(App.Customers.get(App.currentcustomerindex).getAccounts());
         toaccountbox.setItems(accounts);
     }
+
+    /**
+     * Returns to teller options
+     * @param event the ActionEvent from the window
+     * @throws IOException
+     */
     @FXML
     void BackToTellerOptions(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("TellerOptions.fxml"));
@@ -47,7 +58,12 @@ public class WithdrawFromToTellerController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    //This is a function for processing transfers between checking and savings accounts
+
+    /**
+     * This function processes a transfer between a savings and checking or between two of the same checking or
+     * savings accounts. The main process checks if balance is sufficient and processes the transfer.
+     * @param event The action event from this window
+     */
     @FXML
     void ProcessTransfer(ActionEvent event){
         //get the relevant accounts
@@ -102,6 +118,11 @@ public class WithdrawFromToTellerController implements Initializable {
             }
         }
     }
+
+    /**
+     * This function gets the index of the combo box selection
+     * @param event the ActionEvent from this window
+     */
     @FXML
     void SetTransferAccount(ActionEvent event){
         transferaccountindex = toaccountbox.getSelectionModel().getSelectedIndex();

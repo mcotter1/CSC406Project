@@ -247,7 +247,7 @@ public class Checking extends Account {
     }
     @Override
     public String toString(){
-        String s = String.format("Account type: %s    Balance: %.2f",accounttype,balance);
+        String s = String.format("Account type: %s    Balance: $%.2f",accounttype,balance);
         return s;
     }
 }
