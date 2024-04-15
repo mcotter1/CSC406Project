@@ -1,28 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="315.0" prefWidth="457.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainSceneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="315.0" prefWidth="457.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WithdrawFromToManagerController">
    <children>
-      <Label layoutX="189.0" layoutY="29.0" prefHeight="25.0" prefWidth="79.0" text="Withdraw" textAlignment="CENTER">
+      <AnchorPane layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="315.0" prefWidth="457.0">
+         <children>
+            <Label layoutX="171.0" layoutY="28.0" prefHeight="25.0" prefWidth="137.0" text="Transfer Funds" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="transferamount" layoutX="195.0" layoutY="163.0" prefHeight="25.0" prefWidth="89.0" promptText="\$" />
+            <Label layoutX="137.0" layoutY="167.0" text="Amount:" />
+            <Button layoutX="212.0" layoutY="244.0" mnemonicParsing="false" onAction="#ProcessTransfer" text="Process" />
+            <Button layoutX="219.0" layoutY="274.0" mnemonicParsing="false" onAction="#BackToManagerOptions" text="Back" />
+            <Label layoutX="33.0" layoutY="63.0" prefHeight="17.0" prefWidth="89.0" text="From Account:" />
+            <Label fx:id="accountlabel" layoutX="145.0" layoutY="63.0" prefHeight="17.0" prefWidth="293.0" text="Label" />
+            <Label layoutX="33.0" layoutY="117.0" prefHeight="17.0" prefWidth="89.0" text="To Account:" />
+            <ComboBox fx:id="toaccountbox" layoutX="109.0" layoutY="113.0" onAction="#SetTransferAccount" prefHeight="25.0" prefWidth="321.0" promptText="Choose Account To Transfer" />
+            <Label fx:id="error" layoutX="110.0" layoutY="197.0" prefHeight="17.0" prefWidth="302.0" textFill="#e80404" />
+            <Label fx:id="success" layoutX="183.0" layoutY="226.0" prefHeight="17.0" prefWidth="155.0" textFill="#0096ff" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="171.0" layoutY="35.0" prefHeight="25.0" prefWidth="137.0" text="Transfer Funds" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <TextField layoutX="131.0" layoutY="95.0" prefHeight="25.0" prefWidth="89.0" promptText="\$" />
-      <Label layoutX="75.0" layoutY="99.0" text="Amount:" />
-      <Button layoutX="212.0" layoutY="217.0" mnemonicParsing="false" text="Process" />
-      <Button layoutX="219.0" layoutY="252.0" mnemonicParsing="false" onAction="#ManagerSearchCustomerID" text="Back" />
-      <Label layoutX="285.0" layoutY="153.0" text="To:" />
-      <Label layoutX="274.0" layoutY="78.0" text="From:" />
-      <CheckBox layoutX="311.0" layoutY="78.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="125.0" text="Checking Account" />
-      <CheckBox layoutX="311.0" layoutY="103.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="118.0" text="Savings Account" />
-      <CheckBox layoutX="311.0" layoutY="153.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="125.0" text="Checking Account" />
-      <CheckBox layoutX="311.0" layoutY="178.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="118.0" text="Savings Account" />
+      <TextField fx:id="transferamount" layoutX="195.0" layoutY="170.0" prefHeight="25.0" prefWidth="89.0" promptText="\$" />
+      <Label layoutX="137.0" layoutY="174.0" text="Amount:" />
+      <Button layoutX="212.0" layoutY="251.0" mnemonicParsing="false" onAction="#ProcessTransfer" text="Process" />
+      <Button layoutX="219.0" layoutY="281.0" mnemonicParsing="false" onAction="#BackToManagerOptions" text="Back" />
+      <Label layoutX="33.0" layoutY="70.0" prefHeight="17.0" prefWidth="89.0" text="From Account:" />
+      <Label layoutX="33.0" layoutY="124.0" prefHeight="17.0" prefWidth="89.0" text="To Account:" />
+      <ComboBox fx:id="toaccountbox" layoutX="109.0" layoutY="120.0" onAction="#SetTransferAccount" prefHeight="25.0" prefWidth="321.0" promptText="Choose Account To Transfer" />
+      <Label fx:id="error" layoutX="110.0" layoutY="204.0" prefHeight="17.0" prefWidth="302.0" textFill="#e80404" />
+      <Label fx:id="success" layoutX="183.0" layoutY="233.0" prefHeight="17.0" prefWidth="155.0" textFill="#0096ff" />
    </children>
 </AnchorPane>
