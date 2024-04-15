@@ -7,19 +7,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainSceneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ManagerController">
    <children>
       <Button fx:id="backBtn" layoutX="272.0" layoutY="333.0" mnemonicParsing="false" onAction="#switchToMainScene" prefHeight="25.0" prefWidth="77.0" text="Back" />
-      <TextField layoutX="191.0" layoutY="124.0" />
+      <TextField fx:id="ssn" layoutX="191.0" layoutY="124.0" />
       <Text layoutX="115.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer ID:" />
-      <Button layoutX="357.0" layoutY="124.0" mnemonicParsing="false" onAction="#ManagerSearchCustomerID" prefHeight="25.0" prefWidth="128.0" text="Search Customer ID" />
-      <Button layoutX="248.0" layoutY="188.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Create New Account" />
-      <Button layoutX="242.0" layoutY="220.0" mnemonicParsing="false" onAction="#ManagerCreateNewCustomer" prefHeight="25.0" prefWidth="139.0" text="Create New Customer" />
+      <Button layoutX="357.0" layoutY="124.0" mnemonicParsing="false" onAction="#CheckID" prefHeight="25.0" prefWidth="128.0" text="Search Customer ID" />
+      <Button layoutX="241.0" layoutY="270.0" mnemonicParsing="false" onAction="#CreateNewCustomer" prefHeight="25.0" prefWidth="139.0" text="Create New Customer" />
       <Label layoutX="236.0" layoutY="28.0" prefHeight="26.0" prefWidth="149.0" text="Manager Interface">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Button fx:id="ViewCustDataBtn" layoutX="242.0" layoutY="251.0" mnemonicParsing="false" onAction="#ManagerviewCustomerData" prefHeight="26.0" prefWidth="139.0" text="View Customer Data" />
+      <Label fx:id="error" layoutX="191.0" layoutY="158.0" prefHeight="17.0" prefWidth="139.0" textFill="#f30808" />
    </children>
 </AnchorPane>
