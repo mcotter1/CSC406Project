@@ -100,7 +100,6 @@ public class WithdrawFromToTellerController implements Initializable {
             }
             else{
                 Transaction transferaccounttransaction = new Transaction("Transfer To",transferaccount.getAccounttype(),Double.parseDouble(transferamount.getText()),LocalDate.now(),transferaccount.getBalance()+Double.parseDouble(transferamount.getText()));
-                workaccount.setBalance(workaccount.getBalance()-Double.parseDouble(transferamount.getText()));
                 if(workaccount.getAccounttype().equalsIgnoreCase("tmb")){
                     Transaction workaccounttransaction = new Transaction("Transfer From",workaccount.getAccounttype(),-(Double.parseDouble(transferamount.getText())), LocalDate.now(),workaccount.getBalance()-Double.parseDouble(transferamount.getText())-1.25);
                     workaccount.setBalance(workaccount.getBalance()-Double.parseDouble(transferamount.getText()));
