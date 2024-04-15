@@ -15,7 +15,7 @@
          </font>
       </Label>
       <Button layoutX="290.0" layoutY="371.0" mnemonicParsing="false" onAction="#BackToTellerOptions" text="Back" />
-      <TableView fx:id="tablebox" layoutX="54.0" layoutY="82.0" prefHeight="63.0" prefWidth="511.0">
+      <TableView fx:id="tableboxchecking" layoutX="54.0" layoutY="82.0" prefHeight="63.0" prefWidth="511.0">
         <columns>
           <TableColumn prefWidth="75.0" text="C1" />
           <TableColumn prefWidth="75.0" text="C2" />
@@ -33,5 +33,17 @@
             <Font size="16.0" />
          </font>
       </Label>
+      <TableView fx:id="tableboxsavings" layoutX="51.0" layoutY="82.0" prefHeight="63.0" prefWidth="511.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <TableView fx:id="tableboxloan" layoutX="52.0" layoutY="84.0" prefHeight="63.0" prefWidth="511.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

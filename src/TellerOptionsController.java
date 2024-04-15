@@ -20,6 +20,7 @@ public class TellerOptionsController implements Initializable {
     private Label accountlabel;
     @FXML
     private Label error;
+
     @Override
     public void initialize(URL location, ResourceBundle resources){
         accountlabel.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());
