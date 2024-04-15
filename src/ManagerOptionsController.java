@@ -1,23 +1,32 @@
-import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
-public class ManagerOpionsController {
-    @FXML
-    private Button ManagerBtn;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ManagerOptionsController implements Initializable{
     // This is the button for the Manager scene
     private Stage stage; // This is the stage for the scene
     private Scene scene; // This is the scene for the stage
     private static Parent root; // This is the root for the scene
-    private int currentcustomerindex;
-    private int currentaccountindex;
 
+    @FXML
+    private Label accountlabel;
+    @FXML
+    private Label error;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources){
+        accountlabel.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());
+    }
 
     // This method is used to switch to the Customer scene
     @FXML
@@ -83,7 +92,7 @@ public class ManagerOpionsController {
 
     @FXML
     void ManagerviewCustomerData(ActionEvent event) throws Exception {
-        root = FXMLLoader.load(getClass().getResource("ManagerDataView.fxml"));
+        root = FXMLLoader.load(getClass().getResource("ManagerAccountInfo.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -141,15 +150,7 @@ public class ManagerOpionsController {
         stage.show();
         System.out.println("Debit Account Button Clicked");
     }
-    @FXML
-    void TransferManager(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("WithdrawFromToManager.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        System.out.println("Transfer Money Button Clicked");
-    }
+    
     @FXML
     void AccountBalanceManager(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("AccountBalanceManager.fxml"));
@@ -218,7 +219,7 @@ public class ManagerOpionsController {
 
     @FXML
     void showAccountInfoManager(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("ManagerViewAccountInfo.fxml"));
+        root = FXMLLoader.load(getClass().getResource("ManagerAccountInfo.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -241,6 +242,20 @@ public class ManagerOpionsController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    void TransferManager(ActionEvent event) throws IOException {
+        if(!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("gold")&&!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("tmb")&&!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("simple savings")&&!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("cd")){
+            error.setText("Account does not support transfer");
+        } else {
+            root = FXMLLoader.load(getClass().getResource("WithdrawFromToManager.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            System.out.println("Transfer Money Button Clicked");
+        }
     }
 
 }

@@ -18,7 +18,7 @@ public class ManagerSelectAccountController implements Initializable {
     private Scene scene; // This is the scene for the stage
     private static Parent root; // This is the root for the scene
     @FXML
-    private ComboBox<Account> tellercombobox;
+    private ComboBox<Account> managercombobox;
 
     /**
      * Initializes the windows combobox to select accounts
@@ -28,7 +28,7 @@ public class ManagerSelectAccountController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources){
         ObservableList<Account> accounts = FXCollections.observableArrayList(App.Customers.get(App.currentcustomerindex).getAccounts());
-        tellercombobox.setItems(accounts);
+        managercombobox.setItems(accounts);
     }
 
     /**
@@ -37,8 +37,8 @@ public class ManagerSelectAccountController implements Initializable {
      * @throws IOException
      */
     @FXML
-    void TellerOptions(ActionEvent event) throws IOException {
-        if(tellercombobox.getValue()==null){
+    void managerOptions(ActionEvent event) throws IOException {
+        if(managercombobox.getValue()==null){
             System.out.println("Please select an account");
         } else {
             root = FXMLLoader.load(getClass().getResource("ManagerOptions.fxml"));
@@ -56,7 +56,7 @@ public class ManagerSelectAccountController implements Initializable {
      */
     @FXML
     void GetSelection(ActionEvent event){
-        App.currentaccountindex = tellercombobox.getSelectionModel().getSelectedIndex();
+        App.currentaccountindex = managercombobox.getSelectionModel().getSelectedIndex();
     }
 
     /**
@@ -65,7 +65,7 @@ public class ManagerSelectAccountController implements Initializable {
      * @throws Exception
      */
     @FXML
-    void TellerBtnClicked(ActionEvent event) throws Exception {
+    void ManagerBtnClicked(ActionEvent event) throws Exception {
         root = FXMLLoader.load(getClass().getResource("Manager.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
