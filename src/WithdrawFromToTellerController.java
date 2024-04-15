@@ -99,16 +99,21 @@ public class WithdrawFromToTellerController implements Initializable {
                 success.setText("");
             }
             else{
+                Transaction transferaccounttransaction = new Transaction("Transfer To",transferaccount.getAccounttype(),Double.parseDouble(transferamount.getText()),LocalDate.now(),transferaccount.getBalance()+Double.parseDouble(transferamount.getText()));
                 workaccount.setBalance(workaccount.getBalance()-Double.parseDouble(transferamount.getText()));
                 if(workaccount.getAccounttype().equalsIgnoreCase("tmb")){
+                    Transaction workaccounttransaction = new Transaction("Transfer From",workaccount.getAccounttype(),-(Double.parseDouble(transferamount.getText())), LocalDate.now(),workaccount.getBalance()-Double.parseDouble(transferamount.getText())-1.25);
+                    workaccount.setBalance(workaccount.getBalance()-Double.parseDouble(transferamount.getText()));
                     workaccount.setBalance(workaccount.getBalance()-1.25);
+                    workaccount.AddTransaction(workaccounttransaction);
+                } else {
+                    Transaction workaccounttransaction = new Transaction("Transfer From",workaccount.getAccounttype(),-(Double.parseDouble(transferamount.getText())), LocalDate.now(),workaccount.getBalance()-Double.parseDouble(transferamount.getText()));
+                    workaccount.setBalance(workaccount.getBalance()-Double.parseDouble(transferamount.getText()));
+                    workaccount.AddTransaction(workaccounttransaction);
                 }
                 transferaccount.setBalance(transferaccount.getBalance()+Double.parseDouble(transferamount.getText()));
                 success.setText("Transfer Successful");
                 error.setText("");
-                Transaction workaccounttransaction = new Transaction("Transfer From",workaccount.getAccounttype(),-(Double.parseDouble(transferamount.getText())), LocalDate.now(),workaccount.getBalance()-Double.parseDouble(transferamount.getText()));
-                workaccount.AddTransaction(workaccounttransaction);
-                Transaction transferaccounttransaction = new Transaction("Transfer To",transferaccount.getAccounttype(),Double.parseDouble(transferamount.getText()),LocalDate.now(),transferaccount.getBalance()+Double.parseDouble(transferamount.getText()));
                 transferaccount.AddTransaction(transferaccounttransaction);
                 accounts = FXCollections.observableArrayList(App.Customers.get(App.currentcustomerindex).getAccounts());
                 toaccountbox.setItems(accounts);

@@ -79,6 +79,21 @@ public class TellerAccountInfoController implements Initializable {
             tcolumn2.setCellValueFactory(new PropertyValueFactory<>("accounttype"));
             TableColumn<Transaction,Double> tcolumn3 = new TableColumn<>("Amount");
             tcolumn3.setCellValueFactory(new PropertyValueFactory<>("amount"));
+            tcolumn3.setCellFactory(c -> new TableCell<Transaction, Double>() {
+                @Override
+                protected void updateItem(Double amount,
+                                          boolean empty) {
+
+                    super.updateItem(amount, empty);
+
+                    setGraphic(null);
+                    if (empty || amount == null) {
+                        setText(null);
+                    } else {
+                        setText(balanceFormat.format(amount));
+                    }
+                }
+            });
             TableColumn<Transaction,LocalDate> tcolumn4 = new TableColumn<>("Date");
             tcolumn4.setCellValueFactory(new PropertyValueFactory<>("dateoccurred"));
             TableColumn<Transaction,Double> tcolumn5 = new TableColumn<>("New Balance");
@@ -145,6 +160,21 @@ public class TellerAccountInfoController implements Initializable {
             tcolumn2.setCellValueFactory(new PropertyValueFactory<>("accounttype"));
             TableColumn<Transaction,Double> tcolumn3 = new TableColumn<>("Amount");
             tcolumn3.setCellValueFactory(new PropertyValueFactory<>("amount"));
+            tcolumn3.setCellFactory(c -> new TableCell<Transaction, Double>() {
+                @Override
+                protected void updateItem(Double amount,
+                                          boolean empty) {
+
+                    super.updateItem(amount, empty);
+
+                    setGraphic(null);
+                    if (empty || amount == null) {
+                        setText(null);
+                    } else {
+                        setText(balanceFormat.format(amount));
+                    }
+                }
+            });
             TableColumn<Transaction,LocalDate> tcolumn4 = new TableColumn<>("Date");
             tcolumn4.setCellValueFactory(new PropertyValueFactory<>("dateoccurred"));
             TableColumn<Transaction,Double> tcolumn5 = new TableColumn<>("New Balance");
@@ -223,6 +253,21 @@ public class TellerAccountInfoController implements Initializable {
             tcolumn2.setCellValueFactory(new PropertyValueFactory<>("accounttype"));
             TableColumn<Transaction,Double> tcolumn3 = new TableColumn<>("Amount");
             tcolumn3.setCellValueFactory(new PropertyValueFactory<>("amount"));
+            tcolumn3.setCellFactory(c -> new TableCell<Transaction, Double>() {
+                @Override
+                protected void updateItem(Double amount,
+                                          boolean empty) {
+
+                    super.updateItem(amount, empty);
+
+                    setGraphic(null);
+                    if (empty || amount == null) {
+                        setText(null);
+                    } else {
+                        setText(balanceFormat.format(amount));
+                    }
+                }
+            });
             TableColumn<Transaction,LocalDate> tcolumn4 = new TableColumn<>("Date");
             tcolumn4.setCellValueFactory(new PropertyValueFactory<>("dateoccurred"));
             TableColumn<Transaction,Double> tcolumn5 = new TableColumn<>("New Balance");
