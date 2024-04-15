@@ -11,6 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
@@ -70,6 +72,7 @@ public class TellerAccountInfoController implements Initializable {
                     cellData -> new SimpleStringProperty(
                             cellData.getValue().getSavingsaccountid()));
             tableboxchecking.getColumns().setAll(column1,column2,column3,column4);
+            tableboxchecking.setFixedCellSize(30);
             ArrayList<Transaction> worktransactions = workchecking.getTransactions();
             ObservableList<Transaction> transactionlist = FXCollections.observableArrayList(worktransactions);
             transactionbox.setItems(transactionlist);
@@ -151,6 +154,7 @@ public class TellerAccountInfoController implements Initializable {
             TableColumn<Savings,LocalDate> column6= new TableColumn<>("Date CD Due");
             column6.setCellValueFactory(new PropertyValueFactory<>("CDdue"));
             tableboxsavings.getColumns().setAll(column1,column2,column3,column4,column5,column6);
+            tableboxsavings.setFixedCellSize(30);
             ArrayList<Transaction> transactions = workingsavings.getTransactions();
             ObservableList<Transaction> transactionslist = FXCollections.observableArrayList(transactions);
             transactionbox.setItems(transactionslist);
