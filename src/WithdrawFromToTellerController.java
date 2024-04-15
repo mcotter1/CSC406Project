@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class WithdrawFromToTellerController implements Initializable {
@@ -83,9 +84,16 @@ public class WithdrawFromToTellerController implements Initializable {
             }
             else{
                 workaccount.setBalance(workaccount.getBalance()-Double.parseDouble(transferamount.getText()));
+                if(workaccount.getAccounttype().equalsIgnoreCase("tmb")){
+                    workaccount.setBalance(workaccount.getBalance()-1.25);
+                }
                 transferaccount.setBalance(transferaccount.getBalance()+Double.parseDouble(transferamount.getText()));
                 success.setText("Transfer Successful");
                 error.setText("");
+                Transaction workaccounttransaction = new Transaction("Transfer From",workaccount.getAccounttype(),-(Double.parseDouble(transferamount.getText())), LocalDate.now(),workaccount.getBalance()-Double.parseDouble(transferamount.getText()));
+                workaccount.AddTransaction(workaccounttransaction);
+                Transaction transferaccounttransaction = new Transaction("Transfer To",transferaccount.getAccounttype(),Double.parseDouble(transferamount.getText()),LocalDate.now(),transferaccount.getBalance()+Double.parseDouble(transferamount.getText()));
+                transferaccount.AddTransaction(transferaccounttransaction);
                 accounts = FXCollections.observableArrayList(App.Customers.get(App.currentcustomerindex).getAccounts());
                 toaccountbox.setItems(accounts);
                 accountlabel.setText(workaccount.toString());

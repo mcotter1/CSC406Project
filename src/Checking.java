@@ -130,6 +130,7 @@ public class Checking extends Account {
         balance = balance+paybackamount;
         balance = balance - 35;
     }
+    @Override
     public void AddTransaction(Transaction transaction){
         transactions.add(transaction);
     }
@@ -142,6 +143,9 @@ public class Checking extends Account {
     }
     @Override
     public double setBalance(double newbalance) {
+        if(newbalance<5000&&accounttype.equalsIgnoreCase("gold")){
+            this.accounttype = "TMB";
+        }
         this.balance = newbalance;
         return balance;
     }
