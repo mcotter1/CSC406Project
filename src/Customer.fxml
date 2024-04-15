@@ -6,16 +6,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainSceneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CustomerController">
    <children>
       <Button fx:id="backBtn" layoutX="262.0" layoutY="314.0" mnemonicParsing="false" onAction="#switchToMainScene" prefHeight="25.0" prefWidth="77.0" text="Back" />
-      <PasswordField layoutX="226.0" layoutY="188.0" />
+      <PasswordField fx:id="ssnVerifyText" layoutX="226.0" layoutY="188.0" />
       <Label layoutX="195.0" layoutY="192.0" text="SSN" />
       <Label layoutX="147.0" layoutY="103.0" text="Please Enter SSN to Login">
          <font>
             <Font size="27.0" />
          </font>
       </Label>
-      <Button layoutX="382.0" layoutY="188.0" mnemonicParsing="false" onAction="#SSNverifyBtnClicked" text="Verify" />
+      <Button fx:id="verifyBtn" layoutX="382.0" layoutY="188.0" mnemonicParsing="false" onAction="#SSNverifyBtnClicked" text="Verify" />
+      <Label fx:id="error" layoutX="226.0" layoutY="222.0" prefHeight="17.0" prefWidth="149.0" textFill="RED" />
    </children>
 </AnchorPane>
