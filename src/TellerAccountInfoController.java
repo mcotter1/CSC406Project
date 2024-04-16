@@ -229,6 +229,21 @@ public class TellerAccountInfoController implements Initializable {
             });
             TableColumn<Loan,Double> column3= new TableColumn<>("Amount Due");
             column3.setCellValueFactory(new PropertyValueFactory<>("paymentamountdue"));
+            column3.setCellFactory(c -> new TableCell<Loan, Double>() {
+                @Override
+                protected void updateItem(Double paymentamountdue,
+                                          boolean empty) {
+
+                    super.updateItem(paymentamountdue, empty);
+
+                    setGraphic(null);
+                    if (empty || paymentamountdue == null) {
+                        setText(null);
+                    } else {
+                        setText(balanceFormat.format(paymentamountdue));
+                    }
+                }
+            });
             TableColumn<Loan,LocalDate> column4 = new TableColumn<>("Due Date");
             column4.setCellValueFactory(new PropertyValueFactory<>("datepaymentdue"));
             TableColumn<Loan,Double> column5 = new TableColumn<>("Interest Rate");
