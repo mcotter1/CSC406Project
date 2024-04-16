@@ -58,12 +58,6 @@ public class TellerSelectAccountController implements Initializable {
     void GetSelection(ActionEvent event){
         App.currentaccountindex = tellercombobox.getSelectionModel().getSelectedIndex();
     }
-
-    /**
-     * returns to the teller search ssn screen
-     * @param event
-     * @throws Exception
-     */
     @FXML
     void TellerBtnClicked(ActionEvent event) throws Exception {
         root = FXMLLoader.load(getClass().getResource("Teller.fxml"));

@@ -12,6 +12,13 @@ import java.util.Scanner;
 
 public class App extends Application {
     public static ArrayList<Customer> Customers = new ArrayList<>();
+
+    /**
+     * Main driver for app
+     * @param args
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         File databasefile = new File("t.tmp");
         if(!databasefile.exists()) {
