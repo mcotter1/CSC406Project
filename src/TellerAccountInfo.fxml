@@ -22,7 +22,7 @@
         </columns>
       </TableView>
       <Label layoutX="269.0" layoutY="152.0" text="Transactions" />
-      <Label fx:id="accountstatus" layoutX="278.0" layoutY="24.0" prefHeight="17.0" prefWidth="90.0" text="Label">
+      <Label fx:id="accountstatus" layoutX="278.0" layoutY="24.0" prefHeight="25.0" prefWidth="244.0" textFill="#f50202">
          <font>
             <Font size="16.0" />
          </font>
