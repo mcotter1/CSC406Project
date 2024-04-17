@@ -67,4 +67,14 @@ public class TellerSelectAccountController implements Initializable {
         stage.show();
         System.out.println("Teller Button Clicked");
     }
+    @FXML
+    void CreateAccount(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("TellerCreateAccount.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("Teller Button Clicked");
+    }
+
 }
