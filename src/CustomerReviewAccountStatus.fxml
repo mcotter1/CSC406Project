@@ -7,19 +7,61 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CustomerAccountInfoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="817.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CustomerAccountInfoController">
    <children>
-      <Label layoutX="233.0" layoutY="22.0" prefHeight="39.0" prefWidth="156.0" text="Account Info">
+      <Label layoutX="338.0" layoutY="25.0" prefHeight="39.0" prefWidth="156.0" text="Account Info">
          <font>
             <Font size="27.0" />
          </font>
       </Label>
-      <Button fx:id="backBtn" layoutX="290.0" layoutY="371.0" mnemonicParsing="false" onAction="#SSNverifyBtnClicked" text="Back" />
-      <TableView fx:id="tableAccountInfo" layoutX="42.0" layoutY="75.0" prefHeight="284.0" prefWidth="521.0">
+      <Button fx:id="backBtn" layoutX="396.0" layoutY="564.0" mnemonicParsing="false" onAction="#SSNverifyBtnClicked" text="Back" />
+      <TableView fx:id="CheckingInfo" layoutX="42.0" layoutY="75.0" prefHeight="102.0" prefWidth="748.0">
         <columns>
           <TableColumn prefWidth="75.0" text="C1" />
           <TableColumn prefWidth="75.0" text="C2" />
         </columns>
       </TableView>
+      <TableView fx:id="SavingsInfo" layoutX="42.0" layoutY="216.0" prefHeight="102.0" prefWidth="748.0">
+         <columns>
+            <TableColumn prefWidth="75.0" text="C1" />
+            <TableColumn prefWidth="75.0" text="C2" />
+         </columns>
+      </TableView>
+      <TableView fx:id="LoanInfo" layoutX="42.0" layoutY="363.0" prefHeight="102.0" prefWidth="748.0">
+         <columns>
+            <TableColumn prefWidth="75.0" text="C1" />
+            <TableColumn prefWidth="75.0" text="C2" />
+         </columns>
+      </TableView>
+      <Label fx:id="CheckingLbl" alignment="TOP_LEFT" layoutX="42.0" layoutY="53.0" text="Checking Accounts:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="SavingsLbl" layoutX="42.0" layoutY="195.0" text="Savings Accounts:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="LoanLbl" layoutX="42.0" layoutY="342.0" text="Loan Accounts:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="CheckingNonExisiting" layoutX="179.0" layoutY="54.0" prefHeight="21.0" prefWidth="308.0" textFill="RED">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="SavingNonExisiting" layoutX="172.0" layoutY="195.0" prefHeight="21.0" prefWidth="308.0" textFill="RED">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="LoanNonExisiting" layoutX="172.0" layoutY="342.0" prefHeight="21.0" prefWidth="308.0" textFill="RED">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
