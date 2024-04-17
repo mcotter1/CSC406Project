@@ -83,6 +83,9 @@ public class TellerCreditAccountController implements Initializable {
                 Transaction checkingtransaction =new Transaction("Deposit",workchecking.getAccounttype(),workamount,LocalDate.now(),workchecking.getBalance()+workamount);
                 workchecking.setBalance(workchecking.getBalance()+workamount);
                 workchecking.AddTransaction(checkingtransaction);
+                if(workchecking.getBalance()>=5000&&workchecking.getAccounttype().equalsIgnoreCase("tmb")){
+                    workchecking.setAccounttype("Gold");
+                }
                 error.setText("");
                 success.setText("Deposit Successful");
                 accountlabel.setText(workchecking.toString());

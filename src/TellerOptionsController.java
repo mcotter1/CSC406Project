@@ -36,7 +36,10 @@ public class TellerOptionsController implements Initializable {
     }
     @FXML
     void DebitAccountTeller(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("DebitAccountTeller.fxml"));
+        if(!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("gold")&&!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("tmb")&&!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("simple savings")&&!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("cd")){
+            error.setText("Cannot Debit Loan Account");
+        }
+        root = FXMLLoader.load(getClass().getResource("TellerDebitAccount.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -75,7 +78,7 @@ public class TellerOptionsController implements Initializable {
     }
     @FXML
     void CreateAccountTeller(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("CreateAccountTeller.fxml"));
+        root = FXMLLoader.load(getClass().getResource("TellerCreateAccount.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
