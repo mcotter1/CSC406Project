@@ -5,39 +5,51 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="381.0" prefWidth="382.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="381.0" prefWidth="382.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CustomerATMWindow">
    <children>
       <Label contentDisplay="CENTER" layoutX="171.0" layoutY="26.0" text="ATM " textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <TextField layoutX="155.0" layoutY="138.0" prefHeight="25.0" prefWidth="94.0" promptText="\$0.00" />
-      <Label layoutX="41.0" layoutY="77.0" text="Amount: ">
+      <TextField fx:id="DollarCustom" layoutX="152.0" layoutY="160.0" prefHeight="25.0" prefWidth="94.0" promptText="\$0.00" />
+      <Label layoutX="39.0" layoutY="77.0" text="Amount: ">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <ComboBox layoutX="104.0" layoutY="191.0" prefHeight="25.0" prefWidth="238.0" />
-      <Label layoutX="40.0" layoutY="193.0" text="Account:">
+      <ComboBox fx:id="AccountSelection" layoutX="104.0" layoutY="210.0" prefHeight="25.0" prefWidth="238.0" />
+      <Label layoutX="40.0" layoutY="212.0" text="Account:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Button layoutX="158.0" layoutY="252.0" mnemonicParsing="false" text="Withdraw" />
-      <Button layoutX="171.0" layoutY="287.0" mnemonicParsing="false" text="Back" />
-      <RadioButton layoutX="105.0" layoutY="79.0" mnemonicParsing="false" text="\$10" />
-      <RadioButton layoutX="162.0" layoutY="79.0" mnemonicParsing="false" text="\$20" />
-      <RadioButton layoutX="105.0" layoutY="104.0" mnemonicParsing="false" text="\$50" />
-      <Label layoutX="43.0" layoutY="140.0" text="Custom Amount:">
+      <Button fx:id="Withdrawbtn" layoutX="158.0" layoutY="283.0" mnemonicParsing="false" onAction="#Withdraw" text="Withdraw" />
+      <Button fx:id="Backbtn" layoutX="171.0" layoutY="318.0" mnemonicParsing="false" onAction="#backBtn" text="Back" />
+      <Label layoutX="40.0" layoutY="162.0" text="Custom Amount:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <RadioButton layoutX="162.0" layoutY="104.0" mnemonicParsing="false" text="\$100" />
+      <Label layoutX="185.0" layoutY="129.0" text="or" />
+      <RadioButton fx:id="Dollar10" layoutX="116.0" layoutY="76.0" mnemonicParsing="false" onAction="#getAmount" text="\$10">
+         <toggleGroup>
+            <ToggleGroup fx:id="Amount" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="Dollar50" layoutX="171.0" layoutY="76.0" mnemonicParsing="false" onAction="#getAmount" text="\$50" toggleGroup="$Amount" />
+      <RadioButton fx:id="Dollar20" layoutX="116.0" layoutY="102.0" mnemonicParsing="false" onAction="#getAmount" text="\$20" toggleGroup="$Amount" />
+      <RadioButton fx:id="Dollar75" layoutX="171.0" layoutY="102.0" mnemonicParsing="false" onAction="#getAmount" prefHeight="17.0" prefWidth="42.0" text="\$75" toggleGroup="$Amount" />
+      <RadioButton fx:id="custom" layoutX="225.0" layoutY="102.0" mnemonicParsing="false" onAction="#getAmount" text="Custom" toggleGroup="$Amount" />
+      <RadioButton fx:id="Dollar100" layoutX="225.0" layoutY="76.0" mnemonicParsing="false" onAction="#getAmount" prefHeight="17.0" prefWidth="54.0" text="\$100" toggleGroup="$Amount" />
+      <Label fx:id="errorLbl" layoutX="31.0" layoutY="247.0" prefHeight="17.0" prefWidth="322.0" textFill="RED">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
