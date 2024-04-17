@@ -92,6 +92,7 @@ public class WithdrawFromToTellerController implements Initializable {
             if(Double.parseDouble(transferamount.getText())<=0){
                 error.setText("Transfer amount cannot be 0");
                 success.setText("");
+                return;
             }
             //check if amount is too much
             if(Double.parseDouble(transferamount.getText())>workaccount.getBalance()){
