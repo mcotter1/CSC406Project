@@ -134,7 +134,7 @@ public class ManagerOptionsController implements Initializable{
 
     @FXML
     void CreditAccountManager(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("CreditAccountManager.fxml"));
+        root = FXMLLoader.load(getClass().getResource("ManagerCreditAccount.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -143,7 +143,7 @@ public class ManagerOptionsController implements Initializable{
     }
     @FXML
     void DebitAccountManager(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("DebitAccountManager.fxml"));
+        root = FXMLLoader.load(getClass().getResource("ManagerDebitAccount.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
