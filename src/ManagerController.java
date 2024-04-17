@@ -61,7 +61,7 @@ public class ManagerController {
     }
     @FXML
     void CreateNewCustomer(ActionEvent event) throws Exception {
-        root = FXMLLoader.load(getClass().getResource("CreateNewCustomer.fxml"));
+        root = FXMLLoader.load(getClass().getResource("ManagerCreateNewCustomer.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
