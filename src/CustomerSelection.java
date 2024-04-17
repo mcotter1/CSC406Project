@@ -47,8 +47,13 @@ public class CustomerSelection implements Initializable {
     }
 
     @FXML
-    void creditCardBtnClicked(ActionEvent event) {
-
+    void creditCardBtnClicked(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("CustomerATMWindow.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("Account Status Button Clicked");
     }
 
     @FXML
