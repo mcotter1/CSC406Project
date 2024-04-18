@@ -26,7 +26,7 @@ public class Savings extends Account{
         this.interestrate = interestrate;
         this.dateopened = dateopened;
         this.CDdue = CDdue;
-        if(passbook.equalsIgnoreCase("NA")){
+        if(CDdue==null){
             this.cdcheck = false;
         }
         else cdcheck = true;

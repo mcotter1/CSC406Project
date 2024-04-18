@@ -12,7 +12,12 @@ import java.util.Scanner;
 
 public class App extends Application {
     public static ArrayList<Customer> Customers = new ArrayList<>();
-
+    public static int currentcustomerindex;
+    public static int currentaccountindex;
+    public static int savingsidcounter;
+    static {
+        savingsidcounter = 30;
+    }
     /**
      * Main driver for app
      * @param args
@@ -20,6 +25,14 @@ public class App extends Application {
      * @throws ClassNotFoundException
      */
     public static void main(String[] args) throws IOException, ClassNotFoundException {
+        File savingsnumberfile = new File("savingsid.txt");
+        if(!savingsnumberfile.exists()){
+            Writer wr = new FileWriter("savingsid.txt");
+            wr.write(String.valueOf(savingsidcounter));
+            wr.close();
+        }
+        Scanner sc = new Scanner(savingsnumberfile);
+        savingsidcounter = Integer.parseInt(sc.next());
         File databasefile = new File("t.tmp");
         if(!databasefile.exists()) {
             File customerfile = new File("Customer_Data_Final.csv");
@@ -140,12 +153,8 @@ public class App extends Application {
         // Main method to run the GUI
         launch(args);
     }
-
-    public static int currentcustomerindex;
-    public static int currentaccountindex;
     @Override
     public void start(Stage primaryStage) {
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("MainScene.fxml"));
             // Add anything you want to happen when the program starts here
@@ -160,6 +169,13 @@ public class App extends Application {
 
             // Prints to console when the program is closed
             primaryStage.setOnCloseRequest(event -> {
+                try {
+                    Writer wr = new FileWriter("savingsid.txt");
+                    wr.write(String.valueOf(savingsidcounter));
+                    wr.close();
+                }catch(Exception e){
+
+                }
                 try {
                     FileOutputStream fos = new FileOutputStream("t.tmp");
                     ObjectOutputStream oos = new ObjectOutputStream(fos);

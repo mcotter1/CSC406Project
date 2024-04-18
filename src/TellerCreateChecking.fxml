@@ -17,11 +17,14 @@
       <Label layoutX="28.0" layoutY="95.0" text="Checking Account Type: " />
       <TextField fx:id="goldortmb" layoutX="167.0" layoutY="91.0" prefHeight="25.0" prefWidth="104.0" promptText="Gold  or TMB" />
       <Label layoutX="78.0" layoutY="128.0" prefHeight="17.0" prefWidth="80.0" text="Initial Deposit:" />
-      <Button layoutX="234.0" layoutY="204.0" mnemonicParsing="false" text="Create" />
       <RadioButton fx:id="atmyes" layoutX="354.0" layoutY="95.0" mnemonicParsing="false" text="Yes" />
       <RadioButton fx:id="atmno" layoutX="355.0" layoutY="119.0" mnemonicParsing="false" text="No" />
       <Label layoutX="285.0" layoutY="95.0" text="ATM Card:" />
-      <Button layoutX="239.0" layoutY="238.0" mnemonicParsing="false" text="Back" />
-      <TextField fx:id="initialdeposit" layoutX="165.0" layoutY="124.0" prefHeight="25.0" prefWidth="104.0" />
+      <Button layoutX="239.0" layoutY="238.0" mnemonicParsing="false" onAction="#BackToTellerSelectAccount" text="Back" />
+      <TextField fx:id="initialdeposit" layoutX="165.0" layoutY="124.0" prefHeight="25.0" prefWidth="104.0" promptText="\$0.00" />
+      <Label fx:id="success" layoutX="165.0" layoutY="157.0" prefHeight="17.0" prefWidth="263.0" textFill="#009cfd" />
+      <Label fx:id="error" layoutX="165.0" layoutY="174.0" prefHeight="17.0" prefWidth="238.0" textFill="#ff0202" />
+      <Label fx:id="customername" layoutX="144.0" layoutY="58.0" prefHeight="17.0" prefWidth="238.0" />
+      <Button layoutX="233.0" layoutY="199.0" mnemonicParsing="false" onAction="#Create" text="Create" />
    </children>
 </AnchorPane>
