@@ -48,6 +48,11 @@ public class ManagerCreditAccountController implements Initializable {
                 Double workamount = Double.parseDouble(creditamount.getText());
                 Loan loanwork = (Loan) workaccount;
                 Transaction loantransaction = new Transaction("Payment",workaccount.getAccounttype(),-workamount, LocalDate.now(),workaccount.getBalance()-workamount);
+                if (workamount < 0) {
+                    error.setText("Please enter a positive amount");
+                    success.setText("");
+                    return;
+                }
                 if(workamount>loanwork.getBalance()){
                     error.setText("Payment amount more than balance");
                     success.setText("");
@@ -70,6 +75,11 @@ public class ManagerCreditAccountController implements Initializable {
             } else if(workaccount.getAccounttype().equalsIgnoreCase("simple savings")||workaccount.getAccounttype().equalsIgnoreCase("cd")){
                 double workamount = Double.parseDouble(creditamount.getText());
                 Savings worksavings = (Savings) workaccount;
+                if (workamount < 0) {
+                    error.setText("Please enter a positive amount");
+                    success.setText("");
+                    return;
+                }
                 Transaction savingstransaction = new Transaction("Deposit",worksavings.getAccounttype(),workamount,LocalDate.now(),worksavings.getBalance()+workamount);
                 worksavings.setBalance(worksavings.getBalance()+workamount);
                 worksavings.AddTransaction(savingstransaction);
@@ -80,6 +90,11 @@ public class ManagerCreditAccountController implements Initializable {
             } else {
                 double workamount = Double.parseDouble(creditamount.getText());
                 Checking workchecking = (Checking) workaccount;
+                if (workamount < 0) {
+                    error.setText("Please enter a positive amount");
+                    success.setText("");
+                    return;
+                }
                 Transaction checkingtransaction =new Transaction("Deposit",workchecking.getAccounttype(),workamount,LocalDate.now(),workchecking.getBalance()+workamount);
                 workchecking.setBalance(workchecking.getBalance()+workamount);
                 workchecking.AddTransaction(checkingtransaction);

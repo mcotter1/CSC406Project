@@ -44,6 +44,11 @@ public class TellerDebitAccountController implements Initializable {
         }
         if(debitamount != null && !debitamount.getText().matches(".*[a-zA-Z]+.*")&&!debitamount.getText().isBlank()){
             double workamount = Double.parseDouble(debitamount.getText());
+            if (workamount < 0) {
+                error.setText("Please enter a positive amount");
+                success.setText("");
+                return;
+            }
             if(workaccount.getAccounttype().equalsIgnoreCase("cd")||workaccount.getAccounttype().equalsIgnoreCase("simple savings")){
                 Savings worksavings = (Savings) workaccount;
                 if(worksavings.getBalance()<workamount){
