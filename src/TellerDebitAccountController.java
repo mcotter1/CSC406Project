@@ -44,7 +44,7 @@ public class TellerDebitAccountController implements Initializable {
         }
         if(debitamount != null && !debitamount.getText().matches(".*[a-zA-Z]+.*")&&!debitamount.getText().isBlank()){
             double workamount = Double.parseDouble(debitamount.getText());
-            if(workamount<0){
+            if(workamount<=0){
                 error.setText("Enter valid amount");
                 success.setText("");
                 return;
