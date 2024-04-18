@@ -44,6 +44,11 @@ public class TellerDebitAccountController implements Initializable {
         }
         if(debitamount != null && !debitamount.getText().matches(".*[a-zA-Z]+.*")&&!debitamount.getText().isBlank()){
             double workamount = Double.parseDouble(debitamount.getText());
+            if(workamount<0){
+                error.setText("Enter valid amount");
+                success.setText("");
+                return;
+            }
             if(workaccount.getAccounttype().equalsIgnoreCase("cd")||workaccount.getAccounttype().equalsIgnoreCase("simple savings")){
                 Savings worksavings = (Savings) workaccount;
                 if(worksavings.getBalance()<workamount){
@@ -52,7 +57,23 @@ public class TellerDebitAccountController implements Initializable {
                     return;
                 }
                 if(worksavings.getAccounttype().equalsIgnoreCase("cd")){
-                    //logic for CD withdrawal before CD date
+                    if(worksavings.getCDdue().isBefore(LocalDate.now())){
+                        Transaction cdtransaction = new Transaction("Withdrawal","CD",workamount,LocalDate.now(),workaccount.getBalance()-workamount-2);
+                        worksavings.setBalance(worksavings.getBalance()-workamount-2);
+                        worksavings.AddTransaction(cdtransaction);
+                        error.setText("Penalty for Withdrawal before CD due date");
+                        success.setText("Withdrawal Successful");
+                        accountlabel.setText(worksavings.toString());
+                        App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex,worksavings);
+                    } else {
+                        Transaction simpletransaction = new Transaction("Withdrawal","Simple Savings",workamount,LocalDate.now(),workaccount.getBalance()-workamount);
+                        worksavings.setBalance(worksavings.getBalance()-workamount);
+                        worksavings.AddTransaction(simpletransaction);
+                        error.setText("Penalty for Withdrawal before CD due date");
+                        success.setText("Withdrawal Successful");
+                        accountlabel.setText(worksavings.toString());
+                        App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex,worksavings);
+                    }
                 } else {
                     Transaction simpletransaction = new Transaction("Withdrawal",worksavings.getAccounttype(),-workamount, LocalDate.now(),worksavings.getBalance()-workamount);
                     worksavings.setBalance(worksavings.getBalance()-workamount);

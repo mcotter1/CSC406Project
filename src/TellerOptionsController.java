@@ -20,10 +20,13 @@ public class TellerOptionsController implements Initializable {
     private Label accountlabel;
     @FXML
     private Label error;
+    @FXML
+    private Label customername;
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
         accountlabel.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());
+        customername.setText(String.format("Customer: %s %s ",App.Customers.get(App.currentcustomerindex).getFirstname(),App.Customers.get(App.currentcustomerindex).getLastname()));
     }
     @FXML
     void TellerBtnClicked(ActionEvent event) throws Exception {

@@ -47,6 +47,11 @@ public class TellerCreditAccountController implements Initializable {
             if(workaccount.getAccounttype().equalsIgnoreCase("long term loan")||workaccount.getAccounttype().equalsIgnoreCase("short term loan")||workaccount.getAccounttype().equalsIgnoreCase("Credit Card")){
                 Double workamount = Double.parseDouble(creditamount.getText());
                 Loan loanwork = (Loan) workaccount;
+                if(workamount<=0){
+                    error.setText("Please enter valid deposit");
+                    success.setText("");
+                    return;
+                }
                 Transaction loantransaction = new Transaction("Payment",workaccount.getAccounttype(),-workamount, LocalDate.now(),workaccount.getBalance()-workamount);
                 if(workamount>loanwork.getBalance()){
                     error.setText("Payment amount more than balance");
