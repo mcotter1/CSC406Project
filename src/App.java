@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
+/**
+ * The main class for the application which includes the main driver for pulling Customers
+ * from csv or the database file
+ */
 public class App extends Application {
     public static ArrayList<Customer> Customers = new ArrayList<>();
     public static int currentcustomerindex;
@@ -153,6 +157,11 @@ public class App extends Application {
         // Main method to run the GUI
         launch(args);
     }
+
+    /**
+     * Start method for App
+     * @param primaryStage
+     */
     @Override
     public void start(Stage primaryStage) {
         try {

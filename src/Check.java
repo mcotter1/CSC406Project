@@ -1,5 +1,8 @@
 import java.io.Serializable;
 
+/**
+ * Class used for making check objects
+ */
 public class Check implements Serializable {
     protected int checknumber;
     protected double paymentamount;
