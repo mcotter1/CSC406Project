@@ -15,6 +15,7 @@ public class Customer extends User {
     protected int ssn;
     ArrayList<Account> accounts = new ArrayList<>();
     ArrayList<Transaction> transactions = new ArrayList<>();
+    ArrayList<String> messages = new ArrayList<>();
 
     /**
      * Constructor for Customer objects
@@ -51,7 +52,9 @@ public class Customer extends User {
     public void AddTransaction(Transaction x){
         transactions.add(x);
     }
-
+    public void AddMessage(String message){
+        messages.add(message);
+    }
     @Override
     public void DebitAccount(double amount,Account account){
         double newbalance = account.getBalance()-amount;
