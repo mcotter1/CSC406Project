@@ -94,12 +94,16 @@ public class TellerOptionsController implements Initializable {
         stage.show();
     }
     @FXML
-    void CreateAccountTeller(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("TellerCreateAccount.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        System.out.println("Create Account Teller Button Clicked");
+    void StopPayment(ActionEvent event) throws IOException {
+        if(!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("gold")&&!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("tmb")){
+            error.setText("Stop Payment Only For Checking");
+        } else {
+            root = FXMLLoader.load(getClass().getResource("TellerStopPayment.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
     }
+
 }

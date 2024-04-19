@@ -10,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,6 +26,7 @@ public class TellerLinkAccountController implements Initializable {
     private Label accountlabel;
     @FXML
     private ComboBox<Account> accountbox;
+    private int savingsindex;
     @Override
     public void initialize(URL location, ResourceBundle resources){
         ObservableList<Account> accounts = FXCollections.observableArrayList(App.Customers.get(App.currentcustomerindex).getAccounts());
@@ -35,7 +35,23 @@ public class TellerLinkAccountController implements Initializable {
     }
     @FXML
     void GetSelection(ActionEvent event){
-        App.currentaccountindex = accountbox.getSelectionModel().getSelectedIndex();
+        savingsindex = accountbox.getSelectionModel().getSelectedIndex();
+    }
+    @FXML
+    void Link(ActionEvent event){
+        Account workaccount = App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex);
+        Account worksavingsAccount = App.Customers.get(App.currentcustomerindex).getAccounts().get(savingsindex);
+        if(worksavingsAccount.getAccounttype().equalsIgnoreCase("simple savings")){
+            Checking workchecking = (Checking) workaccount;
+            Savings worksavings = (Savings) worksavingsAccount;
+            workchecking.setOverdraftbackupnumber(worksavings.getSavingsaccountid());
+            error.setText("");
+            success.setText(String.format("Checking linked to account: %s",worksavings.getSavingsaccountid()));
+            App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex,workchecking);
+        } else {
+            error.setText("Must select simple savings to link");
+            success.setText("");
+        }
     }
     @FXML
     void BackToTellerOptions(ActionEvent event) throws IOException {
