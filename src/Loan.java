@@ -1,6 +1,9 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * This is the class for all loan accounts
+ */
 public class Loan extends Account{
     protected int ssn;
     protected double balance;
@@ -17,6 +20,23 @@ public class Loan extends Account{
     protected String loantype;
     protected double creditcardlimit;
     ArrayList<Transaction> transactions = new ArrayList<>();
+
+    /**
+     * constructor for the loan class, contains logic for setting account type
+     * @param ssn
+     * @param balance
+     * @param interestrate
+     * @param datepaymentdue
+     * @param notifiedofpayment
+     * @param paymentamountdue
+     * @param lastpaymentdate
+     * @param missedpayment
+     * @param termlength
+     * @param collateral
+     * @param repaymentplantype
+     * @param loantype
+     * @param creditcardlimit
+     */
     public Loan(int ssn, double balance, double interestrate, LocalDate datepaymentdue, LocalDate notifiedofpayment, double paymentamountdue, LocalDate lastpaymentdate, boolean missedpayment,double termlength, String collateral, String repaymentplantype,String loantype,double creditcardlimit) {
         this.ssn = ssn;
         this.balance = balance;
@@ -41,7 +61,11 @@ public class Loan extends Account{
             this.accounttype = "Credit Card";
         }
     }
-    //this function checks all the credit card transactions for the current month and returns the total amount owed
+
+    /**
+     * This function iterates through the credit card transactions and produces a bill
+     * @return
+     */
     public double IssueBillCreditCard(){
         LocalDate currentdate = LocalDate.now();
         double amountowed = 0;
@@ -52,7 +76,11 @@ public class Loan extends Account{
         }
         return amountowed;
     }
-    //this function allows a user to make a credit card payment
+
+    /**
+     * This function allows a user to pay with a credit card
+     * @param amount
+     */
     public void PayWithCreditCard(double amount){
         LocalDate today = LocalDate.now();
         if(accounttype.equalsIgnoreCase("credit card")){
@@ -67,6 +95,11 @@ public class Loan extends Account{
             System.out.println("This is not an open line of credit");
         }
     }
+
+    /**
+     * This function allows adding to transaction list
+     * @param transaction
+     */
     @Override
     public void AddTransaction(Transaction transaction){
         transactions.add(transaction);
