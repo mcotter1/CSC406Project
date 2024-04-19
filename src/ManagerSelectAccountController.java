@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ResourceBundle;
@@ -19,6 +20,8 @@ public class ManagerSelectAccountController implements Initializable {
     private static Parent root; // This is the root for the scene
     @FXML
     private ComboBox<Account> managercombobox;
+    @FXML
+    private Label customername;
 
     /**
      * Initializes the windows combobox to select accounts
@@ -29,10 +32,11 @@ public class ManagerSelectAccountController implements Initializable {
     public void initialize(URL location, ResourceBundle resources){
         ObservableList<Account> accounts = FXCollections.observableArrayList(App.Customers.get(App.currentcustomerindex).getAccounts());
         managercombobox.setItems(accounts);
+        customername.setText(String.format("Customer: %s %s ",App.Customers.get(App.currentcustomerindex).getFirstname(),App.Customers.get(App.currentcustomerindex).getLastname()));
     }
 
     /**
-     * Moves to teller options if the account selection combobox is not null
+     * Moves to manager options if the account selection combobox is not null
      * @param event
      * @throws IOException
      */
@@ -60,7 +64,7 @@ public class ManagerSelectAccountController implements Initializable {
     }
 
     /**
-     * returns to the teller search ssn screen
+     * returns to the manager search ssn screen
      * @param event
      * @throws Exception
      */

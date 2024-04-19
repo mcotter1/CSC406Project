@@ -1,33 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="519.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainSceneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="519.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ManagerCreateSavingsController">
    <children>
-      <Label layoutX="171.0" layoutY="24.0" text="Create Savings Account">
+      <Label layoutX="142.0" layoutY="14.0" text="Create Simple Savings Account">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="285.0" layoutY="95.0" text="SSN:" />
-      <TextField layoutX="323.0" layoutY="91.0" prefHeight="25.0" prefWidth="104.0" promptText="1234567890" />
-      <Label layoutX="43.0" layoutY="95.0" text="Savings Account ID: " />
-      <TextField layoutX="167.0" layoutY="91.0" prefHeight="25.0" prefWidth="104.0" promptText="SA00" />
-      <DatePicker layoutX="167.0" layoutY="122.0" prefHeight="25.0" prefWidth="104.0" promptText="1/1/2000" />
-      <Label layoutX="43.0" layoutY="126.0" text="Date:" />
-      <Label layoutX="43.0" layoutY="155.0" text="Interest Rate:" />
-      <TextField layoutX="167.0" layoutY="151.0" prefHeight="25.0" prefWidth="104.0" promptText="0.00" />
-      <Button layoutX="234.0" layoutY="204.0" mnemonicParsing="false" text="Create" />
-      <RadioButton layoutX="365.0" layoutY="128.0" mnemonicParsing="false" text="Yes" />
-      <RadioButton layoutX="365.0" layoutY="149.0" mnemonicParsing="false" text="No" />
-      <Label layoutX="285.0" layoutY="126.0" text="ATM Card:" />
-      <Button layoutX="239.0" layoutY="238.0" mnemonicParsing="false" text="Back" />
+      <Label layoutX="75.0" layoutY="95.0" prefHeight="17.0" prefWidth="80.0" text="Initial Deposit:" />
+      <RadioButton fx:id="atmyes" layoutX="354.0" layoutY="95.0" mnemonicParsing="false" text="Yes" />
+      <RadioButton fx:id="atmno" layoutX="355.0" layoutY="119.0" mnemonicParsing="false" text="No" />
+      <Label layoutX="285.0" layoutY="95.0" text="ATM Card:" />
+      <Button layoutX="239.0" layoutY="238.0" mnemonicParsing="false" onAction="#BackToManagerSelectAccount" text="Back" />
+      <TextField fx:id="initialdeposit" layoutX="165.0" layoutY="91.0" prefHeight="25.0" prefWidth="104.0" promptText="\$0.00" />
+      <Label fx:id="success" layoutX="165.0" layoutY="157.0" prefHeight="17.0" prefWidth="263.0" textFill="#009cfd" />
+      <Label fx:id="error" layoutX="165.0" layoutY="174.0" prefHeight="17.0" prefWidth="238.0" textFill="#ff0202" />
+      <Label fx:id="customername" layoutX="144.0" layoutY="58.0" prefHeight="17.0" prefWidth="238.0" />
+      <Button layoutX="233.0" layoutY="199.0" mnemonicParsing="false" onAction="#Create" text="Create" />
    </children>
 </AnchorPane>
