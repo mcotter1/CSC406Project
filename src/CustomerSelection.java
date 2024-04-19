@@ -21,7 +21,6 @@ public class CustomerSelection implements Initializable {
     private Stage stage; // This is the stage for the scene
     private Scene scene; // This is the scene for the stage
     private static Parent root; // This is the root for the scene
-    public static int currentcustomerindex;
 
 
     @FXML
@@ -73,7 +72,7 @@ public class CustomerSelection implements Initializable {
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
-       AccountInfo.setText( "Welcome " + App.Customers.get(App.currentcustomerindex).getFirstname().toString() + " " + App.Customers.get(currentcustomerindex).getLastname().toString() + " Please make a Selection!");
+       AccountInfo.setText( "Welcome " + App.Customers.get(App.currentcustomerindex).getFirstname().toString() + " " + App.Customers.get(App.currentcustomerindex).getLastname().toString() + " Please make a Selection!");
     }
 
 }

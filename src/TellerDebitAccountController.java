@@ -99,6 +99,7 @@ public class TellerDebitAccountController implements Initializable {
                 if(workchecking.getAccounttype().equalsIgnoreCase("gold")&&workchecking.getBalance()<5000){
                     workchecking.setAccounttype("TMB");
                     workchecking.setBalance(workchecking.getBalance()-1.25);
+                    workchecking.setGolddiamondcheck(false);
                     checkingtransaction.setNewbalance(checkingtransaction.getNewbalance()-1.25);
                 }
                 workchecking.AddTransaction(checkingtransaction);

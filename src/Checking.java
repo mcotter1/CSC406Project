@@ -118,7 +118,7 @@ public class Checking extends Account {
     public void StopPayment(int checknumber){
         int i = 0;
         double paybackamount;
-        for(i=0;i<=usedchecks.size()-1;i++){
+        for(i=0;i<usedchecks.size();i++){
             if(usedchecks.get(i).getChecknumber()==checknumber){
                 usedchecks.get(i).setPaid(false);
                 break;
