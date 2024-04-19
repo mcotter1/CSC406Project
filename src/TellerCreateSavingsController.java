@@ -32,6 +32,11 @@ public class TellerCreateSavingsController implements Initializable {
     @FXML
     private Label customername;
 
+    /**
+     * This function initializes the toggle buttons and customer name for teller create savings screen
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ToggleGroup atm = new ToggleGroup();
@@ -40,6 +45,12 @@ public class TellerCreateSavingsController implements Initializable {
         atmno.setSelected(true);
         customername.setText(String.format("Customer: %s %s ",App.Customers.get(App.currentcustomerindex).getFirstname(),App.Customers.get(App.currentcustomerindex).getLastname()));
     }
+
+    /**
+     * This function returns to teller select
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void BackToTellerSelectAccount(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("TellerSelectAccount.fxml"));
@@ -48,6 +59,11 @@ public class TellerCreateSavingsController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * This function creates the savings account on button click
+     * @param event
+     */
     @FXML
     void Create(ActionEvent event){
         if(initialdeposit != null && !initialdeposit.getText().matches(".*[a-zA-Z]+.*")&&!initialdeposit.getText().isBlank()) {

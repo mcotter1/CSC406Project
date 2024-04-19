@@ -1,4 +1,3 @@
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,8 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
@@ -35,6 +32,13 @@ public class TellerAccountInfoController implements Initializable {
     private TableView<Transaction> transactionbox;
     @FXML
     private Label accountstatus;
+
+    /**
+     * This function initializes the TableViews for the selected account for teller. Only the tableview of a relevant
+     * account is made visible
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources){
         tableboxsavings.setVisible(false);
@@ -312,6 +316,12 @@ public class TellerAccountInfoController implements Initializable {
             }
         }
     }
+
+    /**
+     * This function returns to teller options
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void BackToTellerOptions(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("TellerOptions.fxml"));

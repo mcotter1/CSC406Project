@@ -62,6 +62,12 @@ public class TellerSelectAccountController implements Initializable {
     void GetSelection(ActionEvent event){
         App.currentaccountindex = tellercombobox.getSelectionModel().getSelectedIndex();
     }
+
+    /**
+     * Returns to main teller screen on button click
+     * @param event
+     * @throws Exception
+     */
     @FXML
     void TellerBtnClicked(ActionEvent event) throws Exception {
         root = FXMLLoader.load(getClass().getResource("Teller.fxml"));
@@ -71,6 +77,12 @@ public class TellerSelectAccountController implements Initializable {
         stage.show();
         System.out.println("Teller Button Clicked");
     }
+
+    /**
+     * goes to create account screen on button click
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void CreateAccount(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("TellerCreateAccount.fxml"));
