@@ -25,6 +25,12 @@ public class TellerCreditAccountController implements Initializable {
     private Label error;
     @FXML
     private Label success;
+
+    /**
+     * This function initializes the account label for teller credit account screen
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         accountlabel.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());

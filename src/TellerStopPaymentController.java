@@ -32,13 +32,18 @@ public class TellerStopPaymentController implements Initializable {
     private TableView<Check> checkstable;
     @FXML
     private Label nochecks;
+
+    /**
+     * This function initializes a check table for this screen to view customer's checks for this account
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources){
         nochecks.setText("No Checks");
         nochecks.setVisible(false);
         accountlabel.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());
         Checking workchecking = (Checking) App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex);
-        workchecking.WriteCheck(5);
         ArrayList<Check> usedchecks = workchecking.getUsedchecks();
         ObservableList<Check> checkObservableList = FXCollections.observableArrayList(usedchecks);
         checkstable.setItems(checkObservableList);
@@ -70,6 +75,12 @@ public class TellerStopPaymentController implements Initializable {
             nochecks.setVisible(true);
         }
     }
+
+    /**
+     * This function takes input from the screen for check number and puts a stop order on the check
+     * that the input number matches
+     * @param event
+     */
     @FXML
     void StopPayment(ActionEvent event){
         boolean found = false;
@@ -98,6 +109,12 @@ public class TellerStopPaymentController implements Initializable {
             success.setText("");
         }
     }
+
+    /**
+     * This function returns to teller options
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void BackToTellerOptions(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("TellerOptions.fxml"));

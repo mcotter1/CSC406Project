@@ -34,6 +34,12 @@ public class TellerCreateCheckingController implements Initializable {
     private Label success;
     @FXML
     private Label customername;
+
+    /**
+     * This function initializes the toggle buttons and customer label for teller create checking screen
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ToggleGroup atm = new ToggleGroup();
@@ -42,6 +48,11 @@ public class TellerCreateCheckingController implements Initializable {
         atmno.setSelected(true);
         customername.setText(String.format("Customer: %s %s ",App.Customers.get(App.currentcustomerindex).getFirstname(),App.Customers.get(App.currentcustomerindex).getLastname()));
     }
+
+    /**
+     * This function creates the checking account on button click
+     * @param event
+     */
     @FXML
     void Create(ActionEvent event){
         if(!goldortmb.getText().equalsIgnoreCase("tmb")&&!goldortmb.getText().equalsIgnoreCase("gold")){
@@ -89,6 +100,12 @@ public class TellerCreateCheckingController implements Initializable {
             success.setText("");
         }
     }
+
+    /**
+     * This function returns to the teller select account screen
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void BackToTellerSelectAccount(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("TellerSelectAccount.fxml"));

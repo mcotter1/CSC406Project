@@ -25,6 +25,12 @@ public class TellerDebitAccountController implements Initializable {
     private Label error;
     @FXML
     private Label success;
+
+    /**
+     * This function initializes the account label for debit account screen
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         accountlabel.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());
@@ -113,6 +119,12 @@ public class TellerDebitAccountController implements Initializable {
             success.setText("");
         }
     }
+
+    /**
+     * This function returns to teller options
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void BackToTellerOptions(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("TellerOptions.fxml"));

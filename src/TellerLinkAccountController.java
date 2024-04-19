@@ -27,16 +27,32 @@ public class TellerLinkAccountController implements Initializable {
     @FXML
     private ComboBox<Account> accountbox;
     private int savingsindex;
+
+    /**
+     * This function initializes the combobox for choosing an account and the account label
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources){
         ObservableList<Account> accounts = FXCollections.observableArrayList(App.Customers.get(App.currentcustomerindex).getAccounts());
         accountbox.setItems(accounts);
         accountlabel.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());
     }
+
+    /**
+     * This function gets the savings account selection for linking
+     * @param event
+     */
     @FXML
     void GetSelection(ActionEvent event){
         savingsindex = accountbox.getSelectionModel().getSelectedIndex();
     }
+
+    /**
+     * This function links a chosen savings account to the selected checking account
+     * @param event
+     */
     @FXML
     void Link(ActionEvent event){
         Account workaccount = App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex);
@@ -53,6 +69,12 @@ public class TellerLinkAccountController implements Initializable {
             success.setText("");
         }
     }
+
+    /**
+     * This function goes back to teller options
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void BackToTellerOptions(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("TellerOptions.fxml"));
