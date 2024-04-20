@@ -14,19 +14,20 @@
       <Button layoutX="114.0" layoutY="157.0" mnemonicParsing="false" onAction="#setInterestRate" prefHeight="31.0" prefWidth="152.0" text="Set Interest Rate" />
       <Button layoutX="335.0" layoutY="195.0" mnemonicParsing="false" onAction="#newCD" prefHeight="31.0" prefWidth="152.0" text="Establish CD" />
       <Button layoutX="114.0" layoutY="195.0" mnemonicParsing="false" onAction="#showAccountInfoManager" prefHeight="31.0" prefWidth="152.0" text="View Account Info" />
-      <Button layoutX="114.0" layoutY="233.0" mnemonicParsing="false" onAction="#linkAccount" prefHeight="31.0" prefWidth="152.0" text="Link" />
+      <Button layoutX="114.0" layoutY="233.0" mnemonicParsing="false" onAction="#LinkAccountButton" prefHeight="31.0" prefWidth="152.0" text="Link" />
       <Button layoutX="335.0" layoutY="233.0" mnemonicParsing="false" onAction="#processCheckManager" prefHeight="31.0" prefWidth="152.0" text="Process Check" />
       <Label fx:id="accountlabel" alignment="CENTER" contentDisplay="CENTER" layoutX="165.0" layoutY="44.0" prefHeight="17.0" prefWidth="282.0" />
-      <Label fx:id="error" alignment="CENTER" contentDisplay="CENTER" layoutX="203.0" layoutY="296.0" prefHeight="17.0" prefWidth="194.0" textFill="#f50606" />
+      <Label fx:id="error" alignment="CENTER" contentDisplay="CENTER" layoutX="203.0" layoutY="321.0" prefHeight="17.0" prefWidth="194.0" textFill="#f50606" />
       <Label fx:id="customername" alignment="CENTER" contentDisplay="CENTER" layoutX="155.0" layoutY="64.0" prefHeight="17.0" prefWidth="291.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="customername1" layoutX="244.0" layoutY="17.0" prefHeight="20.0" prefWidth="113.0" text="Manager Options">
+      <Label layoutX="244.0" layoutY="17.0" prefHeight="20.0" prefWidth="113.0" text="Manager Options">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
+      <Button layoutX="225.0" layoutY="274.0" mnemonicParsing="false" onAction="#StopPayment" prefHeight="31.0" prefWidth="152.0" text="Stop Payment" />
    </children>
 </AnchorPane>
