@@ -207,12 +207,17 @@ public class ManagerOptionsController implements Initializable{
     }
 
     @FXML
-    void linkAccount(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("LinkingAccounts.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    void LinkAccountButton(ActionEvent event) throws Exception {
+        if(!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("gold")&&!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("tmb")){
+            error.setText("Can Only Link Checking");
+        } else {
+            root = FXMLLoader.load(getClass().getResource("ManagerLinkAccount.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            System.out.println("Teller Button Clicked");
+        }
     }
 
     @FXML
@@ -223,6 +228,7 @@ public class ManagerOptionsController implements Initializable{
         stage.setScene(scene);
         stage.show();
     }
+
 
     @FXML
     void showAccountInfoManager(ActionEvent event) throws IOException {
@@ -267,6 +273,19 @@ public class ManagerOptionsController implements Initializable{
             stage.setScene(scene);
             stage.show();
             System.out.println("Transfer Money Button Clicked");
+        }
+    }
+
+    @FXML
+    void StopPayment(ActionEvent event) throws IOException {
+        if(!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("gold")&&!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("tmb")){
+            error.setText("Stop Payment Only For Checking");
+        } else {
+            root = FXMLLoader.load(getClass().getResource("ManagerStopPayment.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
     }
 
