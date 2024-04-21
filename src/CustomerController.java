@@ -46,7 +46,7 @@ public class CustomerController {
             for (int i = 0; i < App.Customers.size(); i++)
                 if (App.Customers.get(i).getSSN() == Integer.parseInt(ssnVerifyText.getText())) {
                     App.currentcustomerindex = i;
-                    root = FXMLLoader.load(getClass().getResource("CustomerSelectPayment.fxml"));
+                    root = FXMLLoader.load(getClass().getResource("CustomerSelectAccount.fxml"));
                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     scene = new Scene(root);
                     stage.setScene(scene);

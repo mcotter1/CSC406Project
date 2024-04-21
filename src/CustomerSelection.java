@@ -33,7 +33,25 @@ public class CustomerSelection implements Initializable {
     private Button backBtn;
 
     @FXML
+    private Label errorLbl;
+
+    @FXML
     private Label AccountInfo;
+
+
+    @FXML
+    void CustomerPayCreditCard(ActionEvent event) throws IOException {
+        if(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("Credit Card")){
+            root = FXMLLoader.load(getClass().getResource("CustomerPayCreditCard.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("Pay with Credit Card Button Clicked");
+        }else{
+        errorLbl.setText("Must have a Credit Card Account Selected");
+        }
+    }
 
     @FXML
     void ATMCardBtnClicked(ActionEvent event) throws IOException {
@@ -47,18 +65,32 @@ public class CustomerSelection implements Initializable {
 
     @FXML
     void creditCardBtnClicked(ActionEvent event) throws IOException {
+        if(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("simple savings") || App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("TMB") || App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("Gold")){
         root = FXMLLoader.load(getClass().getResource("CustomerATMWindow.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         System.out.println("Account Status Button Clicked");
+    }else{
+        errorLbl.setText("Must be an Savings Account Selected");
+    }
+    }
+    @FXML
+    void processCheckCustomer(ActionEvent event) {
+        //Can only be an checking account
     }
 
     @FXML
-    void processCheckCustomer(ActionEvent event) {
-
+    void PaperDeposit(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("CustomerPaperDeposit.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("Customer Select Payment Clicked");
     }
+    //Paper Deposit for all Accounts, Just cash Deposit
 
     @FXML
     void switchToMainScene(ActionEvent event) throws IOException {
