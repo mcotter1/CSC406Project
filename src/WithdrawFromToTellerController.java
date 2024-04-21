@@ -90,7 +90,7 @@ public class WithdrawFromToTellerController implements Initializable {
         //if number is valid, enter logic
         if(transferamount != null && !transferamount.getText().matches(".*[a-zA-Z]+.*")&&!transferamount.getText().isBlank()){
             if(Double.parseDouble(transferamount.getText())<=0){
-                error.setText("Transfer amount cannot be 0");
+                error.setText("Enter valid transfer amount");
                 success.setText("");
                 return;
             }

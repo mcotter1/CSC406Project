@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="496.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TellerSelectAccountController">
    <children>
@@ -12,5 +13,15 @@
       <Button layoutX="381.0" layoutY="293.0" mnemonicParsing="false" onAction="#TellerOptions" prefHeight="41.0" prefWidth="109.0" text="Select Account" />
       <Button layoutX="166.0" layoutY="293.0" mnemonicParsing="false" onAction="#TellerBtnClicked" prefHeight="41.0" prefWidth="109.0" text="Go back" />
       <Button layoutX="276.0" layoutY="376.0" mnemonicParsing="false" onAction="#CreateAccount" prefHeight="41.0" prefWidth="101.0" text="Create Account" />
+      <Label fx:id="customername" layoutX="262.0" layoutY="82.0" prefHeight="17.0" prefWidth="324.0" textAlignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="266.0" layoutY="26.0" text="Teller Select Account">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

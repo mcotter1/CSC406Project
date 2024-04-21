@@ -25,6 +25,12 @@ public class TellerCreditAccountController implements Initializable {
     private Label error;
     @FXML
     private Label success;
+
+    /**
+     * This function initializes the account label for teller credit account screen
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         accountlabel.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());
@@ -47,6 +53,11 @@ public class TellerCreditAccountController implements Initializable {
             if(workaccount.getAccounttype().equalsIgnoreCase("long term loan")||workaccount.getAccounttype().equalsIgnoreCase("short term loan")||workaccount.getAccounttype().equalsIgnoreCase("Credit Card")){
                 Double workamount = Double.parseDouble(creditamount.getText());
                 Loan loanwork = (Loan) workaccount;
+                if(workamount<=0){
+                    error.setText("Please enter valid deposit");
+                    success.setText("");
+                    return;
+                }
                 Transaction loantransaction = new Transaction("Payment",workaccount.getAccounttype(),-workamount, LocalDate.now(),workaccount.getBalance()-workamount);
                 if(workamount>loanwork.getBalance()){
                     error.setText("Payment amount more than balance");

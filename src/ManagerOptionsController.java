@@ -22,10 +22,13 @@ public class ManagerOptionsController implements Initializable{
     private Label accountlabel;
     @FXML
     private Label error;
+    @FXML
+    private Label customername;
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
         accountlabel.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());
+        customername.setText(String.format("Customer: %s %s ",App.Customers.get(App.currentcustomerindex).getFirstname(),App.Customers.get(App.currentcustomerindex).getLastname()));
     }
 
     // This method is used to switch to the Customer scene
@@ -143,12 +146,16 @@ public class ManagerOptionsController implements Initializable{
     }
     @FXML
     void DebitAccountManager(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("ManagerDebitAccount.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        System.out.println("Debit Account Button Clicked");
+        if(!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("gold")&&!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("tmb")&&!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("simple savings")&&!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("cd")){
+            error.setText("Cannot Debit Loan Account");
+        } else {
+            root = FXMLLoader.load(getClass().getResource("ManagerDebitAccount.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            System.out.println("Debit Account Button Clicked");
+        }
     }
     
     @FXML
@@ -181,13 +188,13 @@ public class ManagerOptionsController implements Initializable{
     }
 
     @FXML
-    void ManagerCreateNewCustomer(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("ManagerCreateNewCustomer.fxml"));
+    void ManagerSelectAccount(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("ManagerSelectAccount.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        System.out.println("Manager Create New Customer Button Clicked");
+        System.out.println("Back to Manager Selecet Account");
     }
 
     @FXML
@@ -200,12 +207,17 @@ public class ManagerOptionsController implements Initializable{
     }
 
     @FXML
-    void linkAccount(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("LinkingAccounts.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    void LinkAccountButton(ActionEvent event) throws Exception {
+        if(!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("gold")&&!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("tmb")){
+            error.setText("Can Only Link Checking");
+        } else {
+            root = FXMLLoader.load(getClass().getResource("ManagerLinkAccount.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            System.out.println("Teller Button Clicked");
+        }
     }
 
     @FXML
@@ -216,6 +228,7 @@ public class ManagerOptionsController implements Initializable{
         stage.setScene(scene);
         stage.show();
     }
+
 
     @FXML
     void showAccountInfoManager(ActionEvent event) throws IOException {
@@ -228,11 +241,16 @@ public class ManagerOptionsController implements Initializable{
 
     @FXML
     void newCD(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("NewCD.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        if(!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("gold")&&!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("tmb")&&!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("simple savings")){
+            error.setText("Account does not support CD");
+        } else {
+            root = FXMLLoader.load(getClass().getResource("NewCD.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            System.out.println("New CD Button Clicked");
+        }
     }
 
     @FXML
@@ -255,6 +273,19 @@ public class ManagerOptionsController implements Initializable{
             stage.setScene(scene);
             stage.show();
             System.out.println("Transfer Money Button Clicked");
+        }
+    }
+
+    @FXML
+    void StopPayment(ActionEvent event) throws IOException {
+        if(!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("gold")&&!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("tmb")){
+            error.setText("Stop Payment Only For Checking");
+        } else {
+            root = FXMLLoader.load(getClass().getResource("ManagerStopPayment.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
     }
 

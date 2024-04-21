@@ -17,7 +17,18 @@ public class Savings extends Account{
     protected int ATMwithdrawalfrequency;
     protected boolean ATMcard;
     ArrayList<Transaction> transactions = new ArrayList<>();
-    //constructor, CDdue is null for simple savings
+
+    /**
+     * Constructor for Savings class, has logic for setting cdcheck and accounttype
+     * @param savingsaccountid
+     * @param ssn
+     * @param balance
+     * @param interestrate
+     * @param dateopened
+     * @param passbook
+     * @param CDdue
+     * @param ATMcard
+     */
     public Savings(String savingsaccountid,int ssn,double balance, double interestrate,LocalDate dateopened,String passbook,LocalDate CDdue,boolean ATMcard){
         this.ssn = ssn;
         this.savingsaccountid = savingsaccountid;
@@ -26,7 +37,7 @@ public class Savings extends Account{
         this.interestrate = interestrate;
         this.dateopened = dateopened;
         this.CDdue = CDdue;
-        if(passbook.equalsIgnoreCase("NA")){
+        if(CDdue==null){
             this.cdcheck = false;
         }
         else cdcheck = true;
@@ -35,7 +46,11 @@ public class Savings extends Account{
         }
         else this.accounttype = "Simple Savings";
     }
-    //this is the simple savings account ATM withdrawal function
+
+    /**
+     * This function allows ATM withdrawals of no more than 2 per day
+     * @param amount
+     */
     public void WithdrawFromATM(double amount){
         if(ATMwithdrawalfrequency>2){
             System.out.println("Cannot withdraw more than twice per day");
@@ -52,7 +67,11 @@ public class Savings extends Account{
             }
         }
     }
-    //this function issues a rollover notice for an account
+
+    /**
+     * This function produces a rollover notice for a CD
+     * @return
+     */
     public String IssueRolloverNotice(){
         String rollovernotice;
         if(accounttype.equalsIgnoreCase("cd")){
@@ -62,6 +81,11 @@ public class Savings extends Account{
         }
         return rollovernotice;
     }
+
+    /**
+     * This function adds a transaction to the transaction list
+     * @param transaction
+     */
     @Override
     public void AddTransaction(Transaction transaction){
         transactions.add(transaction);

@@ -1,6 +1,9 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * This is the class that creates all customer objects in the databse
+ */
 public class Customer extends User {
     //testing
     protected String lastname;
@@ -12,6 +15,18 @@ public class Customer extends User {
     protected int ssn;
     ArrayList<Account> accounts = new ArrayList<>();
     ArrayList<Transaction> transactions = new ArrayList<>();
+    ArrayList<String> messages = new ArrayList<>();
+
+    /**
+     * Constructor for Customer objects
+     * @param ssn
+     * @param address
+     * @param city
+     * @param state
+     * @param zipcode
+     * @param firstname
+     * @param lastname
+     */
     public Customer(int ssn, String address, String city, String state, int zipcode, String firstname, String lastname){
         this.ssn = ssn;
         this.firstname = firstname;
@@ -21,13 +36,25 @@ public class Customer extends User {
         this.zipcode= zipcode;
         this.address = address;
     }
+
+    /**
+     * Adds an account to the account list
+     * @param x
+     */
     public void AddAccount(Account x){
         accounts.add(x);
     }
+
+    /**
+     * Adds a transaction to the transaction list
+     * @param x
+     */
     public void AddTransaction(Transaction x){
         transactions.add(x);
     }
-
+    public void AddMessage(String message){
+        messages.add(message);
+    }
     @Override
     public void DebitAccount(double amount,Account account){
         double newbalance = account.getBalance()-amount;

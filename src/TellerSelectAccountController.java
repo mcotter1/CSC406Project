@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ResourceBundle;
@@ -19,6 +20,8 @@ public class TellerSelectAccountController implements Initializable {
     private static Parent root; // This is the root for the scene
     @FXML
     private ComboBox<Account> tellercombobox;
+    @FXML
+    private Label customername;
 
     /**
      * Initializes the windows combobox to select accounts
@@ -29,6 +32,7 @@ public class TellerSelectAccountController implements Initializable {
     public void initialize(URL location, ResourceBundle resources){
         ObservableList<Account> accounts = FXCollections.observableArrayList(App.Customers.get(App.currentcustomerindex).getAccounts());
         tellercombobox.setItems(accounts);
+        customername.setText(String.format("Customer: %s %s ",App.Customers.get(App.currentcustomerindex).getFirstname(),App.Customers.get(App.currentcustomerindex).getLastname()));
     }
 
     /**
@@ -58,6 +62,12 @@ public class TellerSelectAccountController implements Initializable {
     void GetSelection(ActionEvent event){
         App.currentaccountindex = tellercombobox.getSelectionModel().getSelectedIndex();
     }
+
+    /**
+     * Returns to main teller screen on button click
+     * @param event
+     * @throws Exception
+     */
     @FXML
     void TellerBtnClicked(ActionEvent event) throws Exception {
         root = FXMLLoader.load(getClass().getResource("Teller.fxml"));
@@ -67,6 +77,12 @@ public class TellerSelectAccountController implements Initializable {
         stage.show();
         System.out.println("Teller Button Clicked");
     }
+
+    /**
+     * goes to create account screen on button click
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void CreateAccount(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("TellerCreateAccount.fxml"));

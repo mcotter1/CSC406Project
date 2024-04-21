@@ -34,7 +34,6 @@ public class CustomerController {
     private Stage stage; // This is the stage for the scene
     private Scene scene; // This is the scene for the stage
     private static Parent root; // This is the root for the scene
-    public static int currentcustomerindex;
     private boolean found;
 
     //@FXML

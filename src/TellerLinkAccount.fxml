@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TellerLinkAccountController">
+   <children>
+      <Button layoutX="262.0" layoutY="255.0" mnemonicParsing="false" onAction="#Link" prefHeight="25.0" prefWidth="63.0" text="Link" />
+      <Label layoutX="205.0" layoutY="46.0" text="Link Checking To Savings">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Button layoutX="274.0" layoutY="294.0" mnemonicParsing="false" onAction="#BackToTellerOptions" text="Back" />
+      <Label fx:id="accountlabel" layoutX="205.0" layoutY="78.0" prefHeight="17.0" prefWidth="277.0" />
+      <ComboBox fx:id="accountbox" layoutX="176.0" layoutY="143.0" onAction="#GetSelection" prefHeight="25.0" prefWidth="277.0" />
+      <Label fx:id="error" layoutX="173.0" layoutY="191.0" prefHeight="17.0" prefWidth="289.0" textFill="#f70505" />
+      <Label fx:id="success" layoutX="173.0" layoutY="217.0" prefHeight="17.0" prefWidth="289.0" textFill="#028bf2" />
+   </children>
+</AnchorPane>

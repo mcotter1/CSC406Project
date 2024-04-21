@@ -22,12 +22,18 @@ public class TellerController {
     private Stage stage; // This is the stage for the scene
     private Scene scene; // This is the scene for the stage
     private static Parent root; // This is the root for the scene
-    public static int currentcustomerindex;
     @FXML
     private TextField ssn;
     @FXML
     private Label error;
     private boolean found;
+
+    /**
+     * This function checks the input SSN and sets current customer index and goes to teller select account
+     * if the ssn is found in the database
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void CheckID(ActionEvent event) throws IOException {
         if (ssn != null && !ssn.getText().matches(".*[a-zA-Z]+.*")&&!ssn.getText().isBlank()&&ssn.getText().length()==9) {
@@ -53,6 +59,12 @@ public class TellerController {
             System.out.println("Please enter a valid SSN");
         }
     }
+
+    /**
+     * This function returns back to the main scene
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void switchToMainScene(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("MainScene.fxml"));
@@ -62,6 +74,12 @@ public class TellerController {
         stage.show();
         System.out.println("Back Button Clicked");
     }
+
+    /**
+     * This function goes to create customer screen
+     * @param event
+     * @throws Exception
+     */
     @FXML
     void CreateNewCustomer(ActionEvent event) throws Exception {
         root = FXMLLoader.load(getClass().getResource("CreateNewCustomer.fxml"));

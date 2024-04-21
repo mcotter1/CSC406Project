@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainSceneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SetInterestController">
    <children>
-      <Button layoutX="373.0" layoutY="175.0" mnemonicParsing="false" onAction="#setInterestRate" text="Set" />
-      <TextField layoutX="216.0" layoutY="175.0" />
-      <Label layoutX="144.0" layoutY="179.0" text="Set Interest" />
-      <Button layoutX="280.0" layoutY="307.0" mnemonicParsing="false" onAction="#ManagerSearchCustomerID" text="Back" />
-      <ChoiceBox layoutX="216.0" layoutY="206.0" prefWidth="150.0" />
-      <Label layoutX="90.0" layoutY="210.0" text="Select an Interst Type" />
+      <Label layoutX="244.0" layoutY="52.0" prefHeight="25.0" prefWidth="89.0" text="Set Interest" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="interestamount" layoutX="250.0" layoutY="196.0" prefHeight="25.0" prefWidth="89.0" promptText="\%" />
+      <Label layoutX="192.0" layoutY="200.0" text="Amount:" />
+      <Button layoutX="267.0" layoutY="277.0" mnemonicParsing="false" onAction="#ChangeInterestRate" text="Process" />
+      <Button layoutX="274.0" layoutY="307.0" mnemonicParsing="false" onAction="#BackToManagerOptions" text="Back" />
+      <Label layoutX="88.0" layoutY="96.0" prefHeight="17.0" prefWidth="89.0" text="From Account:" />
+      <Label fx:id="accountlabel" layoutX="200.0" layoutY="96.0" prefHeight="17.0" prefWidth="293.0" text="Label" />
+      <Label layoutX="88.0" layoutY="150.0" prefHeight="17.0" prefWidth="89.0" text="To Account:" />
+      <ComboBox fx:id="toaccountbox" layoutX="164.0" layoutY="146.0" onAction="#SetInterestAccount" prefHeight="25.0" prefWidth="321.0" promptText="Choose an Account" />
+      <Label fx:id="error" alignment="CENTER" contentDisplay="CENTER" layoutX="6.0" layoutY="230.0" prefHeight="17.0" prefWidth="588.0" textAlignment="CENTER" textFill="#e80404" />
+      <Label fx:id="success" alignment="CENTER" layoutX="217.0" layoutY="247.0" prefHeight="17.0" prefWidth="155.0" textFill="#0096ff" />
    </children>
 </AnchorPane>

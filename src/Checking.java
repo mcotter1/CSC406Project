@@ -20,6 +20,17 @@ public class Checking extends Account {
     ArrayList<Check> newchecks = new ArrayList<Check>();
     ArrayList<Check> usedchecks = new ArrayList<Check>();
     ArrayList<Transaction> transactions = new ArrayList<>();
+
+    /**
+     * Constructor for Checking accounts, creates newchecks and sets golddiamondcheck
+     * @param ssn
+     * @param accounttype
+     * @param balance
+     * @param savingsaccountid
+     * @param overdraftsthismonth
+     * @param dateopeend
+     * @param ATMcard
+     */
     public Checking(int ssn, String accounttype,double balance,String savingsaccountid,int overdraftsthismonth, LocalDate dateopeend,boolean ATMcard){
         this.ssn = ssn;
         this.savingsaccountid = savingsaccountid;
@@ -41,6 +52,11 @@ public class Checking extends Account {
             newchecks.add(new Check(i));
         }
     }
+
+    /**
+     * Function for withdrawing from an ATM
+     * @param amount
+     */
     //this is the checking account ATM withdrawal function
     public void WithdrawFromATM(double amount){
         if(ATMwithdrawalfrequency>2){
@@ -55,8 +71,13 @@ public class Checking extends Account {
             }
         }
     }
-    //Withdraws money from account with a check, savings account must be added to checking account, updated, then pushed
-    //back to the user account. Could also change to have savings account be input for this function
+
+    /**
+     * Withdraws money from account with a check, savings account must be added to checking account, updated, then pushed
+     * back to the user account. Could also change to have savings account be input for this function
+     * @param paymentamount
+     * @return
+     */
     public Check WriteCheck(double paymentamount) {
         Check check;
         check = newchecks.getFirst();
@@ -115,10 +136,15 @@ public class Checking extends Account {
         }
         return check;
     }
+
+    /**
+     * Function for issuing a stop payment, takes check number as argument
+     * @param checknumber
+     */
     public void StopPayment(int checknumber){
         int i = 0;
         double paybackamount;
-        for(i=0;i<=usedchecks.size()-1;i++){
+        for(i=0;i<usedchecks.size();i++){
             if(usedchecks.get(i).getChecknumber()==checknumber){
                 usedchecks.get(i).setPaid(false);
                 break;
@@ -129,6 +155,11 @@ public class Checking extends Account {
         balance = balance+paybackamount;
         balance = balance - 35;
     }
+
+    /**
+     * Adds a transaction to the transaction list
+     * @param transaction
+     */
     @Override
     public void AddTransaction(Transaction transaction){
         transactions.add(transaction);
