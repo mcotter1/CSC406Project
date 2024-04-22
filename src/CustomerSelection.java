@@ -77,9 +77,25 @@ public class CustomerSelection implements Initializable {
     }
     }
     @FXML
-    void processCheckCustomer(ActionEvent event) {
-        //Can only be an checking account
+    void processCheckCustomer(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("CustomerProcessCheck.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("Account Status Button Clicked");
     }
+
+    @FXML
+    void showTransactionBtn(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("CustomerTransaction.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("Customer Transaction Clicked");
+    }
+
 
     @FXML
     void PaperDeposit(ActionEvent event) throws IOException {
