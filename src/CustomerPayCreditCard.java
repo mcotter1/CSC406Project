@@ -87,9 +87,7 @@ public class CustomerPayCreditCard implements Initializable {
             errorLbl.setText("Transfer amount cannot be 0");
             return;
         }
-        // If everything is valid we need to add to the balance of the Credit Card account
         Double workamount = Double.parseDouble(Amounttxt.getText());
-
         if((workamount + loanwork.getBalance()) >= loanwork.getCreditcardlimit()){
             errorLbl.setText("Credit Limit Reached");
         }else{
@@ -101,7 +99,6 @@ public class CustomerPayCreditCard implements Initializable {
             errorLbl.setText(loanwork.toString());
             App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex,loanwork);
             errorLbl.setText("");
-            //workaccount.setBalance(workaccount.getBalance() + Double.parseDouble(Amounttxt.getText())); // Update balance
         }
     }
     @FXML

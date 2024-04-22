@@ -38,6 +38,12 @@ public class CustomerPaperDeposit implements Initializable {
     private Label AccountTypelbl;
 
     @FXML
+    private Label errorLbl;
+
+    @FXML
+    private Label confirmLbl;
+
+    @FXML
     private TextField Amounttxt;
 
     @FXML
@@ -47,9 +53,50 @@ public class CustomerPaperDeposit implements Initializable {
     private Button Depositbtn;
 
     @FXML
+    public void Backbtn(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("CustomerSelectPayment.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("Back Button Clicked");
+    }
+    @FXML
+    public void Depositbtn(ActionEvent event) throws IOException {
+        //Basic Layout and it updated the accounts, if Credit card or loan we need to redo minimum payment        
+        if(Amounttxt.getText().isEmpty()){
+            errorLbl.setText("Transfer amount cannot be empty");
+            return;
+        }
+        Double workamount = Double.parseDouble(Amounttxt.getText());
+        Account workAccount = App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex);
+
+
+        if(workAccount.getAccounttype().equalsIgnoreCase("credit card") || workAccount.getAccounttype().equalsIgnoreCase("long term loan")){
+            Loan loanworking = (Loan) workAccount;
+            Transaction loanTransaction = new Transaction("Payment",workAccount.getAccounttype(),+workamount, LocalDate.now(),workAccount.getBalance()+workamount);
+            loanworking.setPaymentamountdue(loanworking.getPaymentamountdue() - workamount); //set the current amount due
+            loanworking.setBalance(loanworking.getBalance()-workamount);
+            loanworking.AddTransaction(loanTransaction);
+            loanworking.setLastpaymentdate(LocalDate.now());
+            Amounttxt.setText("");
+            confirmLbl.setText("Payment Successfull!");
+            AccountTypelbl.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());
+        }else{
+            Account workAccountelse = App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex);
+            Transaction simpletransaction = new Transaction("Deposit",workAccountelse.getAccounttype(),+workamount, LocalDate.now(),workAccountelse.getBalance()+workamount);
+            workAccountelse.setBalance(workAccountelse.getBalance() + workamount);
+            workAccountelse.AddTransaction(simpletransaction);
+            Amounttxt.setText("");
+            confirmLbl.setText("Deposit Successfull!");
+            AccountTypelbl.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());
+        }
+    }
+
+    @FXML
     public void initialize(URL location, ResourceBundle resources) {
-        //We want to Initialize the Label for the specific Account and possibly balance
-        AccountTypelbl.setText(App.Customers.get(App.currentcustomerindex).getAccounts()+"");
+        //Done
+        AccountTypelbl.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());
 
     }
 }
