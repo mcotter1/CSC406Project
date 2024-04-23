@@ -74,12 +74,16 @@ public class CustomerSelection implements Initializable {
     }
     @FXML
     void processCheckCustomer(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("CustomerProcessCheck.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        System.out.println("Account Status Button Clicked");
+        if(!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("gold")&&!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("tmb")){
+            errorLbl.setText("Check only for checking account");
+        } else {
+            root = FXMLLoader.load(getClass().getResource("CustomerProcessCheck.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            System.out.println("Account Status Button Clicked");
+        }
     }
 
     @FXML

@@ -26,7 +26,6 @@ public class CustomerPaperDeposit implements Initializable {
     private Stage stage; // This is the stage for the scene
     private Scene scene; // This is the scene for the stage
     private static Parent root; // This is the root for the scene
-    public static int currentcustomerindex;
 
     @FXML
     private ResourceBundle resources;
@@ -68,33 +67,56 @@ public class CustomerPaperDeposit implements Initializable {
             errorLbl.setText("Transfer amount cannot be empty");
             return;
         }
-        Double workamount = Double.parseDouble(Amounttxt.getText());
         Account workAccount = App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex);
-
         if(Amounttxt != null && !Amounttxt.getText().matches(".*[a-zA-Z]+.*")&&!Amounttxt.getText().isBlank()){
-        if(workAccount.getAccounttype().equalsIgnoreCase("credit card") || workAccount.getAccounttype().equalsIgnoreCase("long term loan")){
-            Loan loanworking = (Loan) workAccount;
-            Transaction loanTransaction = new Transaction("Payment",workAccount.getAccounttype(),+workamount, LocalDate.now(),workAccount.getBalance()+workamount);
-            loanworking.setPaymentamountdue(loanworking.getPaymentamountdue() - workamount); //set the current amount due
-            loanworking.setBalance(loanworking.getBalance()-workamount);
-            loanworking.AddTransaction(loanTransaction);
-            loanworking.setLastpaymentdate(LocalDate.now());
-            AccountTypelbl.setText(loanworking.toString());
-            Amounttxt.setText("");
-            confirmLbl.setText("Payment Successfull!");
-            App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex,loanworking);
+            if(workAccount.getAccounttype().equalsIgnoreCase("credit card") || workAccount.getAccounttype().equalsIgnoreCase("long term loan")){
+                Double workamount = Double.parseDouble(Amounttxt.getText());
+                Loan loanworking = (Loan) workAccount;
+                if(workamount<=0){
+                    errorLbl.setText("Please enter valid deposit");
+                    confirmLbl.setText("");
+                    return;
+                }
+                if(workamount>loanworking.getBalance()){
+                    errorLbl.setText("Payment amount more than balance");
+                    confirmLbl.setText("");
+                    return;
+                }
+                if(workamount>=loanworking.getPaymentamountdue()){
+                    loanworking.setMissedpayment(false);
+                    loanworking.setPaymentamountdue(0);
+                }
+                if(workamount<loanworking.getPaymentamountdue()){
+                    loanworking.setPaymentamountdue(loanworking.getPaymentamountdue()-workamount);
+                }
+                Transaction loanTransaction = new Transaction("Payment",workAccount.getAccounttype(),+workamount, LocalDate.now(),workAccount.getBalance()+workamount);
+                loanworking.setPaymentamountdue(loanworking.getPaymentamountdue() - workamount); //set the current amount due
+                loanworking.setBalance(loanworking.getBalance()-workamount);
+                loanworking.AddTransaction(loanTransaction);
+                loanworking.setLastpaymentdate(LocalDate.now());
+                AccountTypelbl.setText(loanworking.toString());
+                Amounttxt.setText("");
+                confirmLbl.setText("Payment Successfull!");
+                App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex,loanworking);
+            }else{
+                double workamount = Double.parseDouble(Amounttxt.getText());
+                if(workamount<=0){
+                    errorLbl.setText("Please enter valid deposit");
+                    confirmLbl.setText("");
+                    return;
+                }
+                Account workAccountelse = App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex);
+                Transaction simpletransaction = new Transaction("Deposit",workAccountelse.getAccounttype(),+workamount, LocalDate.now(),workAccountelse.getBalance()+workamount);
+                workAccountelse.setBalance(workAccountelse.getBalance() + workamount);
+                workAccountelse.AddTransaction(simpletransaction);
+                Amounttxt.setText("");
+                confirmLbl.setText("Deposit Successfull!");
+                AccountTypelbl.setText(workAccountelse.toString());
+                App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex,workAccountelse);
+            }
         }else{
-            Account workAccountelse = App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex);
-            Transaction simpletransaction = new Transaction("Deposit",workAccountelse.getAccounttype(),+workamount, LocalDate.now(),workAccountelse.getBalance()+workamount);
-            workAccountelse.setBalance(workAccountelse.getBalance() + workamount);
-            workAccountelse.AddTransaction(simpletransaction);
-            Amounttxt.setText("");
-            confirmLbl.setText("Deposit Successfull!");
-            AccountTypelbl.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());
+            errorLbl.setText("Please enter a valid Amount!");
         }
-    }else{
-        errorLbl.setText("Please enter a valid Amount!");
-    }
     }
 
     @FXML

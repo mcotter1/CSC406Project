@@ -80,6 +80,11 @@ public class TellerCreditAccountController implements Initializable {
                 success.setText("Payment Successful");
             } else if(workaccount.getAccounttype().equalsIgnoreCase("simple savings")||workaccount.getAccounttype().equalsIgnoreCase("cd")){
                 double workamount = Double.parseDouble(creditamount.getText());
+                if(workamount<=0){
+                    error.setText("Please enter valid deposit");
+                    success.setText("");
+                    return;
+                }
                 Savings worksavings = (Savings) workaccount;
                 Transaction savingstransaction = new Transaction("Deposit",worksavings.getAccounttype(),workamount,LocalDate.now(),worksavings.getBalance()+workamount);
                 worksavings.setBalance(worksavings.getBalance()+workamount);
@@ -90,6 +95,11 @@ public class TellerCreditAccountController implements Initializable {
                 App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex,worksavings);
             } else {
                 double workamount = Double.parseDouble(creditamount.getText());
+                if(workamount<=0){
+                    error.setText("Please enter valid deposit");
+                    success.setText("");
+                    return;
+                }
                 Checking workchecking = (Checking) workaccount;
                 Transaction checkingtransaction =new Transaction("Deposit",workchecking.getAccounttype(),workamount,LocalDate.now(),workchecking.getBalance()+workamount);
                 workchecking.setBalance(workchecking.getBalance()+workamount);
