@@ -75,7 +75,7 @@ public class ManagerSelectAccountController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        System.out.println("Teller Button Clicked");
+        System.out.println("Manager Button Clicked");
     }
     @FXML
     void CreateAccount(ActionEvent event) throws IOException {
@@ -84,6 +84,6 @@ public class ManagerSelectAccountController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        System.out.println("Teller Button Clicked");
+        System.out.println("Create Account Button Clicked");
     }
 }

@@ -71,7 +71,7 @@ public class ManagerLinkAccountController implements Initializable {
     }
 
     /**
-     * This function goes back to teller options
+     * This function goes back to manager options
      * @param event
      * @throws IOException
      */

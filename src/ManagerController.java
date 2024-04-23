@@ -26,6 +26,11 @@ public class ManagerController {
     private Label error;
     private boolean found;
     @FXML
+    /**
+     * This function checks the SSN of the customer to see if they exist in the database
+     * @param event the action event for clicking the check button
+     * @throws IOException if the scene is not found
+     */
     void CheckID(ActionEvent event) throws IOException {
         if (ssn != null && !ssn.getText().matches(".*[a-zA-Z]+.*")&&!ssn.getText().isBlank()&&ssn.getText().length()==9) {
             for (int i = 0; i < App.Customers.size(); i++)
@@ -50,6 +55,12 @@ public class ManagerController {
             System.out.println("Please enter a valid SSN");
         }
     }
+
+    /**
+     * This function switches to the main scene
+     * @param event the action event for clicking the back button
+     * @throws IOException if the scene is not found
+     */
     @FXML
     public void switchToMainScene(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("MainScene.fxml"));
@@ -59,9 +70,16 @@ public class ManagerController {
         stage.show();
         System.out.println("Back Button Clicked");
     }
+
+    /**
+     * This function switches to the Create New Customer scene
+     * @param event the action event for clicking the create new customer button
+     * @throws Exception if the scene is not found
+     */ 
+
     @FXML
     void CreateNewCustomer(ActionEvent event) throws Exception {
-        root = FXMLLoader.load(getClass().getResource("ManagerCreateNewCustomer.fxml"));
+        root = FXMLLoader.load(getClass().getResource("CreateNewCustomer.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

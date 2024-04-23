@@ -34,6 +34,12 @@ public class ManagerCreateCheckingController implements Initializable {
     private Label success;
     @FXML
     private Label customername;
+
+    /**
+     * This function initializes the radio buttons for the ATM selection
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ToggleGroup atm = new ToggleGroup();
@@ -42,6 +48,12 @@ public class ManagerCreateCheckingController implements Initializable {
         atmno.setSelected(true);
         customername.setText(String.format("Customer: %s %s ",App.Customers.get(App.currentcustomerindex).getFirstname(),App.Customers.get(App.currentcustomerindex).getLastname()));
     }
+
+    /**
+     * This function creates a new checking account for the customer
+     * @param event the click button event
+     */
+
     @FXML
     void Create(ActionEvent event){
         if(!goldortmb.getText().equalsIgnoreCase("tmb")&&!goldortmb.getText().equalsIgnoreCase("gold")){

@@ -46,7 +46,7 @@ public class SetInterestController implements Initializable {
     }
 
     /**
-     * Returns to teller options
+     * Returns to manager options
      * @param event the ActionEvent from the window
      * @throws IOException
      */
@@ -59,7 +59,10 @@ public class SetInterestController implements Initializable {
         stage.show();
     }
 
-   
+    /**
+     * This function changes the interest rate of a loan account
+     * @param event the ActionEvent from this window
+     */
     @FXML
     void ChangeInterestRate(ActionEvent event){
         Account interestaccount = App.Customers.get(App.currentcustomerindex).getAccounts().get(interestaccountindex);

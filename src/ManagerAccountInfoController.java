@@ -36,6 +36,13 @@ public class ManagerAccountInfoController implements Initializable {
     @FXML
     private Label accountstatus;
     @Override
+
+    /**
+     * This method initializes the scene
+     * @param location
+     * @param resources
+     */
+    
     public void initialize(URL location, ResourceBundle resources){
         tableboxsavings.setVisible(false);
         tableboxloan.setVisible(false);

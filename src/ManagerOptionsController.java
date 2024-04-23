@@ -25,11 +25,23 @@ public class ManagerOptionsController implements Initializable{
     @FXML
     private Label customername;
 
+    /**
+     * This method is used to initialize the ManagerOptions scene
+     * @param location is the location of the scene
+     * @param resources is the resources for the scene
+     */
+
     @Override
     public void initialize(URL location, ResourceBundle resources){
         accountlabel.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());
         customername.setText(String.format("Customer: %s %s ",App.Customers.get(App.currentcustomerindex).getFirstname(),App.Customers.get(App.currentcustomerindex).getLastname()));
     }
+
+    /**
+     * This method is used to switch to the Teller scene
+     * @param event is the event that triggers the method
+     * @throws Exception is thrown if the scene is not found
+     */
 
     // This method is used to switch to the Customer scene
     @FXML
@@ -42,6 +54,12 @@ public class ManagerOptionsController implements Initializable{
         System.out.println("Customer Button Clicked");
     }
 
+    /**
+     * This method is used to switch to the Teller scene
+     * @param event is the event that triggers the method
+     * @throws Exception is thrown if the scene is not found
+     */
+
     // This method is used to switch to the Manager scene
     @FXML
     void ManagerBtnClicked(ActionEvent event) throws Exception {
@@ -53,6 +71,12 @@ public class ManagerOptionsController implements Initializable{
         System.out.println("Manager Button Clicked");
     }
 
+    /**
+     * This method is used to switch to the Teller scene
+     * @param event is the event that triggers the method
+     * @throws Exception is thrown if the scene is not found
+     */
+
     @FXML
     void PaperDepositBtnClicked(ActionEvent event) throws Exception {
         root = FXMLLoader.load(getClass().getResource("PaperDeposit.fxml"));
@@ -63,6 +87,12 @@ public class ManagerOptionsController implements Initializable{
         System.out.println("Paper Deposit Button Clicked");
     }
 
+    /**
+     * This method is used to switch to the CreditCard scene
+     * @param event is the event that triggers the method
+     * @throws Exception is thrown if the scene is not found
+     */
+
     @FXML
     void creditCardBtnClicked(ActionEvent event) throws Exception {
         root = FXMLLoader.load(getClass().getResource("CreditCard.fxml"));
@@ -71,7 +101,13 @@ public class ManagerOptionsController implements Initializable{
         stage.setScene(scene);
         stage.show();
         System.out.println("Credit Card Button Clicked");
-    }
+    } 
+    
+    /**
+     * This method is used to switch to the SSNVerify scene
+     * @param event is the event that triggers the method
+     * @throws Exception is thrown if the scene is not found
+     */
 
     @FXML
     void SSNverifyBtnClicked(ActionEvent event) throws Exception {
@@ -83,6 +119,13 @@ public class ManagerOptionsController implements Initializable{
         System.out.println("SSN Verify Button Clicked");
     }
 
+    /**
+     * This method is used to switch to the ATMCard scene
+     * @param event is the event that triggers the method
+     * @throws Exception is thrown if the scene is not found
+     */
+
+
     @FXML
     void ATMCardBtnClicked(ActionEvent event) throws Exception {
         root = FXMLLoader.load(getClass().getResource("VerifyPin.fxml"));
@@ -93,6 +136,12 @@ public class ManagerOptionsController implements Initializable{
         System.out.println("Debit Card Button Clicked");
     }
 
+    /**
+     * This method is used to switch to the Manager scene
+     * @param event is the event that triggers the method
+     * @throws Exception is thrown if the scene is not found
+     */
+    
     @FXML
     void ManagerviewCustomerData(ActionEvent event) throws Exception {
         root = FXMLLoader.load(getClass().getResource("ManagerAccountInfo.fxml"));
@@ -103,9 +152,16 @@ public class ManagerOptionsController implements Initializable{
         System.out.println("View Customer Data Button Clicked");
     }
 
-
     // This method is used to switch back to the main scene
     // used for the back button in Teller, Manager, and Customer scenes
+
+    /**
+     * This method is used to switch back to the main scene
+     * @param event is the event that triggers the method
+     * @throws IOException is thrown if the scene is not found
+     */
+
+    @FXML
     public void switchToMainScene(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("MainScene.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -114,6 +170,12 @@ public class ManagerOptionsController implements Initializable{
         stage.show();
         System.out.println("Back Button Clicked");
     }
+
+    /**
+     * This method is used to switch to the CreateNewCustomer scene
+     * @param event is the event that triggers the method
+     * @throws Exception is thrown if the scene is not found
+     */
 
     // Opens a new window to createa new customer with all the data fields
     @FXML
@@ -125,6 +187,13 @@ public class ManagerOptionsController implements Initializable{
         stage.show();
         System.out.println("Create New Customer Button Clicked");
     }
+
+    /**
+     * This method is used to switch to the RecentDebitsManager scene
+     * @param event is the event that triggers the method
+     * @throws IOException is thrown if the scene is not found
+     */
+
     @FXML
     void DisplayRecentDebitsManager(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("RecentDebitsManager.fxml"));
@@ -135,6 +204,12 @@ public class ManagerOptionsController implements Initializable{
         System.out.println("Display Recent Debits Button Clicked");
     }
 
+    /**
+     * This method is used to switch to the CreditAccountManager scene
+     * @param event is the event that triggers the method
+     * @throws IOException is thrown if the scene is not found
+     */
+
     @FXML
     void CreditAccountManager(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("ManagerCreditAccount.fxml"));
@@ -144,6 +219,13 @@ public class ManagerOptionsController implements Initializable{
         stage.show();
         System.out.println("Credit Account Button Clicked");
     }
+
+    /**
+     * This method is used to switch to the DebitAccountManager scene
+     * @param event is the event that triggers the method
+     * @throws IOException is thrown if the scene is not found
+     */
+
     @FXML
     void DebitAccountManager(ActionEvent event) throws IOException {
         if(!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("gold")&&!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("tmb")&&!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("simple savings")&&!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("cd")){
@@ -157,7 +239,12 @@ public class ManagerOptionsController implements Initializable{
             System.out.println("Debit Account Button Clicked");
         }
     }
-    
+    /**
+     * This method is used to switch to the AccountBalanceManager scene
+     * @param event is the event that triggers the method
+     * @throws IOException is thrown if the scene is not found
+     */
+
     @FXML
     void AccountBalanceManager(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("AccountBalanceManager.fxml"));
@@ -167,6 +254,13 @@ public class ManagerOptionsController implements Initializable{
         stage.show();
         System.out.println("Account balance Button Clicked");
     }
+
+    /**
+     * This method is used to switch to the AccountStatusDisplayedManager scene
+     * @param event is the event that triggers the method
+     * @throws IOException is thrown if the scene is not found
+     */
+
     @FXML
     void AccountStatusDisplayedManager(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("AccountStatusDisplayedManager.fxml"));
@@ -177,6 +271,12 @@ public class ManagerOptionsController implements Initializable{
         System.out.println("Account Status Button Clicked");
     }
 
+    /**
+     * This method is used to switch to the ManagerSearchCustomerID scene
+     * @param event is the event that triggers the method
+     * @throws IOException is thrown if the scene is not found
+     */
+
     @FXML
     void ManagerSearchCustomerID(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("ManagerOptions.fxml"));
@@ -186,6 +286,12 @@ public class ManagerOptionsController implements Initializable{
         stage.show();
         System.out.println("Manager Options Button Clicked");
     }
+
+    /**
+     * This method is used to switch to the ManagerSelectAccount scene
+     * @param event is the event that triggers the method
+     * @throws IOException is thrown if the scene is not found
+     */
 
     @FXML
     void ManagerSelectAccount(ActionEvent event) throws IOException {
@@ -206,6 +312,12 @@ public class ManagerOptionsController implements Initializable{
         stage.show();
     }
 
+    /**
+     * This method is used to switch to the LinkAccount scene
+     * @param event is the event that triggers the method
+     * @throws Exception is thrown if the scene is not found
+     */
+
     @FXML
     void LinkAccountButton(ActionEvent event) throws Exception {
         if(!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("gold")&&!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("tmb")){
@@ -220,6 +332,12 @@ public class ManagerOptionsController implements Initializable{
         }
     }
 
+    /**
+     * This method is used to switch to the processCheckManager scene
+     * @param event is the event that triggers the method
+     * @throws IOException is thrown if the scene is not found
+     */
+
     @FXML
     void processCheckManager(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("processCheckManager.fxml"));
@@ -229,6 +347,11 @@ public class ManagerOptionsController implements Initializable{
         stage.show();
     }
 
+    /**
+     * This method is used to switch to the AccountInfo scene
+     * @param event is the event that triggers the method
+     * @throws IOException is thrown if the scene is not found
+     */
 
     @FXML
     void showAccountInfoManager(ActionEvent event) throws IOException {
@@ -238,6 +361,12 @@ public class ManagerOptionsController implements Initializable{
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * This method is used to switch to the NewCD scene
+     * @param event is the event that triggers the method
+     * @throws IOException is thrown if the scene is not found
+     */
 
     @FXML
     void newCD(ActionEvent event) throws IOException {
@@ -253,6 +382,12 @@ public class ManagerOptionsController implements Initializable{
         }
     }
 
+    /**
+     * This method is used to switch to the CustomerReviewAccountStatus scene
+     * @param event is the event that triggers the method
+     * @throws IOException is thrown if the scene is not found
+     */
+
     @FXML
     void showCustAccountInfo(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("CustomerReviewAccountStatus.fxml"));
@@ -261,6 +396,12 @@ public class ManagerOptionsController implements Initializable{
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * This method is used to switch to the Transfer scene
+     * @param event is the event that triggers the method
+     * @throws IOException is thrown if the scene is not found
+     */
 
     @FXML
     void TransferManager(ActionEvent event) throws IOException {
@@ -276,6 +417,11 @@ public class ManagerOptionsController implements Initializable{
         }
     }
 
+    /**
+     * This method is used to switch to the Stop Payment scene
+     * @param event is the event that triggers the method
+     * @throws IOException is thrown if the scene is not found
+     */
     @FXML
     void StopPayment(ActionEvent event) throws IOException {
         if(!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("gold")&&!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("tmb")){

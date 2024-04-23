@@ -36,6 +36,11 @@ public class establishCDContoller implements Initializable{
     public void initialize(URL location, ResourceBundle resources){
         accountlabel.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());
     }
+
+    /**
+     * This function creates a CD account
+     * @param event the ActionEvent from the window
+     */
     @FXML
     void Create(ActionEvent event){
         if(initialdeposit != null && !initialdeposit.getText().matches(".*[a-zA-Z]+.*")&&!initialdeposit.getText().isBlank()) {
@@ -103,6 +108,11 @@ public class establishCDContoller implements Initializable{
         }
     }
 
+    /**
+     * This function switches to the main scene
+     * @param event the action event for clicking the back button
+     * @throws IOException if the scene is not found
+     */
     @FXML
     void BackToManagerOptions(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("ManagerOptions.fxml"));
