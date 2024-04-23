@@ -33,9 +33,6 @@ public class CustomerPayCreditCard implements Initializable {
     private URL location;
 
     @FXML
-    private ComboBox<Account> AccountSelection;
-
-    @FXML
     private TextField Amounttxt;
 
     @FXML
@@ -50,35 +47,30 @@ public class CustomerPayCreditCard implements Initializable {
     @FXML
     private Label errorLbl;
 
+    @FXML
+    private Label successlbl;
+    @FXML
+    private Label Accountlbl;
     //private int transferaccountindex;
 
 
     //Implement button Visability of Credit card acccount validation
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ArrayList<Account> accounts = App.Customers.get(App.currentcustomerindex).getAccounts();
-        ObservableList<Account> LoanList = FXCollections.observableArrayList();
-        for (int i = 0; i < accounts.size(); i++) { // Loop through all accounts and classify them
-        Account account = accounts.get(i);
-        if (account instanceof Loan) {
-            if(account.getAccounttype().equalsIgnoreCase("Credit Card")){   // Only selects Accounts for the Credit Card! 
-            LoanList.add((Loan) account);    //Adding the Accounts to a combinedList
-            }
-        }
-    }
-    AccountSelection.setItems(LoanList);    // Only displaying Loan Credit Card
+        Accountlbl.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());
+
+
+
     }
     //Transaction we have Account, Amount and Description
     //Check that the Credit card is not going over the Limit
     @FXML
     void CreditBtn(ActionEvent event) throws IOException {
-        Account workAccount = App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex);
+        Account workAccount = (App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex));
+
         Loan loanwork = (Loan) workAccount;
 
-        if(AccountSelection.getValue()==null){
-           errorLbl.setText("Please select an account");
-           return;
-        }
+        
         if (Descriptiontxt.getText().isBlank()){
             errorLbl.setText("Please enter a Description!");
             return;
@@ -99,7 +91,10 @@ public class CustomerPayCreditCard implements Initializable {
             errorLbl.setText(loanwork.toString());
             App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex,loanwork);
             errorLbl.setText("");
+            successlbl.setText("Credit Card Payment Successful!");
         }
+        Accountlbl.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());
+
     }
     @FXML
     void backBtn(ActionEvent event) throws IOException {

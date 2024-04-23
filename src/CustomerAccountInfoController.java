@@ -89,6 +89,21 @@ public class CustomerAccountInfoController implements Initializable{
             TableColumn<Checking,Double> column2 = new TableColumn<>("Balance");
             column2.setCellValueFactory(new PropertyValueFactory<>("balance"));
             NumberFormat balanceFormat = NumberFormat.getCurrencyInstance();
+            column2.setCellFactory(c -> new TableCell<Checking, Double>() {
+                @Override
+                protected void updateItem(Double balance,
+                                          boolean empty) {
+
+                    super.updateItem(balance, empty);
+
+                    if (empty || balance == null) {
+                        setText(null);
+                        setGraphic(null);
+                    } else {
+                        setText(balanceFormat.format(balance));
+                    }
+                }
+            });
             TableColumn<Checking,LocalDate> column3= new TableColumn<>("Date Opened");
             column3.setCellValueFactory(new PropertyValueFactory<>("dateopened"));
             TableColumn<Checking,String> column4 = new TableColumn<>("Savings ID");
@@ -107,6 +122,21 @@ public class CustomerAccountInfoController implements Initializable{
             TableColumn<Savings,Double> column2 = new TableColumn<>("Balance");
             NumberFormat balanceFormat = NumberFormat.getCurrencyInstance();
             column2.setCellValueFactory(new PropertyValueFactory<>("balance"));
+            column2.setCellFactory(c -> new TableCell<Savings, Double>() {
+                @Override
+                protected void updateItem(Double balance,
+                                          boolean empty) {
+
+                    super.updateItem(balance, empty);
+
+                    if (empty || balance == null) {
+                        setText(null);
+                        setGraphic(null);
+                    } else {
+                        setText(balanceFormat.format(balance));
+                    }
+                }
+            });
             TableColumn<Savings,LocalDate> column3= new TableColumn<>("Date Opened");
             column3.setCellValueFactory(new PropertyValueFactory<>("dateopened"));
             TableColumn<Savings,String> column4 = new TableColumn<>("Savings ID");
@@ -127,8 +157,38 @@ public class CustomerAccountInfoController implements Initializable{
             TableColumn<Loan,Double> column2 = new TableColumn<>("Balance");
             column2.setCellValueFactory(new PropertyValueFactory<>("balance"));
             NumberFormat balanceFormat = NumberFormat.getCurrencyInstance();
+            column2.setCellFactory(c -> new TableCell<Loan, Double>() {
+                @Override
+                protected void updateItem(Double balance,
+                                          boolean empty) {
+
+                    super.updateItem(balance, empty);
+
+                    if (empty || balance == null) {
+                        setText(null);
+                        setGraphic(null);
+                    } else {
+                        setText(balanceFormat.format(balance));
+                    }
+                }
+            });
             TableColumn<Loan,Double> column3= new TableColumn<>("Amount Due");
             column3.setCellValueFactory(new PropertyValueFactory<>("paymentamountdue"));
+            column3.setCellFactory(c -> new TableCell<Loan, Double>() {
+                @Override
+                protected void updateItem(Double paymentamountdue,
+                                          boolean empty) {
+
+                    super.updateItem(paymentamountdue, empty);
+
+                    if (empty || paymentamountdue == null) {
+                        setText(null);
+                        setGraphic(null);
+                    } else {
+                        setText(balanceFormat.format(paymentamountdue));
+                    }
+                }
+            });
             TableColumn<Loan,LocalDate> column4 = new TableColumn<>("Due Date");
             column4.setCellValueFactory(new PropertyValueFactory<>("datepaymentdue"));
             TableColumn<Loan,Double> column5 = new TableColumn<>("Interest Rate");
@@ -147,6 +207,21 @@ public class CustomerAccountInfoController implements Initializable{
             column11.setCellValueFactory(new PropertyValueFactory<>("repaymentplantype"));
             TableColumn<Loan,Double> column12= new TableColumn<>("Credit Limit");
             column12.setCellValueFactory(new PropertyValueFactory<>("creditcardlimit"));
+            column12.setCellFactory(c -> new TableCell<Loan, Double>() {
+                @Override
+                protected void updateItem(Double creditcardlimit,
+                                          boolean empty) {
+
+                    super.updateItem(creditcardlimit, empty);
+
+                    if (empty || creditcardlimit == null) {
+                        setText(null);
+                        setGraphic(null);
+                    } else {
+                        setText(balanceFormat.format(creditcardlimit));
+                    }
+                }
+            });
             LoanInfo.getColumns().setAll(column1,column2,column3,column4,column5,column6,column7,column8,column9,column10,column11,column12);
         }else{
         LoanInfo.setVisible(false);

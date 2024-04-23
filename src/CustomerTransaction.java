@@ -3,7 +3,6 @@ import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -44,41 +43,56 @@ public class CustomerTransaction implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         NumberFormat balanceFormat = NumberFormat.getCurrencyInstance();
-
+        //Just Cheking Accounts
         if(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("tmb")||App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("gold")){
         Checking workchecking = (Checking) App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex);
         ArrayList<Transaction> worktransactions = workchecking.getTransactions();
         ObservableList<Transaction> transactionlist = FXCollections.observableArrayList(worktransactions);
-        transactionTable.setItems(transactionlist);
-        TableColumn<Transaction,String> tColumn1 = new TableColumn<>("Type");
-        tColumn1.setCellValueFactory(new PropertyValueFactory<>("transactiontype"));
-        TableColumn<Transaction,String> tColumn2 = new TableColumn<>("Account Type");
-        tColumn2.setCellValueFactory(new PropertyValueFactory<>("accounttype"));
-        TableColumn<Transaction,Double> tColumn3 = new TableColumn<>("Amount");
-        tColumn3.setCellValueFactory(new PropertyValueFactory<>("amount"));
-        tColumn3.setCellFactory(c -> new TableCell<Transaction, Double>() {
-            @Override
-            protected void updateItem(Double amount,
-                                      boolean empty) {
+            transactionTable.setItems(transactionlist);
+            TableColumn<Transaction,String> tcolumn1 = new TableColumn<>("Type");
+            tcolumn1.setCellValueFactory(new PropertyValueFactory<>("transactiontype"));
+            TableColumn<Transaction,String> tcolumn2 = new TableColumn<>("Account Type");
+            tcolumn2.setCellValueFactory(new PropertyValueFactory<>("accounttype"));
+            TableColumn<Transaction,Double> tcolumn3 = new TableColumn<>("Amount");
+            tcolumn3.setCellValueFactory(new PropertyValueFactory<>("amount"));
+            tcolumn3.setCellFactory(c -> new TableCell<Transaction, Double>() {
+                @Override
+                protected void updateItem(Double amount,
+                                          boolean empty) {
 
-                super.updateItem(amount, empty);
+                    super.updateItem(amount, empty);
 
-                setGraphic(null);
-                if (empty || amount == null) {
-                    setText(null);
-                }else{{
-                    setText(balanceFormat.format(amount));
+                    setGraphic(null);
+                    if (empty || amount == null) {
+                        setText(null);
+                    } else {
+                        setText(balanceFormat.format(amount));
+                    }
                 }
-                    
-                    
+            });
+            TableColumn<Transaction,LocalDate> tcolumn4 = new TableColumn<>("Date");
+            tcolumn4.setCellValueFactory(new PropertyValueFactory<>("dateoccurred"));
+            TableColumn<Transaction,Double> tcolumn5 = new TableColumn<>("New Balance");
+            tcolumn5.setCellValueFactory(new PropertyValueFactory<>("newbalance"));
+            tcolumn5.setCellFactory(c -> new TableCell<Transaction, Double>() {
+                @Override
+                protected void updateItem(Double newbalance,
+                                          boolean empty) {
+
+                    super.updateItem(newbalance, empty);
+
+                    setGraphic(null);
+                    if (empty || newbalance == null) {
+                        setText(null);
+                    } else {
+                        setText(balanceFormat.format(newbalance));
+                    }
                 }
-            }
-        });
-        TableColumn<Transaction,Double> tColumn4 = new TableColumn<>("Date");
-        tColumn4.setCellValueFactory(new PropertyValueFactory<>("dateoccured"));
-        TableColumn<Transaction,Double> tColumn5 = new TableColumn<>("New Balance");
-        tColumn5.setCellValueFactory(new PropertyValueFactory<>("newbalance"));
-        transactionTable.getColumns().setAll(tColumn1,tColumn2,tColumn3,tColumn4,tColumn5);
+            });
+            transactionTable.getColumns().setAll(tcolumn1,tcolumn2,tcolumn3,tcolumn4,tcolumn5);
+
+
+            //Savings Accont
     }else if (App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("simple savings")||App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("cd")){
         Savings worksavings = (Savings) App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex);
         ArrayList<Transaction> worktransactions = worksavings.getTransactions();
@@ -92,8 +106,7 @@ public class CustomerTransaction implements Initializable{
         tColumn3.setCellValueFactory(new PropertyValueFactory<>("amount"));
         tColumn3.setCellFactory(c -> new TableCell<Transaction, Double>() {
             @Override
-            protected void updateItem(Double amount,
-                                      boolean empty) {
+            protected void updateItem(Double amount,boolean empty) {
 
                 super.updateItem(amount, empty);
 
@@ -105,69 +118,57 @@ public class CustomerTransaction implements Initializable{
                 }
             }
         });
-        TableColumn<Transaction,Double> tColumn4 = new TableColumn<>("Date");
-        tColumn4.setCellValueFactory(new PropertyValueFactory<>("dateoccured"));
+        TableColumn<Transaction,LocalDate> tColumn4 = new TableColumn<>("Date");
+        tColumn4.setCellValueFactory(new PropertyValueFactory<>("dateoccurred"));
         TableColumn<Transaction,Double> tColumn5 = new TableColumn<>("New Balance");
         tColumn5.setCellValueFactory(new PropertyValueFactory<>("newbalance"));
+        tColumn3.setCellFactory(c -> new TableCell<Transaction, Double>() {
+            @Override
+            protected void updateItem(Double newblance,boolean empty) {
+
+                super.updateItem(newblance, empty);
+
+                setGraphic(null);
+                if (empty || newblance == null) {
+                    setText(null);
+                }else{
+                    setText(balanceFormat.format(newblance));
+                }
+            }
+        });
         transactionTable.getColumns().setAll(tColumn1,tColumn2,tColumn3,tColumn4,tColumn5);
 
+        //Loan Accounts
     }else if(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("long term loan")||App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("short term loan")||App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("credit card")){
         Loan workLoan = (Loan) App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex);
         ArrayList<Transaction> worktransactions = workLoan.getTransactions();
         ObservableList<Transaction> transactionlist = FXCollections.observableArrayList(worktransactions);
         transactionTable.setItems(transactionlist);
-        TableColumn<Transaction,String> tColumn1 = new TableColumn<>("Account Type");
-        tColumn1.setCellValueFactory(new PropertyValueFactory<>("accounttype"));
-        TableColumn<Transaction,Double> tColumn2 = new TableColumn<>("Balance");
-        tColumn2.setCellValueFactory(new PropertyValueFactory<>("balance"));
-        tColumn2.setCellFactory(c -> new TableCell<Transaction, Double>() {
-                @Override
-                protected void updateItem(Double balance,
-                                          boolean empty) {
+        TableColumn<Transaction,String> tColumn1 = new TableColumn<>("Type");
+        tColumn1.setCellValueFactory(new PropertyValueFactory<>("transactiontype"));
+        TableColumn<Transaction,String> tColumn2 = new TableColumn<>("Account Type");
+        tColumn2.setCellValueFactory(new PropertyValueFactory<>("accounttype"));
+        TableColumn<Transaction,Double> tColumn3 = new TableColumn<>("Amount");
+        tColumn3.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        tColumn3.setCellFactory(c -> new TableCell<Transaction, Double>() {
+            @Override
+            protected void updateItem(Double amount,boolean empty) {
 
-                    super.updateItem(balance, empty);
+                super.updateItem(amount, empty);
 
-                    setGraphic(null);
-                    if (empty || balance == null) {
-                        setText(null);
-                    }else {
-                        setText(balanceFormat.format(balance));
-                    }
+                setGraphic(null);
+                if (empty || amount == null) {
+                    setText(null);
+                }else{
+                    setText(balanceFormat.format(amount));
                 }
-            });
-            TableColumn<Transaction,Double> tColumn3 = new TableColumn<>("Amount Due");
-            tColumn3.setCellValueFactory(new PropertyValueFactory<>("paymentamountdue"));
-            tColumn3.setCellFactory(c -> new TableCell<Transaction,Double>(){
-                @Override
-                protected void updateItem(Double paymentamountdue,boolean empty) {
-                    super.updateItem(paymentamountdue, empty);
-                    setGraphic(null);
-                    if (empty || paymentamountdue == null) {
-                        setText(null);
-                    }else {
-                        setText(balanceFormat.format(paymentamountdue));
-                    }
-                }
-            });
-            TableColumn<Transaction,LocalDate> tcolumn4 = new TableColumn<>("Due Date");
-            tcolumn4.setCellValueFactory(new PropertyValueFactory<>("datepaymentdue"));
-            TableColumn<Transaction,Double> tcolumn5 = new TableColumn<>("Interest Rate");
-            tcolumn5.setCellValueFactory(new PropertyValueFactory<>("interestrate"));
-            TableColumn<Transaction,LocalDate> tcolumn6= new TableColumn<>("Last Payment");
-            tcolumn6.setCellValueFactory(new PropertyValueFactory<>("lastpaymentdate"));
-            TableColumn<Transaction,LocalDate> tcolumn7= new TableColumn<>("Notified");
-            tcolumn7.setCellValueFactory(new PropertyValueFactory<>("notifiedofpayment"));
-            TableColumn<Transaction,String> tcolumn8= new TableColumn<>("Loan Type");
-            tcolumn8.setCellValueFactory(new PropertyValueFactory<>("loantype"));
-            TableColumn<Transaction,Double> tcolumn9= new TableColumn<>("Term Length");
-            tcolumn9.setCellValueFactory(new PropertyValueFactory<>("termlength"));
-            TableColumn<Transaction,String> tcolumn10= new TableColumn<>("Collateral");
-            tcolumn10.setCellValueFactory(new PropertyValueFactory<>("collateral"));
-            TableColumn<Transaction,String> tcolumn11= new TableColumn<>("Repayment Plan");
-            tcolumn11.setCellValueFactory(new PropertyValueFactory<>("repaymentplantype"));
-            TableColumn<Transaction,Double> tcolumn12= new TableColumn<>("Credit Limit");
-            tcolumn12.setCellValueFactory(new PropertyValueFactory<>("creditcardlimit"));
-            transactionTable.getColumns().setAll(tColumn1,tColumn2,tColumn3,tcolumn4,tcolumn5,tcolumn6,tcolumn7,tcolumn8,tcolumn9,tcolumn10,tcolumn11,tcolumn12);   
+            }  
+        });
+        TableColumn<Transaction,LocalDate> tColumn4 = new TableColumn<>("Date");
+        tColumn4.setCellValueFactory(new PropertyValueFactory<>("dateoccurred"));
+        TableColumn<Transaction,Double> tColumn5 = new TableColumn<>("New Balance");
+        tColumn5.setCellValueFactory(new PropertyValueFactory<>("newbalance"));
+        transactionTable.getColumns().setAll(tColumn1,tColumn2,tColumn3,tColumn4,tColumn5);
         }
     }
     @FXML

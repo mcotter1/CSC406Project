@@ -23,15 +23,11 @@ import java.util.ResourceBundle;
 
 public class CustomerATMWindow implements Initializable {
 
-    //Still needs work for the Different Accounts
 
 
     private Stage stage; // This is the stage for the scene
     private Scene scene; // This is the scene for the stage
     private static Parent root; // This is the root for the scene
-
-    @FXML
-    private ComboBox<Account> AccountSelection;   //Custom Account Selection just like thomases screen for teller and manager
 
     @FXML
     private Button Backbtn;         //Back Button
@@ -54,30 +50,17 @@ public class CustomerATMWindow implements Initializable {
     @FXML
     private Label errorLbl;
 
+
+    @FXML
+    private Label AccountInfolbl;
+
     private int transferaccountindex;
     private double amount;
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
-
-        ArrayList<Account> accounts = App.Customers.get(App.currentcustomerindex).getAccounts();
-        ObservableList<Account> combinedList = FXCollections.observableArrayList();      // Observable lists for different account types
-        ObservableList<Checking> checkingList = FXCollections.observableArrayList();
-        ObservableList<Savings> savingsList = FXCollections.observableArrayList();
-        ObservableList<Loan> loanList = FXCollections.observableArrayList();
-    
-        // Loop through all accounts and classify them
-        for (int i = 0; i < accounts.size(); i++) {
-            Account account = accounts.get(i);
-            if (account instanceof Checking) {
-                combinedList.add((Checking) account);   //Adding the Accounts to a combinedlist
-            } else if (account instanceof Savings) {
-                combinedList.add((Savings) account);    //Adding the Accounts to a combinedList
-            }
-        }
-
-        AccountSelection.setItems(combinedList);    // Only displaying Checking and Savings
-
+      AccountInfolbl.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());
+        
       ToggleGroup amountToggleGroup = new ToggleGroup();
       Dollar10.setToggleGroup(amountToggleGroup);
       Dollar20.setToggleGroup(amountToggleGroup);
@@ -127,7 +110,11 @@ public class CustomerATMWindow implements Initializable {
 
     @FXML
     void Withdraw(ActionEvent event) throws IOException {
+        Checking workchecking = (Checking) App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex);
         Account workAccount = App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex);
+        //Also we want to have a limit of two withdraws per Day
+        //Withdraw at this date < 2 
+        if (workchecking.getATMwithdrawalfrequency() < 2){
         if (custom.isSelected()) {
             String text = DollarCustom.getText().trim();
             if (!text.isEmpty()) {
@@ -150,19 +137,21 @@ public class CustomerATMWindow implements Initializable {
         }
      
         // Check if there are enough funds in the account
-        if (amount > workAccount.getBalance()) {
+        if (amount > App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getBalance()) {
             errorLbl.setText("Not enough funds");
             return;
         }
 
-        workAccount.setBalance(workAccount.getBalance() - amount); // Update balance
+       workAccount.setBalance(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getBalance() - amount); // Update balance
+        workchecking.ATMwithdrawalfrequency++;
+        Transaction ATMTransaction =new Transaction("Withdraw",workAccount.getAccounttype(),-amount,LocalDate.now(),workAccount.getBalance() - amount);
+        workAccount.AddTransaction(ATMTransaction);
+        workAccount = App.Customers.get(App.currentaccountindex).getAccounts().set(App.currentaccountindex, workAccount);
+        AccountInfolbl.setText(workAccount.toString());
+    }else{
+        errorLbl.setText("2 ");
+    }
     
-        // Load the next scene
-        Parent root = FXMLLoader.load(getClass().getResource("CustomerSelectPayment.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
     }
 
     @FXML
