@@ -64,6 +64,10 @@ public class TellerCreditAccountController implements Initializable {
                     success.setText("");
                     return;
                 }
+                if(loanwork.isMissedpayment()){
+                    loantransaction.setNewbalance(loantransaction.getNewbalance()+75);
+                    loantransaction.setAmount(loantransaction.getAmount()-75);
+                }
                 if(workamount>=loanwork.getPaymentamountdue()){
                     loanwork.setMissedpayment(false);
                     loanwork.setPaymentamountdue(0);

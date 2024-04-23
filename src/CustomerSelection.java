@@ -116,6 +116,15 @@ public class CustomerSelection implements Initializable {
         stage.show();
         System.out.println("Back Button Clicked");
     }
+    @FXML
+    void DisplayMessages(ActionEvent event) throws IOException{
+        root = FXMLLoader.load(getClass().getResource("CustomerDisplayMessage.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("Back Button Clicked");
+    }
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {

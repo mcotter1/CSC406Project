@@ -120,7 +120,11 @@ public class Customer extends User {
         this.ssn = ssn;
     }
 
+    public ArrayList<String> getMessages() {
+        return messages;
+    }
 
-
-
+    public void setMessages(ArrayList<String> messages) {
+        this.messages = messages;
+    }
 }
