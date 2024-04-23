@@ -69,9 +69,10 @@ public class CustomerPaperDeposit implements Initializable {
         }
         Account workAccount = App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex);
         if(Amounttxt != null && !Amounttxt.getText().matches(".*[a-zA-Z]+.*")&&!Amounttxt.getText().isBlank()){
-            if(workAccount.getAccounttype().equalsIgnoreCase("credit card") || workAccount.getAccounttype().equalsIgnoreCase("long term loan")){
-                Double workamount = Double.parseDouble(Amounttxt.getText());
+            if(workAccount.getAccounttype().equalsIgnoreCase("credit card") || workAccount.getAccounttype().equalsIgnoreCase("long term loan") || workAccount.getAccounttype().equalsIgnoreCase("short term loan")){
+                double workamount = Double.parseDouble(Amounttxt.getText());
                 Loan loanworking = (Loan) workAccount;
+                Transaction loanTransaction = new Transaction("Payment",workAccount.getAccounttype(),-workamount, LocalDate.now(),workAccount.getBalance()-workamount);
                 if(workamount<=0){
                     errorLbl.setText("Please enter valid deposit");
                     confirmLbl.setText("");
@@ -82,6 +83,10 @@ public class CustomerPaperDeposit implements Initializable {
                     confirmLbl.setText("");
                     return;
                 }
+                if(loanworking.isMissedpayment()){
+                    loanTransaction.setNewbalance(loanTransaction.getNewbalance()+75);
+                    loanTransaction.setAmount(loanTransaction.getAmount()-75);
+                }
                 if(workamount>=loanworking.getPaymentamountdue()){
                     loanworking.setMissedpayment(false);
                     loanworking.setPaymentamountdue(0);
@@ -89,7 +94,6 @@ public class CustomerPaperDeposit implements Initializable {
                 if(workamount<loanworking.getPaymentamountdue()){
                     loanworking.setPaymentamountdue(loanworking.getPaymentamountdue()-workamount);
                 }
-                Transaction loanTransaction = new Transaction("Payment",workAccount.getAccounttype(),+workamount, LocalDate.now(),workAccount.getBalance()+workamount);
                 loanworking.setPaymentamountdue(loanworking.getPaymentamountdue() - workamount); //set the current amount due
                 loanworking.setBalance(loanworking.getBalance()-workamount);
                 loanworking.AddTransaction(loanTransaction);

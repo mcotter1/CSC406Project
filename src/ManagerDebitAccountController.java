@@ -77,13 +77,13 @@ public class ManagerDebitAccountController implements Initializable {
                 Transaction checkingtransaction = new Transaction("Withdrawal",workchecking.getAccounttype(),-workamount,LocalDate.now(),workchecking.getBalance()-workamount);
                 workchecking.setBalance(workchecking.getBalance()-workamount);
                 if(workchecking.getAccounttype().equalsIgnoreCase("tmb")){
-                    workchecking.setBalance(workchecking.getBalance()-1.25);
-                    checkingtransaction.setNewbalance(checkingtransaction.getNewbalance()-1.25);
+                    workchecking.setBalance(workchecking.getBalance()-0.75);
+                    checkingtransaction.setNewbalance(checkingtransaction.getNewbalance()-0.75);
                 }
                 if(workchecking.getAccounttype().equalsIgnoreCase("gold")&&workchecking.getBalance()<5000){
                     workchecking.setAccounttype("TMB");
-                    workchecking.setBalance(workchecking.getBalance()-1.25);
-                    checkingtransaction.setNewbalance(checkingtransaction.getNewbalance()-1.25);
+                    workchecking.setBalance(workchecking.getBalance()-0.75);
+                    checkingtransaction.setNewbalance(checkingtransaction.getNewbalance()-0.75);
                 }
                 workchecking.AddTransaction(checkingtransaction);
                 error.setText("");
