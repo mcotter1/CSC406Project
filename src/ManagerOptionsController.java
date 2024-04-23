@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class ManagerOptionsController implements Initializable{
@@ -35,6 +36,16 @@ public class ManagerOptionsController implements Initializable{
     public void initialize(URL location, ResourceBundle resources){
         accountlabel.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());
         customername.setText(String.format("Customer: %s %s ",App.Customers.get(App.currentcustomerindex).getFirstname(),App.Customers.get(App.currentcustomerindex).getLastname()));
+        //check if the account is a CD and is due
+        Account CDaccount = App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex);
+        if(CDaccount instanceof Savings){
+            Savings cdaccount = (Savings) CDaccount;
+            if(cdaccount.getDateopened().isAfter(LocalDate.now())){
+                System.out.println("CD is not due");
+            } else {
+                System.out.println("CD is due");
+            }
+        }
     }
 
     /**

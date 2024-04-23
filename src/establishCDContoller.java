@@ -78,11 +78,11 @@ public class establishCDContoller implements Initializable{
                 success.setText("");
                 return;
             }
-            if(datedueDatePicker.getValue().isBefore(LocalDate.now())){
-                error.setText("Date Due Must Be After Today");
-                success.setText("");
-                return;
-            }
+            // if(datedueDatePicker.getValue().isBefore(LocalDate.now())){
+            //     error.setText("Date Due Must Be After Today");
+            //     success.setText("");
+            //     return;
+            // }
             if(Double.parseDouble(intrate.getText())<=0){
                 error.setText("Interest Rate Must Be Greater Than Zero");
                 success.setText("");

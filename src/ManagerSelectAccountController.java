@@ -77,6 +77,11 @@ public class ManagerSelectAccountController implements Initializable {
         stage.show();
         System.out.println("Manager Button Clicked");
     }
+    /**
+     * Moves to the create account screen
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void CreateAccount(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("ManagerCreateAccount.fxml"));
