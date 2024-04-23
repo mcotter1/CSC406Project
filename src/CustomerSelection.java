@@ -16,12 +16,9 @@ import java.io.IOException;
 
 
 public class CustomerSelection implements Initializable {
-
-
     private Stage stage; // This is the stage for the scene
     private Scene scene; // This is the scene for the stage
     private static Parent root; // This is the root for the scene
-
 
     @FXML
     private ResourceBundle resources;
@@ -37,7 +34,6 @@ public class CustomerSelection implements Initializable {
 
     @FXML
     private Label AccountInfo;
-
 
     @FXML
     void CustomerPayCreditCard(ActionEvent event) throws IOException {
@@ -96,7 +92,6 @@ public class CustomerSelection implements Initializable {
         System.out.println("Customer Transaction Clicked");
     }
 
-
     @FXML
     void PaperDeposit(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("CustomerPaperDeposit.fxml"));
@@ -110,7 +105,7 @@ public class CustomerSelection implements Initializable {
 
     @FXML
     void switchToMainScene(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("MainScene.fxml"));
+        root = FXMLLoader.load(getClass().getResource("CustomerSelectAccount.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

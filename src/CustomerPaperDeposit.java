@@ -71,7 +71,7 @@ public class CustomerPaperDeposit implements Initializable {
         Double workamount = Double.parseDouble(Amounttxt.getText());
         Account workAccount = App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex);
 
-
+        if(Amounttxt != null && !Amounttxt.getText().matches(".*[a-zA-Z]+.*")&&!Amounttxt.getText().isBlank()){
         if(workAccount.getAccounttype().equalsIgnoreCase("credit card") || workAccount.getAccounttype().equalsIgnoreCase("long term loan")){
             Loan loanworking = (Loan) workAccount;
             Transaction loanTransaction = new Transaction("Payment",workAccount.getAccounttype(),+workamount, LocalDate.now(),workAccount.getBalance()+workamount);
@@ -79,9 +79,10 @@ public class CustomerPaperDeposit implements Initializable {
             loanworking.setBalance(loanworking.getBalance()-workamount);
             loanworking.AddTransaction(loanTransaction);
             loanworking.setLastpaymentdate(LocalDate.now());
+            AccountTypelbl.setText(loanworking.toString());
             Amounttxt.setText("");
             confirmLbl.setText("Payment Successfull!");
-            AccountTypelbl.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());
+            App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex,loanworking);
         }else{
             Account workAccountelse = App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex);
             Transaction simpletransaction = new Transaction("Deposit",workAccountelse.getAccounttype(),+workamount, LocalDate.now(),workAccountelse.getBalance()+workamount);
@@ -91,6 +92,9 @@ public class CustomerPaperDeposit implements Initializable {
             confirmLbl.setText("Deposit Successfull!");
             AccountTypelbl.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());
         }
+    }else{
+        errorLbl.setText("Please enter a valid Amount!");
+    }
     }
 
     @FXML
