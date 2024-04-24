@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
@@ -78,11 +79,11 @@ public class establishCDContoller implements Initializable{
                 success.setText("");
                 return;
             }
-            // if(datedueDatePicker.getValue().isBefore(LocalDate.now())){
-            //     error.setText("Date Due Must Be After Today");
-            //     success.setText("");
-            //     return;
-            // }
+            if(datedueDatePicker.getValue().isBefore(LocalDate.now())){
+                error.setText("Date Due Must Be After Today");
+                success.setText("");
+                return;
+            }
             if(Double.parseDouble(intrate.getText())<=0){
                 error.setText("Interest Rate Must Be Greater Than Zero");
                 success.setText("");
@@ -102,10 +103,11 @@ public class establishCDContoller implements Initializable{
             //add the transaction to the account
             Transaction newtransaction = new Transaction("Establish CD",App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype(),depositamount,LocalDate.now(),App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getBalance());
             App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).AddTransaction(newtransaction);
+            App.Customers.get(App.currentcustomerindex).AddMessage("A CD account rolls over on " + DateDue);
         } else {
             error.setText("Enter valid initial deposit");
             success.setText("");
-        }
+        } 
     }
 
     /**

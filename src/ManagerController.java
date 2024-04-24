@@ -54,6 +54,9 @@ public class ManagerController {
             error.setText("Please enter a valid SSN");
             System.out.println("Please enter a valid SSN");
         }
+        // find if the customer has a CD account
+        
+        
     }
 
     /**
