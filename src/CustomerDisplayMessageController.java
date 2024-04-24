@@ -22,6 +22,12 @@ public class CustomerDisplayMessageController implements Initializable {
     private static Parent root; // This is the root for the scene
     @FXML
     private TableView<String> messagestable;
+
+    /**
+     * This function sets up the messages table
+     * @param location
+     * @param resources
+     */
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
         ArrayList<String> workmessages = App.Customers.get(App.currentcustomerindex).getMessages();
@@ -34,6 +40,12 @@ public class CustomerDisplayMessageController implements Initializable {
         messages.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()));
         messagestable.getColumns().setAll(messages);
     }
+
+    /**
+     * This function returns back to customer options
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void BackButton(ActionEvent event) throws IOException{
         root = FXMLLoader.load(getClass().getResource("CustomerSelectPayment.fxml"));
