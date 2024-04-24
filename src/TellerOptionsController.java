@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class TellerOptionsController implements Initializable {
@@ -32,6 +34,34 @@ public class TellerOptionsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources){
         accountlabel.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());
         customername.setText(String.format("Customer: %s %s ",App.Customers.get(App.currentcustomerindex).getFirstname(),App.Customers.get(App.currentcustomerindex).getLastname()));
+        List<Account> accounts = App.Customers.get(App.currentcustomerindex).getAccounts();
+        
+        for (Account account : accounts) {
+            if (account instanceof Savings) {
+                Savings savingsAccount = (Savings) account;
+                if ("CD".equalsIgnoreCase(savingsAccount.getAccounttype())) {
+                    if(savingsAccount.getCDdue().isAfter(LocalDate.now())){ // check if the CD is not due
+                        // check if the message has already been sent
+                        if(App.Customers.get(App.currentcustomerindex).getMessages().contains("A CD account rolls over on " + savingsAccount.getCDdue().toString())){
+                            // dont send a message
+                        } else {
+                            App.Customers.get(App.currentcustomerindex).AddMessage("A CD account rolls over on " + savingsAccount.getCDdue().toString());
+                        }
+                        System.out.println("CD is not due Your CD account has rolls over on " + savingsAccount.getCDdue().toString());
+                    } else { // check if the CD is due
+                        // check if the message has already been sent
+                        if(App.Customers.get(App.currentcustomerindex).getMessages().contains("A CD account is due for ready renewal")){
+                        // dont send a message
+                        } else {
+                            App.Customers.get(App.currentcustomerindex).AddMessage("A CD account is due for ready renewal");
+                        }
+                        System.out.println("CD is due");
+                    }
+                }
+            } else {
+                continue;
+            }
+        }
     }
 
     /**

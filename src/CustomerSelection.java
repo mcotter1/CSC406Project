@@ -1,4 +1,6 @@
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -129,6 +131,34 @@ public class CustomerSelection implements Initializable {
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
        AccountInfo.setText( "Welcome " + App.Customers.get(App.currentcustomerindex).getFirstname().toString() + " " + App.Customers.get(App.currentcustomerindex).getLastname().toString() + " Please make a Selection!");
+       List<Account> accounts = App.Customers.get(App.currentcustomerindex).getAccounts();
+        
+        for (Account account : accounts) {
+            if (account instanceof Savings) {
+                Savings savingsAccount = (Savings) account;
+                if ("CD".equalsIgnoreCase(savingsAccount.getAccounttype())) {
+                    if(savingsAccount.getCDdue().isAfter(LocalDate.now())){ // check if the CD is not due
+                        // check if the message has already been sent
+                        if(App.Customers.get(App.currentcustomerindex).getMessages().contains("A CD account rolls over on " + savingsAccount.getCDdue().toString())){
+                            // dont send a message
+                        } else {
+                            App.Customers.get(App.currentcustomerindex).AddMessage("A CD account rolls over on " + savingsAccount.getCDdue().toString());
+                        }
+                        System.out.println("CD is not due Your CD account has rolls over on " + savingsAccount.getCDdue().toString());
+                    } else { // check if the CD is due
+                        // check if the message has already been sent
+                        if(App.Customers.get(App.currentcustomerindex).getMessages().contains("A CD account is due for ready renewal")){
+                        // dont send a message
+                        } else {
+                            App.Customers.get(App.currentcustomerindex).AddMessage("A CD account is due for ready renewal");
+                        }
+                        System.out.println("CD is due");
+                    }
+                }
+            } else {
+                continue;
+            }
+        }
     }
 
 }
