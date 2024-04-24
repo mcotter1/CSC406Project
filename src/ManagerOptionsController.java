@@ -38,7 +38,6 @@ public class ManagerOptionsController implements Initializable{
         accountlabel.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());
         customername.setText(String.format("Customer: %s %s ",App.Customers.get(App.currentcustomerindex).getFirstname(),App.Customers.get(App.currentcustomerindex).getLastname()));
         List<Account> accounts = App.Customers.get(App.currentcustomerindex).getAccounts();
-        
         for (Account account : accounts) {
             if (account instanceof Savings) {
                 Savings savingsAccount = (Savings) account;
@@ -491,16 +490,16 @@ public class ManagerOptionsController implements Initializable{
                         total += Math.abs(billedTransaction.getAmount());
                         billedTransaction.setBilled(true);  // mark the transaction as billed
                         // Append the transaction to the message
-                        messageBuilder.append("Transaction: ").append(billedTransaction.getTransactiontype()).append(", Amount: ").append(billedTransaction.getAmount()).append("\n");
+                        messageBuilder.append("Transaction: ").append(billedTransaction.getTransactiontype()).append(", Amount: $").append(billedTransaction.getAmount()).append("\n");
                     }
                 }
             }
 
             double interest = total * monthlyInterestRate; // 12% interest
             // Append the total amount to the message
-            messageBuilder.append("Total amount before interest: ").append(total);
-            messageBuilder.append(" Total interest: ").append(interest).append("\n");
-            messageBuilder.append("Total amount: ").append(total + interest);
+            messageBuilder.append("Total amount before interest: $").append(total);
+            messageBuilder.append(" Total interest: $").append(interest).append("\n");
+            messageBuilder.append("Total amount: $").append(total + interest);
             // Add the message to the account
             String message = messageBuilder.toString();
             App.Customers.get(App.currentcustomerindex).AddMessage(message);
