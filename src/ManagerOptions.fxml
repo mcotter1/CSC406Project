@@ -15,9 +15,9 @@
       <Button layoutX="335.0" layoutY="195.0" mnemonicParsing="false" onAction="#newCD" prefHeight="31.0" prefWidth="152.0" text="Establish CD" />
       <Button layoutX="114.0" layoutY="195.0" mnemonicParsing="false" onAction="#showAccountInfoManager" prefHeight="31.0" prefWidth="152.0" text="View Account Info" />
       <Button layoutX="114.0" layoutY="233.0" mnemonicParsing="false" onAction="#LinkAccountButton" prefHeight="31.0" prefWidth="152.0" text="Link" />
-      <Button layoutX="335.0" layoutY="233.0" mnemonicParsing="false" onAction="#processCheckManager" prefHeight="31.0" prefWidth="152.0" text="Process Check" />
+      <Button layoutX="335.0" layoutY="233.0" mnemonicParsing="false" onAction="#IssueCreditCardBill" prefHeight="31.0" prefWidth="152.0" text="Issue Bill" />
       <Label fx:id="accountlabel" alignment="CENTER" contentDisplay="CENTER" layoutX="165.0" layoutY="44.0" prefHeight="17.0" prefWidth="282.0" />
-      <Label fx:id="error" alignment="CENTER" contentDisplay="CENTER" layoutX="203.0" layoutY="321.0" prefHeight="17.0" prefWidth="194.0" textFill="#f50606" />
+      <Label fx:id="error" alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="321.0" prefHeight="17.0" prefWidth="551.0" textFill="#f50606" />
       <Label fx:id="customername" alignment="CENTER" contentDisplay="CENTER" layoutX="155.0" layoutY="64.0" prefHeight="17.0" prefWidth="291.0">
          <font>
             <Font size="14.0" />

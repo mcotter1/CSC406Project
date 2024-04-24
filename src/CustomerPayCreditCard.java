@@ -83,10 +83,12 @@ public class CustomerPayCreditCard implements Initializable {
         if((workamount + loanwork.getBalance()) >= loanwork.getCreditcardlimit()){
             errorLbl.setText("Credit Limit Reached");
         }else{
-            Transaction loantransaction = new Transaction(Descriptiontxt.getText(),loanwork.getAccounttype(),-workamount, LocalDate.now(),loanwork.getBalance()+workamount);
+            //Transaction loantransaction = new Transaction(Descriptiontxt.getText(),loanwork.getAccounttype(),-workamount, LocalDate.now(),loanwork.getBalance()+workamount);
+            BilledTransaction billedTransaction = new BilledTransaction(Descriptiontxt.getText(),loanwork.getAccounttype(),workamount, LocalDate.now(),loanwork.getBalance()+workamount, false);
             
             loanwork.setBalance(loanwork.getBalance()+workamount);
-            loanwork.AddTransaction(loantransaction);
+            //loanwork.AddTransaction(loantransaction);
+            loanwork.AddBilledTransaction(billedTransaction);
             loanwork.setLastpaymentdate(LocalDate.now());
             errorLbl.setText(loanwork.toString());
             App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex,loanwork);

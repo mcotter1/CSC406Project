@@ -112,6 +112,20 @@ public class Loan extends Account{
         return ssn;
     }
 
+    public void AddBilledTransaction(BilledTransaction billedTransaction){
+        transactions.add(billedTransaction);
+    }
+
+    public ArrayList<Transaction> getBilledTransactions(){
+        ArrayList<Transaction> billedtransactions = new ArrayList<>();
+        for(int i=0;i<transactions.size();i++){
+            if(transactions.get(i).getTransactiontype().equalsIgnoreCase("payment")){
+                billedtransactions.add(transactions.get(i));
+            }
+        }
+        return billedtransactions;
+    }
+
     public void setSsn(int ssn) {
         this.ssn = ssn;
     }
