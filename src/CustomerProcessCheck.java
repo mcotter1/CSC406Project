@@ -1,5 +1,3 @@
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,12 +6,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.net.URL;
 import java.time.LocalDate;
@@ -45,8 +41,12 @@ public class CustomerProcessCheck implements Initializable {
     @FXML
     private Label accountlabel;
 
+    /**
+     * This function processes a check for a customer when a valid amount is entered. If the amount is too high,
+     * the account will either be overdrafted or funds will be taken from a backup savings account
+     */
     @FXML
-    void Depositbtn() {
+    void ProcessCheck() {
         Account workaccount = App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex);
         if(checknumbertxt.getText().isBlank()){
             error.setText("Please enter an amount to transfer");
@@ -228,6 +228,11 @@ public class CustomerProcessCheck implements Initializable {
         }
     }
 
+    /**
+     * This function returns to the customer options screen
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void backbtn(ActionEvent event) throws IOException  {
         root = FXMLLoader.load(getClass().getResource("CustomerSelectPayment.fxml"));
@@ -238,6 +243,11 @@ public class CustomerProcessCheck implements Initializable {
         System.out.println("Account Status Button Clicked");
     }
 
+    /**
+     * This function initializes the account label for the top of the screen
+     * @param location
+     * @param resources
+     */
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
         accountlabel.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());

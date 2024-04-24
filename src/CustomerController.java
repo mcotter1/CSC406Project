@@ -14,32 +14,20 @@ import javafx.scene.control.*;
 import java.io.IOException;
 
 public class CustomerController {
-
     @FXML
     private ResourceBundle resources;
-
     @FXML
     private URL location;
-
     @FXML
     private Button backBtn;
-
     @FXML
     private Label error;
-
     @FXML
     private PasswordField ssnVerifyText;
-
-
     private Stage stage; // This is the stage for the scene
     private Scene scene; // This is the scene for the stage
     private static Parent root; // This is the root for the scene
     private boolean found;
-
-    //@FXML
-    //private Button verifyBtn;
-
-
     @FXML
     void SSNverifyBtnClicked(ActionEvent event) throws IOException {
         if (ssnVerifyText != null && !ssnVerifyText.getText().matches(".*[a-zA-Z]+.*")&&!ssnVerifyText.getText().isBlank()&&ssnVerifyText.getText().length()==9) {
