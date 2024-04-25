@@ -89,6 +89,7 @@ public class CustomerProcessCheck implements Initializable {
                     Transaction checkingtransaction = new Transaction("Overdraft","TMB",-25,LocalDate.now(), workchecking.getBalance());
                     workchecking.AddTransaction(checkingtransaction);
                     App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex,workchecking);
+                    accountlabel.setText(workchecking.toString());
                     //insufficient funds and backup savings account
                 } else if (check.getPaymentamount() > workchecking.getBalance() && workchecking.isBackupsavingscheck()) {
                     worksavings = (Savings) App.Customers.get(App.currentcustomerindex).getAccounts().get(savingsaccountindex);
@@ -129,7 +130,7 @@ public class CustomerProcessCheck implements Initializable {
                     accountlabel.setText(workchecking.toString());
                     App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex,workchecking);
                     App.Customers.get(App.currentcustomerindex).getAccounts().set(savingsaccountindex,worksavings);
-                } else {
+                } else if(check.getPaymentamount()<=workchecking.getBalance()) {
                     check.setPaid(true);
                     workchecking.setBalance(workchecking.getBalance()-workamount);
                     workchecking.getUsedchecks().add(check);
@@ -162,6 +163,7 @@ public class CustomerProcessCheck implements Initializable {
                     Transaction checkingtransaction = new Transaction("Check",workchecking.getAccounttype(),-workamount,LocalDate.now(),workchecking.getBalance());
                     workchecking.getUsedchecks().add(check);
                     workchecking.setAccounttype("TMB");
+                    workchecking.setBackupsavingscheck(false);
                     workchecking.AddTransaction(checkingtransaction);
                     App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex,workchecking);
                     success.setText("Check processed");
@@ -212,7 +214,7 @@ public class CustomerProcessCheck implements Initializable {
                 }
                 else {
                     check.setPaid(false);
-                    workchecking.setBalance(workchecking.getBalance()-workamount);
+                    workchecking.setBalance(workchecking.getBalance()-25);
                     workchecking.getUsedchecks().add(check);
                     Transaction checkingtransaction = new Transaction("Overdraft",workchecking.getAccounttype(),-25,LocalDate.now(),workchecking.getBalance());
                     workchecking.AddTransaction(checkingtransaction);

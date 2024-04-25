@@ -70,6 +70,9 @@ public class CustomerSelection implements Initializable {
      */
     @FXML
     void ATMCardBtnClicked(ActionEvent event) throws IOException {
+        if(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("long term loan")||App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("credit card")||App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("short term loan")||App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("cd")){
+            errorLbl.setText("Cannot Withdraw");
+        }
         root = FXMLLoader.load(getClass().getResource("CustomerReviewAccountStatus.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);

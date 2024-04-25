@@ -7,18 +7,18 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CustomerSelection">
    <children>
-      <Button layoutX="257.0" layoutY="67.0" mnemonicParsing="false" onAction="#creditCardBtnClicked" prefHeight="25.0" prefWidth="86.0" text="ATM" />
-      <Button fx:id="ReviewAccount" layoutX="244.0" layoutY="152.0" mnemonicParsing="false" onAction="#ATMCardBtnClicked" prefHeight="25.0" prefWidth="109.0" text="Review Account" />
-      <Button fx:id="backBtn" layoutX="264.0" layoutY="360.0" mnemonicParsing="false" onAction="#switchToMainScene" prefHeight="25.0" prefWidth="77.0" text="Back" />
-      <Button layoutX="255.0" layoutY="112.0" mnemonicParsing="false" onAction="#processCheckCustomer" prefHeight="25.0" prefWidth="86.0" text="Input Check" />
+      <Button layoutX="176.0" layoutY="98.0" mnemonicParsing="false" onAction="#creditCardBtnClicked" prefHeight="25.0" prefWidth="86.0" text="ATM" />
+      <Button fx:id="ReviewAccount" layoutX="165.0" layoutY="148.0" mnemonicParsing="false" onAction="#ATMCardBtnClicked" prefHeight="25.0" prefWidth="109.0" text="Review Account" />
+      <Button fx:id="backBtn" layoutX="261.0" layoutY="360.0" mnemonicParsing="false" onAction="#switchToMainScene" prefHeight="25.0" prefWidth="77.0" text="Back" />
+      <Button layoutX="355.0" layoutY="98.0" mnemonicParsing="false" onAction="#processCheckCustomer" prefHeight="25.0" prefWidth="86.0" text="Input Check" />
       <Label fx:id="AccountInfo" layoutX="102.0" layoutY="5.0" prefHeight="62.0" prefWidth="401.0" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="16.0" />
          </font></Label>
-      <Button fx:id="PayCreditCard" layoutX="238.0" layoutY="195.0" mnemonicParsing="false" onAction="#CustomerPayCreditCard" text="Pay with Credit Card" />
-      <Label fx:id="errorLbl" layoutX="198.0" layoutY="313.0" prefHeight="17.0" prefWidth="228.0" textFill="RED" />
-      <Button fx:id="paperDeposit" layoutX="254.0" layoutY="235.0" mnemonicParsing="false" onAction="#PaperDeposit" text="Paper Deposit" />
-      <Button fx:id="showTransactionBtn" layoutX="241.0" layoutY="280.0" mnemonicParsing="false" onAction="#showTransactionBtn" text="Show Transactions" />
-      <Button layoutX="249.0" layoutY="318.0" mnemonicParsing="false" onAction="#DisplayMessages" prefHeight="25.0" prefWidth="101.0" text="Show Messages" />
+      <Button fx:id="PayCreditCard" layoutX="331.0" layoutY="148.0" mnemonicParsing="false" onAction="#CustomerPayCreditCard" prefHeight="25.0" prefWidth="134.0" text="Pay with Credit Card" />
+      <Label fx:id="errorLbl" layoutX="195.0" layoutY="319.0" prefHeight="17.0" prefWidth="228.0" textFill="RED" />
+      <Button fx:id="paperDeposit" layoutX="165.0" layoutY="200.0" mnemonicParsing="false" onAction="#PaperDeposit" prefHeight="25.0" prefWidth="109.0" text="Paper Deposit" />
+      <Button fx:id="showTransactionBtn" layoutX="331.0" layoutY="200.0" mnemonicParsing="false" onAction="#showTransactionBtn" prefHeight="25.0" prefWidth="134.0" text="Show Transactions" />
+      <Button layoutX="249.0" layoutY="261.0" mnemonicParsing="false" onAction="#DisplayMessages" prefHeight="25.0" prefWidth="101.0" text="Show Messages" />
    </children>
 </AnchorPane>

@@ -37,6 +37,7 @@ public class Savings extends Account{
         this.interestrate = interestrate;
         this.dateopened = dateopened;
         this.CDdue = CDdue;
+        this.ATMcard = ATMcard;
         if(CDdue==null){
             this.cdcheck = false;
         }
@@ -153,5 +154,21 @@ public class Savings extends Account{
     public String toString(){
         String s = String.format("Account type: %s    Balance: $%.2f",accounttype,balance);
         return s;
+    }
+
+    public boolean isATMcard() {
+        return ATMcard;
+    }
+
+    public void setATMcard(boolean ATMcard) {
+        this.ATMcard = ATMcard;
+    }
+
+    public int getATMwithdrawalfrequency() {
+        return ATMwithdrawalfrequency;
+    }
+
+    public void setATMwithdrawalfrequency(int ATMwithdrawalfrequency) {
+        this.ATMwithdrawalfrequency = ATMwithdrawalfrequency;
     }
 }

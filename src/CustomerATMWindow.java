@@ -120,7 +120,6 @@ public class CustomerATMWindow implements Initializable {
             else if (Dollar50.isSelected()) amount = 50;
             else if (Dollar75.isSelected()) amount = 75;
             else if (Dollar100.isSelected()) amount = 100;
-            else if (custom.isSelected()) amount = Double.parseDouble(DollarCustom.getText());
     }
 
     /**
@@ -133,48 +132,100 @@ public class CustomerATMWindow implements Initializable {
     
     @FXML
     void Withdraw(ActionEvent event) throws IOException {
-        Checking workchecking = (Checking) App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex);
-        Account workAccount = App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex);
-        //Also we want to have a limit of two withdraws per Day
-        //Withdraw at this date < 2 
-        if (workchecking.getATMwithdrawalfrequency() < 2){
-        if (custom.isSelected()) {
-            String text = DollarCustom.getText().trim();
-            if (!text.isEmpty()) {
-                try {
-                    amount = Double.parseDouble(text);
-                    errorLbl.setText(""); 
-                } catch (NumberFormatException e) {
-                    amount = 0.0;
-                    errorLbl.setText("Invalid custom amount"); 
-                    return; 
+        Account account = App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex);
+        if(account.getAccounttype().equalsIgnoreCase("tmb")||account.getAccounttype().equalsIgnoreCase("gold")) {
+            Checking workchecking = (Checking) account;
+            if(!workchecking.isATMcard()){
+                errorLbl.setText("Account does not hold ATM card");
+                return;
+            }
+            //Withdraw at this date < 2
+            if (workchecking.getATMwithdrawalfrequency() < 2) {
+                if (custom.isSelected()) {
+                    String text = DollarCustom.getText().trim();
+                    if (!text.isEmpty()) {
+                        try {
+                            amount = Double.parseDouble(text);
+                            errorLbl.setText("");
+                        } catch (NumberFormatException e) {
+                            amount = 0.0;
+                            errorLbl.setText("Invalid custom amount");
+                            return;
+                        }
+                    }
                 }
+                // Check if the amount is valid
+                if (amount <= 0) {
+                    errorLbl.setText("Please enter a valid amount to withdraw");
+                    return;
+                } else {
+                    System.out.println("This is the amount: " + amount);
+                }
+
+                // Check if there are enough funds in the account
+                if (amount > App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getBalance()) {
+                    errorLbl.setText("Not enough funds");
+                    return;
+                }
+
+                workchecking.setBalance(workchecking.getBalance() - amount); // Update balance
+                if(workchecking.getAccounttype().equalsIgnoreCase("gold")&&workchecking.getBalance()<5000){
+                    workchecking.setAccounttype("TMB");
+                    workchecking.setGolddiamondcheck(false);
+                }
+                workchecking.ATMwithdrawalfrequency++;
+                Transaction ATMTransaction = new Transaction("Withdraw", workchecking.getAccounttype(), -amount, LocalDate.now(), workchecking.getBalance() - amount);
+                workchecking.AddTransaction(ATMTransaction);
+                App.Customers.get(App.currentaccountindex).getAccounts().set(App.currentaccountindex, workchecking);
+                AccountInfolbl.setText(workchecking.toString());
+            } else {
+                errorLbl.setText("2");
+            }
+        } else {
+            Savings worksavings = (Savings) account;
+            if(!worksavings.isATMcard()){
+                errorLbl.setText("Account does not hold ATM card");
+                return;
+            }
+            //Withdraw at this date < 2
+            if (worksavings.getATMwithdrawalfrequency() < 2) {
+                if (custom.isSelected()) {
+                    String text = DollarCustom.getText().trim();
+                    if (!text.isEmpty()) {
+                        try {
+                            amount = Double.parseDouble(text);
+                            errorLbl.setText("");
+                        } catch (NumberFormatException e) {
+                            amount = 0.0;
+                            errorLbl.setText("Invalid custom amount");
+                            return;
+                        }
+                    }
+                }
+                // Check if the amount is valid
+                if (amount <= 0) {
+                    errorLbl.setText("Please enter a valid amount to withdraw");
+                    return;
+                } else {
+                    System.out.println("This is the amount: " + amount);
+                }
+
+                // Check if there are enough funds in the account
+                if (amount > App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getBalance()) {
+                    errorLbl.setText("Not enough funds");
+                    return;
+                }
+
+                worksavings.setBalance(worksavings.getBalance() - amount); // Update balance
+                worksavings.ATMwithdrawalfrequency++;
+                Transaction ATMTransaction = new Transaction("Withdraw", worksavings.getAccounttype(), -amount, LocalDate.now(), worksavings.getBalance() - amount);
+                worksavings.AddTransaction(ATMTransaction);
+                App.Customers.get(App.currentaccountindex).getAccounts().set(App.currentaccountindex, worksavings);
+                AccountInfolbl.setText(worksavings.toString());
+            } else {
+                errorLbl.setText("2");
             }
         }
-        // Check if the amount is valid
-        if (amount <= 0) {
-            errorLbl.setText("Please enter a valid amount to withdraw");
-            return;
-        } else {
-            System.out.println("This is the amount: " + amount);
-        }
-     
-        // Check if there are enough funds in the account
-        if (amount > App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getBalance()) {
-            errorLbl.setText("Not enough funds");
-            return;
-        }
-
-       workAccount.setBalance(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getBalance() - amount); // Update balance
-        workchecking.ATMwithdrawalfrequency++;
-        Transaction ATMTransaction =new Transaction("Withdraw",workAccount.getAccounttype(),-amount,LocalDate.now(),workAccount.getBalance() - amount);
-        workAccount.AddTransaction(ATMTransaction);
-        workAccount = App.Customers.get(App.currentaccountindex).getAccounts().set(App.currentaccountindex, workAccount);
-        AccountInfolbl.setText(workAccount.toString());
-    }else{
-        errorLbl.setText("2 ");
-    }
-    
     }
     
     /**
