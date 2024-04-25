@@ -13,6 +13,11 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import java.io.IOException;
 
+
+/**
+ * Controls the customer login process by verifying Social Security Numbers (SSN).
+ * This class manages interactions on the login screen of a banking application.
+ */
 public class CustomerController {
     @FXML
     private ResourceBundle resources;
@@ -28,6 +33,17 @@ public class CustomerController {
     private Scene scene; // This is the scene for the stage
     private static Parent root; // This is the root for the scene
     private boolean found;
+
+
+
+
+    /**
+     * Verifies the SSN entered by the user. If the SSN is valid and exists in the system,
+     * it navigates to the account selection screen. Otherwise, it displays an error.
+     *
+     * @param event The ActionEvent triggered by clicking the verification button.
+     * @throws IOException If the FXML file cannot be loaded.
+     */
     @FXML
     void SSNverifyBtnClicked(ActionEvent event) throws IOException {
         if (ssnVerifyText != null && !ssnVerifyText.getText().matches(".*[a-zA-Z]+.*")&&!ssnVerifyText.getText().isBlank()&&ssnVerifyText.getText().length()==9) {
@@ -53,7 +69,14 @@ public class CustomerController {
             System.out.println("Please enter a valid SSN");
         }
     }
-
+    
+    
+    /**
+     * Navigates back to the main scene when the back button is pressed.
+     *
+     * @param event The ActionEvent triggered by clicking the back button.
+     * @throws IOException If the FXML file cannot be loaded.
+     */
     @FXML
     void switchToMainScene(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("MainScene.fxml"));

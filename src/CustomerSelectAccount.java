@@ -13,6 +13,11 @@ import java.io.IOException;
 import java.util.ResourceBundle;
 import java.net.URL;
 
+
+        /**
+         * Controller class that manages account selection for customers within a banking application.
+         * This class allows customers to select an account for further actions such as deposits, withdrawals, or payments.
+         */
 public class CustomerSelectAccount implements Initializable {
     private Stage stage; // This is the stage for the scene
     private Scene scene; // This is the scene for the stage

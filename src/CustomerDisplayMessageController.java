@@ -16,6 +16,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+
+    /**
+     * Controller for managing the display of messages to customers in a banking application.
+     * This class is responsible for initializing and updating a table view that shows messages
+     * intended for the customer.
+     */
 public class CustomerDisplayMessageController implements Initializable {
     private Stage stage; // This is the stage for the scene
     private Scene scene; // This is the scene for the stage
