@@ -163,7 +163,6 @@ public class CustomerProcessCheck implements Initializable {
                     Transaction checkingtransaction = new Transaction("Check",workchecking.getAccounttype(),-workamount,LocalDate.now(),workchecking.getBalance());
                     workchecking.getUsedchecks().add(check);
                     workchecking.setAccounttype("TMB");
-                    workchecking.setBackupsavingscheck(false);
                     workchecking.AddTransaction(checkingtransaction);
                     App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex,workchecking);
                     success.setText("Check processed");
