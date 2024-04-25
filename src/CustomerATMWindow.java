@@ -176,7 +176,7 @@ public class CustomerATMWindow implements Initializable {
                 workchecking.ATMwithdrawalfrequency++;
                 Transaction ATMTransaction = new Transaction("Withdraw", workchecking.getAccounttype(), -amount, LocalDate.now(), workchecking.getBalance() - amount);
                 workchecking.AddTransaction(ATMTransaction);
-                App.Customers.get(App.currentaccountindex).getAccounts().set(App.currentaccountindex, workchecking);
+                App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex, workchecking);
                 AccountInfolbl.setText(workchecking.toString());
             } else {
                 errorLbl.setText("2");
@@ -220,7 +220,7 @@ public class CustomerATMWindow implements Initializable {
                 worksavings.ATMwithdrawalfrequency++;
                 Transaction ATMTransaction = new Transaction("Withdraw", worksavings.getAccounttype(), -amount, LocalDate.now(), worksavings.getBalance() - amount);
                 worksavings.AddTransaction(ATMTransaction);
-                App.Customers.get(App.currentaccountindex).getAccounts().set(App.currentaccountindex, worksavings);
+                App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex, worksavings);
                 AccountInfolbl.setText(worksavings.toString());
             } else {
                 errorLbl.setText("2");
