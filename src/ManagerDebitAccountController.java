@@ -82,6 +82,7 @@ public class ManagerDebitAccountController implements Initializable {
                 }
                 if(workchecking.getAccounttype().equalsIgnoreCase("gold")&&workchecking.getBalance()<5000){
                     workchecking.setAccounttype("TMB");
+                    workchecking.setBackupsavingscheck(false);
                     workchecking.setBalance(workchecking.getBalance()-0.75);
                     checkingtransaction.setNewbalance(checkingtransaction.getNewbalance()-0.75);
                 }

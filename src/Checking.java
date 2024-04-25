@@ -43,7 +43,7 @@ public class Checking extends Account {
             golddiamondcheck = false;
         }
         else golddiamondcheck = true;
-        if(savingsaccountid==null){
+        if(savingsaccountid==null||savingsaccountid.isBlank()||savingsaccountid.isEmpty()){
             backupsavingscheck = false;
         }
         else backupsavingscheck = true;

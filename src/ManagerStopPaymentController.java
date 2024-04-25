@@ -88,7 +88,7 @@ public class ManagerStopPaymentController implements Initializable {
         if(checknumber != null && !checknumber.getText().matches(".*[a-zA-Z]+.*")&&!checknumber.getText().isBlank()&&Integer.parseInt(checknumber.getText())>0){
             int checkint = Integer.parseInt(checknumber.getText());
             for(int i=0;i<workchecking.getUsedchecks().size();i++){
-                if(checkint == workchecking.getUsedchecks().get(i).getChecknumber()){
+                if(checkint == workchecking.getUsedchecks().get(i).getChecknumber() && workchecking.getUsedchecks().get(i).isPaid()){
                     workchecking.getUsedchecks().get(i).setPaid(false);
                     double amount = workchecking.getUsedchecks().get(i).getPaymentamount();
                     workchecking.setBalance(workchecking.getBalance()+amount-35);

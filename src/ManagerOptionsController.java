@@ -472,16 +472,14 @@ public class ManagerOptionsController implements Initializable{
     void IssueCreditCardBill(ActionEvent event) throws IOException {
         // if the account has already been billed, do not bill again
         Account account = App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex);
-        Loan creditAccount = (Loan) account;
         if (!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("Credit Card")) {
             error.setText("Can Only Issue Credit Card Bill for Credit Account");
         } else {
-            // add up all the transactions for the month that are not "payment" and not billed
+            Loan creditAccount = (Loan) account;
             double annualInterestRate = 0.12;
             double total = 0;
             StringBuilder messageBuilder = new StringBuilder();
             messageBuilder.append("Transactions:\n");
-
             double monthlyInterestRate = annualInterestRate / 12;
             for (Transaction transaction : creditAccount.getTransactions()) {
                 if (transaction instanceof BilledTransaction) {
