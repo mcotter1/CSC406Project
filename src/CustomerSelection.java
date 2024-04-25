@@ -16,7 +16,10 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import java.io.IOException;
 
-
+    /**
+     * Controller class responsible for handling customer selections for different banking transactions.
+     * This class enables customers to navigate to various transaction interfaces depending on their account type.
+     */
 public class CustomerSelection implements Initializable {
     private Stage stage; // This is the stage for the scene
     private Scene scene; // This is the scene for the stage
@@ -37,6 +40,13 @@ public class CustomerSelection implements Initializable {
     @FXML
     private Label AccountInfo;
 
+
+    /**
+     * Handles navigation to the credit card payment interface if the selected account is a credit card.
+     * 
+     * @param event The ActionEvent triggered by the credit card payment button.
+     * @throws IOException If there is an error loading the scene.
+     */
     @FXML
     void CustomerPayCreditCard(ActionEvent event) throws IOException {
         if(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("Credit Card")){
@@ -51,6 +61,13 @@ public class CustomerSelection implements Initializable {
         }
     }
 
+
+     /**
+     * Handles navigation to the ATM card review interface.
+     * 
+     * @param event The ActionEvent triggered by the ATM card button.
+     * @throws IOException If there is an error loading the scene.
+     */
     @FXML
     void ATMCardBtnClicked(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("CustomerReviewAccountStatus.fxml"));
@@ -61,6 +78,16 @@ public class CustomerSelection implements Initializable {
         System.out.println("Account Status Button Clicked");
     }
 
+
+    /**
+     * Handles navigation based on the account type when the credit card button is clicked.
+     * This method checks if the current account type is one of the specified types suitable for ATM operations.
+     * If the account type matches ("simple savings", "TMB", or "Gold"), it navigates to the ATM window interface.
+     * Otherwise, it displays an error message indicating that a savings account must be selected.
+     *
+     * @param event The ActionEvent triggered by clicking the credit card button.
+     * @throws IOException If there is an error loading the scene.
+     */
     @FXML
     void creditCardBtnClicked(ActionEvent event) throws IOException {
         if(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("simple savings") || App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("TMB") || App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("Gold")){
@@ -74,6 +101,14 @@ public class CustomerSelection implements Initializable {
         errorLbl.setText("Must be an Savings Account Selected");
     }
     }
+
+
+    /**
+     * Handles navigation to the check processing interface if the selected account type is suitable for checks.
+     * 
+     * @param event The ActionEvent triggered by the process check button.
+     * @throws IOException If there is an error loading the scene.
+     */
     @FXML
     void processCheckCustomer(ActionEvent event) throws IOException {
         if(!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("gold")&&!App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).getAccounttype().equalsIgnoreCase("tmb")){
@@ -88,6 +123,13 @@ public class CustomerSelection implements Initializable {
         }
     }
 
+
+    /**
+     * Handles navigation to the customer transaction interface.
+     * 
+     * @param event The ActionEvent triggered by the transaction button.
+     * @throws IOException If there is an error loading the scene.
+     */
     @FXML
     void showTransactionBtn(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("CustomerTransaction.fxml"));
@@ -98,6 +140,13 @@ public class CustomerSelection implements Initializable {
         System.out.println("Customer Transaction Clicked");
     }
 
+
+    /**
+     * Handles navigation to the paper deposit interface.
+     * 
+     * @param event The ActionEvent triggered by the paper deposit button.
+     * @throws IOException If there is an error loading the scene.
+     */
     @FXML
     void PaperDeposit(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("CustomerPaperDeposit.fxml"));
@@ -107,8 +156,14 @@ public class CustomerSelection implements Initializable {
         stage.show();
         System.out.println("Customer Select Payment Clicked");
     }
-    //Paper Deposit for all Accounts, Just cash Deposit
 
+
+    /**
+     * Handles navigation back to the main account selection interface.
+     * 
+     * @param event The ActionEvent triggered by the back button.
+     * @throws IOException If there is an error loading the scene.
+     */
     @FXML
     void switchToMainScene(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("CustomerSelectAccount.fxml"));
@@ -118,6 +173,13 @@ public class CustomerSelection implements Initializable {
         stage.show();
         System.out.println("Back Button Clicked");
     }
+
+    /**
+     * Handles navigation to the message display interface.
+     * 
+     * @param event The ActionEvent triggered by the display messages button.
+     * @throws IOException If there is an error loading the scene.
+     */
     @FXML
     void DisplayMessages(ActionEvent event) throws IOException{
         root = FXMLLoader.load(getClass().getResource("CustomerDisplayMessage.fxml"));
@@ -127,7 +189,13 @@ public class CustomerSelection implements Initializable {
         stage.show();
         System.out.println("Back Button Clicked");
     }
-
+    
+/**
+     * Initializes the controller class by setting up account-related messages and checks for CD maturity.
+     * 
+     * @param location The location used to resolve relative paths for the root object, or null if not specified.
+     * @param resources The resources used to localize the root object, or null if not specified.
+     */
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
        AccountInfo.setText( "Welcome " + App.Customers.get(App.currentcustomerindex).getFirstname().toString() + " " + App.Customers.get(App.currentcustomerindex).getLastname().toString() + " Please make a Selection!");

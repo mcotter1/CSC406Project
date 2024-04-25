@@ -21,7 +21,11 @@ import javafx.scene.control.*;
 import java.io.IOException;
 
 
-
+    /**
+     * Controller class for managing the display of account transactions within a banking application.
+     * It allows the user to view detailed transaction history based on account type, including Checking,
+     * Savings, and Loan accounts.
+     */
 public class CustomerTransaction implements Initializable{
     
     private Stage stage; // This is the stage for the scene
@@ -40,6 +44,14 @@ public class CustomerTransaction implements Initializable{
     @FXML
     private TableView<Transaction> transactionTable;
 
+
+    /**
+     * Initializes the scene by populating the transaction table based on the type of account selected.
+     * It uses different account types from the current customer to show relevant transactions with appropriate formatting.
+     *
+     * @param location The location used to resolve relative paths for the root object, or null if not specified.
+     * @param resources The resources used to localize the root object, or null if not specified.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         NumberFormat balanceFormat = NumberFormat.getCurrencyInstance();
@@ -171,6 +183,14 @@ public class CustomerTransaction implements Initializable{
         transactionTable.getColumns().setAll(tColumn1,tColumn2,tColumn3,tColumn4,tColumn5);
         }
     }
+
+
+     /**
+     * Returns to the payment selection screen when the back button is pressed.
+     * 
+     * @param event The ActionEvent that triggered this method.
+     * @throws IOException If there is an error loading the scene.
+     */
     @FXML
     void Back(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("CustomerSelectPayment.fxml"));

@@ -21,6 +21,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+
+
+/**
+ * Controller class for customer account information within a banking application.
+ * Handles the user interface interaction and data representation for customer accounts, 
+ * including checking, savings, and loan accounts.
+ */
 public class CustomerAccountInfoController implements Initializable{
     private Stage stage; // This is the stage for the scene
     private Scene scene; // This is the scene for the stage
@@ -49,6 +56,15 @@ public class CustomerAccountInfoController implements Initializable{
     @FXML
     private Label LoanNonExisiting;
 
+
+
+    /**
+     * Handles the action of the button to verify SSN. It loads and sets the scene to 
+     * "CustomerSelectPayment.fxml".
+     * 
+     * @param event The ActionEvent triggered by clicking the button.
+     * @throws IOException If the FXML file cannot be loaded.
+     */
     @FXML
     void SSNverifyBtnClicked(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("CustomerSelectPayment.fxml"));
@@ -57,7 +73,15 @@ public class CustomerAccountInfoController implements Initializable{
         stage.setScene(scene);
         stage.show();
     }
-
+    
+    /**
+     * Initializes the controller class. This method is automatically called
+     * after the fxml file has been loaded. It populates the tables for checking,
+     * savings, and loan accounts with respective data from customer's account list.
+     *
+     * @param location The location used to resolve relative paths for the root object, or null if unknown.
+     * @param resources The resources used to localize the root object, or null if not available.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

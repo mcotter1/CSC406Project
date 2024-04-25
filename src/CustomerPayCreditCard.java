@@ -19,7 +19,10 @@ import java.net.URL;
 import java.time.LocalDate;
 
 
-
+/**
+ * Controls the functionality for paying credit card bills through a customer interface
+ * within a banking application.
+ */
 
 public class CustomerPayCreditCard implements Initializable {
     private Stage stage; // This is the stage for the scene
@@ -51,19 +54,24 @@ public class CustomerPayCreditCard implements Initializable {
     private Label successlbl;
     @FXML
     private Label Accountlbl;
-    //private int transferaccountindex;
 
-
-    //Implement button Visability of Credit card acccount validation
+    /**
+     * Initializes the controller by updating the account label with current account information.
+     *
+     * @param location The location used to resolve relative paths for the root object, or null if not specified.
+     * @param resources The resources used to localize the root object, or null if not specified.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Accountlbl.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());
-
-
-
     }
-    //Transaction we have Account, Amount and Description
-    //Check that the Credit card is not going over the Limit
+    /**
+     * Processes a credit card payment when the credit button is pressed.
+     * Validates the amount and description, and checks that the credit limit is not exceeded.
+     *
+     * @param event The ActionEvent triggered by clicking the credit button.
+     * @throws IOException if the processing fails due to navigation issues.
+     */
     @FXML
     void CreditBtn(ActionEvent event) throws IOException {
         Account workAccount = (App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex));
@@ -83,11 +91,9 @@ public class CustomerPayCreditCard implements Initializable {
         if((workamount + loanwork.getBalance()) >= loanwork.getCreditcardlimit()){
             errorLbl.setText("Credit Limit Reached");
         }else{
-            //Transaction loantransaction = new Transaction(Descriptiontxt.getText(),loanwork.getAccounttype(),-workamount, LocalDate.now(),loanwork.getBalance()+workamount);
             BilledTransaction billedTransaction = new BilledTransaction(Descriptiontxt.getText(),loanwork.getAccounttype(),workamount, LocalDate.now(),loanwork.getBalance()+workamount, false);
             
             loanwork.setBalance(loanwork.getBalance()+workamount);
-            //loanwork.AddTransaction(loantransaction);
             loanwork.AddBilledTransaction(billedTransaction);
             loanwork.setLastpaymentdate(LocalDate.now());
             errorLbl.setText(loanwork.toString());
@@ -98,6 +104,12 @@ public class CustomerPayCreditCard implements Initializable {
         Accountlbl.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());
 
     }
+    /**
+     * Navigates back to the customer payment selection screen when the back button is pressed.
+     *
+     * @param event The ActionEvent triggered by clicking the back button.
+     * @throws IOException if the navigation fails due to FXML loading issues.
+     */
     @FXML
     void backBtn(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("CustomerSelectPayment.fxml"));

@@ -21,7 +21,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-
+    /**
+     * A controller class for managing the paper deposit operations within a banking application.
+     * This class handles simple depositss.
+     */
 public class CustomerPaperDeposit implements Initializable {
     private Stage stage; // This is the stage for the scene
     private Scene scene; // This is the scene for the stage
@@ -51,6 +54,12 @@ public class CustomerPaperDeposit implements Initializable {
     @FXML
     private Button Depositbtn;
 
+
+    /**
+     * Navigates back to the customer payment selection screen.
+     * @param event The event triggered by clicking the back button.
+     * @throws IOException if the navigation fails due to FXML loading issues.
+     */
     @FXML
     public void Backbtn(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("CustomerSelectPayment.fxml"));
@@ -60,6 +69,13 @@ public class CustomerPaperDeposit implements Initializable {
         stage.show();
         System.out.println("Back Button Clicked");
     }
+
+    /**
+     * Processes deposit transactions for either loan repayments or standard account deposits.
+     * Validates the amount, updates the account balance, and logs the transaction.
+     * @param event The event triggered by clicking the deposit button.
+     * @throws IOException if the transaction processing fails.
+     */
     @FXML
     public void Depositbtn(ActionEvent event) throws IOException {
         //Basic Layout and it updated the accounts, if Credit card or loan we need to redo minimum payment        
@@ -122,7 +138,12 @@ public class CustomerPaperDeposit implements Initializable {
             errorLbl.setText("Please enter a valid Amount!");
         }
     }
-
+    
+    /**
+     * Initializes the controller class by setting the account type label.
+     * @param location The location used to resolve relative paths for the root object, or null if not specified.
+     * @param resources The resources used to localize the root object, or null if not specified.
+     */
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
         //Done

@@ -21,6 +21,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+
+
+/**
+ * Controller for the ATM interface in a banking application,
+ * allowing users to make cash withdrawals.
+ */
 public class CustomerATMWindow implements Initializable {
 
 
@@ -57,6 +63,13 @@ public class CustomerATMWindow implements Initializable {
     private int transferaccountindex;
     private double amount;
 
+    /**
+     * Initializes the controller class. Sets up toggle groups and listeners for the withdrawal
+     * interface.
+     *
+     * @param location  The location used to resolve relative paths for the root object, or null if not specified.
+     * @param resources The resources used to localize the root object, or null if not specified.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources){
       AccountInfolbl.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());
@@ -97,6 +110,9 @@ public class CustomerATMWindow implements Initializable {
         getAmount();
     }
 
+    /**
+     * Method to calculate and store the withdrawal amount based on the selected radio button or entered custom amount.
+     */
     @FXML
     void getAmount() {
             if (Dollar10.isSelected()) amount = 10;
@@ -107,7 +123,14 @@ public class CustomerATMWindow implements Initializable {
             else if (custom.isSelected()) amount = Double.parseDouble(DollarCustom.getText());
     }
 
-
+    /**
+     * Handles the withdrawal action. Validates and processes the withdrawal request.
+     * Implements daily withdrawal frequency limits and account balance checks.
+     *
+     * @param event The ActionEvent triggered by clicking the Withdraw button.
+     * @throws IOException If the FXML file cannot be loaded.
+     */
+    
     @FXML
     void Withdraw(ActionEvent event) throws IOException {
         Checking workchecking = (Checking) App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex);
@@ -153,7 +176,13 @@ public class CustomerATMWindow implements Initializable {
     }
     
     }
-
+    
+    /**
+     * Handles navigation back to the payment selection screen.
+     *
+     * @param event The ActionEvent triggered by clicking the back button.
+     * @throws IOException If the FXML file cannot be loaded.
+     */
     @FXML
     void backBtn(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("CustomerSelectPayment.fxml"));
