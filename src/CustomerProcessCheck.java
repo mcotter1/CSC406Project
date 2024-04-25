@@ -209,6 +209,8 @@ public class CustomerProcessCheck implements Initializable {
                     check.setPaid(true);
                     workchecking.getUsedchecks().add(check);
                     accountlabel.setText(workchecking.toString());
+                    success.setText("Backup Payment Successful");
+                    error.setText("");
                     App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex,workchecking);
                     App.Customers.get(App.currentcustomerindex).getAccounts().set(savingsaccountindex,worksavings);
                 }
