@@ -61,6 +61,7 @@ public class TellerLinkAccountController implements Initializable {
             Checking workchecking = (Checking) workaccount;
             Savings worksavings = (Savings) worksavingsAccount;
             workchecking.setOverdraftbackupnumber(worksavings.getSavingsaccountid());
+            workchecking.setBackupsavingscheck(true);
             error.setText("");
             success.setText(String.format("Checking linked to account: %s",worksavings.getSavingsaccountid()));
             App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex,workchecking);
