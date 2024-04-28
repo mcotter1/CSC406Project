@@ -117,6 +117,7 @@ public class CustomerPaperDeposit implements Initializable {
                 AccountTypelbl.setText(loanworking.toString());
                 Amounttxt.setText("");
                 confirmLbl.setText("Payment Successfull!");
+                errorLbl.setText("");
                 App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex,loanworking);
             }else{
                 double workamount = Double.parseDouble(Amounttxt.getText());
@@ -148,6 +149,5 @@ public class CustomerPaperDeposit implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         //Done
         AccountTypelbl.setText(App.Customers.get(App.currentcustomerindex).getAccounts().get(App.currentaccountindex).toString());
-
     }
 }
