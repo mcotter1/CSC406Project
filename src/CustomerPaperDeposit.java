@@ -80,6 +80,7 @@ public class CustomerPaperDeposit implements Initializable {
     public void Depositbtn(ActionEvent event) throws IOException {
         //Basic Layout and it updated the accounts, if Credit card or loan we need to redo minimum payment        
         if(Amounttxt.getText().isEmpty()){
+            confirmLbl.setText("");
             errorLbl.setText("Transfer amount cannot be empty");
             return;
         }
@@ -132,10 +133,12 @@ public class CustomerPaperDeposit implements Initializable {
                 workAccountelse.AddTransaction(simpletransaction);
                 Amounttxt.setText("");
                 confirmLbl.setText("Deposit Successfull!");
+                errorLbl.setText("");
                 AccountTypelbl.setText(workAccountelse.toString());
                 App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex,workAccountelse);
             }
         }else{
+            confirmLbl.setText("");
             errorLbl.setText("Please enter a valid Amount!");
         }
     }
