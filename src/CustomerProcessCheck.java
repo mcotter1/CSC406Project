@@ -105,31 +105,26 @@ public class CustomerProcessCheck implements Initializable {
                         accountlabel.setText(workchecking.toString());
                         return;
                     }
-                    if(check.getPaymentamount()>worksavings.getBalance()){
-                        Transaction savingstransaction = new Transaction("Backup",worksavings.getAccounttype(),-worksavings.getBalance(),LocalDate.now(),0);
-                        worksavings.AddTransaction(savingstransaction);
-                        double overbalance = check.getPaymentamount()-worksavings.getBalance();
-                        worksavings.setBalance(0);
-                        workchecking.setBalance(workchecking.getBalance()-overbalance-0.75);
-                        Transaction checkingtransaction = new Transaction("Check",workchecking.getAccounttype(),-overbalance,LocalDate.now(),workchecking.getBalance());
-                        workchecking.AddTransaction(checkingtransaction);
-                        check.setPaid(true);
-                        workchecking.getUsedchecks().add(check);
-                        App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex,workchecking);
-                        App.Customers.get(App.currentcustomerindex).getAccounts().set(savingsaccountindex,worksavings);
-                        accountlabel.setText(workchecking.toString());
-                        success.setText("Backup Payment Successful");
-                        error.setText("");
-                        return;
+                    double overbalance;
+                    if(workchecking.getBalance()<=0){
+                        overbalance = check.getPaymentamount();
+                        workchecking.setBalance(workchecking.getBalance()-0.75);
+                    }else {
+                        overbalance = check.getPaymentamount()-workchecking.getBalance();
+                        workchecking.setBalance(-0.75);
                     }
-                    Transaction savingstransaction = new Transaction("Backup",worksavings.getAccounttype(),-workamount,LocalDate.now(),worksavings.getBalance()-workamount);
-                    worksavings.setBalance(worksavings.getBalance()-workamount);
+                    Transaction checkingtransaction = new Transaction("Check",workchecking.getAccounttype(),-workchecking.getBalance(),LocalDate.now(),0);
+                    worksavings.setBalance(worksavings.getBalance()-overbalance);
+                    Transaction savingstransaction = new Transaction("Backup",worksavings.getAccounttype(),-overbalance,LocalDate.now(),worksavings.getBalance());
                     worksavings.AddTransaction(savingstransaction);
+                    workchecking.AddTransaction(checkingtransaction);
                     check.setPaid(true);
                     workchecking.getUsedchecks().add(check);
-                    accountlabel.setText(workchecking.toString());
                     App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex,workchecking);
                     App.Customers.get(App.currentcustomerindex).getAccounts().set(savingsaccountindex,worksavings);
+                    accountlabel.setText(workchecking.toString());
+                    success.setText("Backup Payment Successful");
+                    error.setText("");
                 } else if(check.getPaymentamount()<=workchecking.getBalance()) {
                     check.setPaid(true);
                     workchecking.setBalance(workchecking.getBalance()-workamount);
@@ -182,38 +177,28 @@ public class CustomerProcessCheck implements Initializable {
                         accountlabel.setText(workchecking.toString());
                         return;
                     }
-                    if(check.getPaymentamount()>worksavings.getBalance()){
-                        Transaction savingstransaction = new Transaction("Backup",worksavings.getAccounttype(),-worksavings.getBalance(),LocalDate.now(),0);
-                        worksavings.AddTransaction(savingstransaction);
-                        double overbalance = check.getPaymentamount()-worksavings.getBalance();
-                        worksavings.setBalance(0);
-                        workchecking.setBalance(workchecking.getBalance()-overbalance);
-                        if(workchecking.getBalance()<5000){
-                            workchecking.setAccounttype("TMB");
-                        }
-                        Transaction checkingtransaction = new Transaction("Check",workchecking.getAccounttype(),-overbalance,LocalDate.now(),workchecking.getBalance());
-                        workchecking.AddTransaction(checkingtransaction);
-                        check.setPaid(true);
-                        workchecking.getUsedchecks().add(check);
-                        App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex,workchecking);
-                        App.Customers.get(App.currentcustomerindex).getAccounts().set(savingsaccountindex,worksavings);
-                        accountlabel.setText(workchecking.toString());
-                        success.setText("Backup Payment Successful");
-                        error.setText("");
-                        return;
+                    double overbalance;
+                    if(workchecking.getBalance()<=0){
+                        overbalance = check.getPaymentamount();
+                        workchecking.setBalance(workchecking.getBalance()-0.75);
+                    }else {
+                        overbalance = check.getPaymentamount()-workchecking.getBalance();
+                        workchecking.setBalance(-0.75);
                     }
-                    Transaction savingstransaction = new Transaction("Backup",worksavings.getAccounttype(),-workamount,LocalDate.now(),worksavings.getBalance()-workamount);
-                    worksavings.setBalance(worksavings.getBalance()-workamount);
+                    Transaction checkingtransaction = new Transaction("Check",workchecking.getAccounttype(),-workchecking.getBalance(),LocalDate.now(),0);
+                    workchecking.setGolddiamondcheck(false);
+                    worksavings.setBalance(worksavings.getBalance()-overbalance);
+                    Transaction savingstransaction = new Transaction("Backup",worksavings.getAccounttype(),-overbalance,LocalDate.now(),worksavings.getBalance());
                     worksavings.AddTransaction(savingstransaction);
+                    workchecking.AddTransaction(checkingtransaction);
                     check.setPaid(true);
                     workchecking.getUsedchecks().add(check);
+                    App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex,workchecking);
+                    App.Customers.get(App.currentcustomerindex).getAccounts().set(savingsaccountindex,worksavings);
                     accountlabel.setText(workchecking.toString());
                     success.setText("Backup Payment Successful");
                     error.setText("");
-                    App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex,workchecking);
-                    App.Customers.get(App.currentcustomerindex).getAccounts().set(savingsaccountindex,worksavings);
-                }
-                else {
+                }else {
                     check.setPaid(false);
                     workchecking.setBalance(workchecking.getBalance()-25);
                     workchecking.getUsedchecks().add(check);
