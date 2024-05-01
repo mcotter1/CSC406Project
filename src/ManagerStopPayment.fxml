@@ -16,7 +16,7 @@
           <TableColumn prefWidth="75.0" text="C2" />
         </columns>
       </TableView>
-      <Label layoutX="224.0" layoutY="31.0" text="Teller Stop Payment">
+      <Label layoutX="224.0" layoutY="31.0" text="Manager Stop Payment">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
