@@ -106,14 +106,17 @@ public class CustomerProcessCheck implements Initializable {
                         return;
                     }
                     double overbalance;
+                    Transaction checkingtransaction = new Transaction("Check",workchecking.getAccounttype(),-workchecking.getBalance(),LocalDate.now(),0);
                     if(workchecking.getBalance()<=0){
+                        checkingtransaction.setAmount(-0.75);
                         overbalance = check.getPaymentamount();
                         workchecking.setBalance(workchecking.getBalance()-0.75);
+                        checkingtransaction.setNewbalance(workchecking.getBalance());
                     }else {
                         overbalance = check.getPaymentamount()-workchecking.getBalance();
                         workchecking.setBalance(-0.75);
+                        checkingtransaction.setNewbalance(workchecking.getBalance());
                     }
-                    Transaction checkingtransaction = new Transaction("Check",workchecking.getAccounttype(),-workchecking.getBalance(),LocalDate.now(),0);
                     worksavings.setBalance(worksavings.getBalance()-overbalance);
                     Transaction savingstransaction = new Transaction("Backup",worksavings.getAccounttype(),-overbalance,LocalDate.now(),worksavings.getBalance());
                     worksavings.AddTransaction(savingstransaction);
@@ -178,14 +181,17 @@ public class CustomerProcessCheck implements Initializable {
                         return;
                     }
                     double overbalance;
+                    Transaction checkingtransaction = new Transaction("Check",workchecking.getAccounttype(),-workchecking.getBalance(),LocalDate.now(),0);
                     if(workchecking.getBalance()<=0){
+                        checkingtransaction.setAmount(-0.75);
                         overbalance = check.getPaymentamount();
                         workchecking.setBalance(workchecking.getBalance()-0.75);
+                        checkingtransaction.setNewbalance(workchecking.getBalance());
                     }else {
                         overbalance = check.getPaymentamount()-workchecking.getBalance();
                         workchecking.setBalance(-0.75);
+                        checkingtransaction.setNewbalance(workchecking.getBalance());
                     }
-                    Transaction checkingtransaction = new Transaction("Check",workchecking.getAccounttype(),-workchecking.getBalance(),LocalDate.now(),0);
                     workchecking.setGolddiamondcheck(false);
                     worksavings.setBalance(worksavings.getBalance()-overbalance);
                     Transaction savingstransaction = new Transaction("Backup",worksavings.getAccounttype(),-overbalance,LocalDate.now(),worksavings.getBalance());
