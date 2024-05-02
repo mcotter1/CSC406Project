@@ -59,8 +59,13 @@ public class ManagerCreditAccountController implements Initializable {
                     return;
                 }
                 if(loanwork.isMissedpayment()){
-                    loantransaction.setNewbalance(loantransaction.getNewbalance()+75);
-                    loantransaction.setAmount(loantransaction.getAmount()-75);
+                    if(loanwork.getAccounttype().equalsIgnoreCase("credit card")&&loanwork.getBalance()<=workamount){
+
+                    } else {
+                        loantransaction.setNewbalance(loantransaction.getNewbalance() + 75);
+                        loantransaction.setAmount(loantransaction.getAmount() + 75);
+                        loanwork.setBalance(loanwork.getBalance() + 75);
+                    }
                 }
                 if(workamount>=loanwork.getPaymentamountdue()){
                     loanwork.setMissedpayment(false);
