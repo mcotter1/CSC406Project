@@ -57,7 +57,23 @@ public class ManagerDebitAccountController implements Initializable {
                     return;
                 }
                 if(worksavings.getAccounttype().equalsIgnoreCase("cd")){
-                    //logic for CD withdrawal before CD date
+                    if(worksavings.getCDdue().isAfter(LocalDate.now())){
+                        Transaction cdtransaction = new Transaction("Withdrawal","CD",workamount,LocalDate.now(),workaccount.getBalance()-workamount-2);
+                        worksavings.setBalance(worksavings.getBalance()-workamount-2);
+                        worksavings.AddTransaction(cdtransaction);
+                        error.setText("Penalty for Withdrawal before CD due date");
+                        success.setText("Withdrawal Successful");
+                        accountlabel.setText(worksavings.toString());
+                        App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex,worksavings);
+                    } else {
+                        Transaction simpletransaction = new Transaction("Withdrawal",worksavings.getAccounttype(),workamount,LocalDate.now(),workaccount.getBalance()-workamount);
+                        worksavings.setBalance(worksavings.getBalance()-workamount);
+                        worksavings.AddTransaction(simpletransaction);
+                        error.setText("");
+                        success.setText("Withdrawal Successful");
+                        accountlabel.setText(worksavings.toString());
+                        App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex,worksavings);
+                    }
                 } else {
                     Transaction simpletransaction = new Transaction("Withdrawal",worksavings.getAccounttype(),-workamount, LocalDate.now(),worksavings.getBalance()-workamount);
                     worksavings.setBalance(worksavings.getBalance()-workamount);

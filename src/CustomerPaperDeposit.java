@@ -101,8 +101,13 @@ public class CustomerPaperDeposit implements Initializable {
                     return;
                 }
                 if(loanworking.isMissedpayment()){
-                    loanTransaction.setNewbalance(loanTransaction.getNewbalance()+75);
-                    loanTransaction.setAmount(loanTransaction.getAmount()-75);
+                    if(loanworking.getAccounttype().equalsIgnoreCase("credit card")&&loanworking.getBalance()<=workamount){
+
+                    } else {
+                        loanTransaction.setNewbalance(loanTransaction.getNewbalance() + 75);
+                        loanTransaction.setAmount(loanTransaction.getAmount() + 75);
+                        loanworking.setBalance(loanworking.getBalance() + 75);
+                    }
                 }
                 if(workamount>=loanworking.getPaymentamountdue()){
                     loanworking.setMissedpayment(false);

@@ -63,7 +63,7 @@ public class TellerDebitAccountController implements Initializable {
                     return;
                 }
                 if(worksavings.getAccounttype().equalsIgnoreCase("cd")){
-                    if(worksavings.getCDdue().isBefore(LocalDate.now())){
+                    if(worksavings.getCDdue().isAfter(LocalDate.now())){
                         Transaction cdtransaction = new Transaction("Withdrawal","CD",workamount,LocalDate.now(),workaccount.getBalance()-workamount-2);
                         worksavings.setBalance(worksavings.getBalance()-workamount-2);
                         worksavings.AddTransaction(cdtransaction);
@@ -72,10 +72,10 @@ public class TellerDebitAccountController implements Initializable {
                         accountlabel.setText(worksavings.toString());
                         App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex,worksavings);
                     } else {
-                        Transaction simpletransaction = new Transaction("Withdrawal","Simple Savings",workamount,LocalDate.now(),workaccount.getBalance()-workamount);
+                        Transaction simpletransaction = new Transaction("Withdrawal",worksavings.getAccounttype(),workamount,LocalDate.now(),workaccount.getBalance()-workamount);
                         worksavings.setBalance(worksavings.getBalance()-workamount);
                         worksavings.AddTransaction(simpletransaction);
-                        error.setText("Penalty for Withdrawal before CD due date");
+                        error.setText("");
                         success.setText("Withdrawal Successful");
                         accountlabel.setText(worksavings.toString());
                         App.Customers.get(App.currentcustomerindex).getAccounts().set(App.currentaccountindex,worksavings);
