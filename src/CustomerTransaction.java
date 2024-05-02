@@ -74,8 +74,9 @@ public class CustomerTransaction implements Initializable{
 
                     super.updateItem(amount, empty);
 
-                    setGraphic(null);
+
                     if (empty || amount == null) {
+                        setGraphic(null);
                         setText(null);
                     } else {
                         setText(balanceFormat.format(amount));
@@ -93,9 +94,10 @@ public class CustomerTransaction implements Initializable{
 
                     super.updateItem(newbalance, empty);
 
-                    setGraphic(null);
+
                     if (empty || newbalance == null) {
                         setText(null);
+                        setGraphic(null);
                     } else {
                         setText(balanceFormat.format(newbalance));
                     }
@@ -134,17 +136,19 @@ public class CustomerTransaction implements Initializable{
         tColumn4.setCellValueFactory(new PropertyValueFactory<>("dateoccurred"));
         TableColumn<Transaction,Double> tColumn5 = new TableColumn<>("New Balance");
         tColumn5.setCellValueFactory(new PropertyValueFactory<>("newbalance"));
-        tColumn3.setCellFactory(c -> new TableCell<Transaction, Double>() {
+        tColumn5.setCellFactory(c -> new TableCell<Transaction, Double>() {
             @Override
-            protected void updateItem(Double newblance,boolean empty) {
+            protected void updateItem(Double newbalance,
+                                      boolean empty) {
 
-                super.updateItem(newblance, empty);
+                super.updateItem(newbalance, empty);
 
-                setGraphic(null);
-                if (empty || newblance == null) {
+
+                if (empty || newbalance == null) {
                     setText(null);
-                }else{
-                    setText(balanceFormat.format(newblance));
+                    setGraphic(null);
+                } else {
+                    setText(balanceFormat.format(newbalance));
                 }
             }
         });
